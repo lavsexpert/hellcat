@@ -39,10 +39,10 @@
 	<Reference Include="System.Core" />
 	<Reference Include="System.Xml.Linq" />
 	<Reference Include="UnityEngine">
-	  <HintPath>C:/Program Files/Unity/Editor/Data/Managed/UnityEngine.dll</HintPath>
+	  <HintPath>C:/Program Files (x86)/Unity/Editor/Data/Managed/UnityEngine.dll</HintPath>
 	</Reference>
 	<Reference Include="UnityEditor">
-	  <HintPath>C:/Program Files/Unity/Editor/Data/Managed/UnityEditor.dll</HintPath>
+	  <HintPath>C:/Program Files (x86)/Unity/Editor/Data/Managed/UnityEditor.dll</HintPath>
 	</Reference>
   </ItemGroup>
   <ItemGroup>
@@ -53,7 +53,6 @@
      <Compile Include="Assets\Logic\Enemy_Warrior.cs" />
      <Compile Include="Assets\Logic\Enemy_Warrior_Model_Animation.cs" />
      <Compile Include="Assets\Logic\Game_Control.cs" />
-     <Compile Include="Assets\Logic\HellCat_LifeBar_Script.cs" />
      <Compile Include="Assets\Logic\Level_Border_Script.cs" />
      <Compile Include="Assets\Logic\Object_Swamp.cs" />
      <Compile Include="Assets\Logic\Object_Trap.cs" />
@@ -61,6 +60,7 @@
      <Compile Include="Assets\Logic\Object_Tree.cs" />
      <Compile Include="Assets\Logic\Player_Controller.cs" />
      <Compile Include="Assets\Logic\Starting_Game_Script.cs" />
+     <Compile Include="Assets\MiniMap.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

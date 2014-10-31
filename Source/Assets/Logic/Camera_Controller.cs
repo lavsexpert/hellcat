@@ -23,8 +23,7 @@ public class Camera_Controller : MonoBehaviour
 			if ( Camera_Mode == false)
 			{
 				Camera_Mode = true;
-				//Offset =  new Vector3 (0.0f , 30.0f, -18.0f);
-				Offset =  new Vector3 (0.0f , 20.0f, -18.0f);
+				Offset =  new Vector3 (0.0f , 30.0f, -18.0f);
 				camera.fieldOfView = 20;
 				transform.rotation = Quaternion.AngleAxis(300, Vector3.left); 
 
