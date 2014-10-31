@@ -5,6 +5,6 @@ function OnTriggerEnter(tr: Collider)
 
 if ( tr.collider.tag == "Player")
 {
- Application.LoadLevel (1);
+ Application.LoadLevel ("Demo_Scene_02");
 }
 }
