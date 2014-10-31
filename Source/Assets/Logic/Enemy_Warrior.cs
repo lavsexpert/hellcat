@@ -5,7 +5,7 @@ using System.Collections;
 public class Enemy_Warrior : MonoBehaviour 
 {
 
-
+	public GameObject Warrior_Game_Object; 
 	public Transform Treasure;			// Сундук	
 	public Transform Player;			// Игровой персонаж (кошка)
 	public Transform Warrior;			// Неигровой персонаж (воин)
@@ -42,7 +42,6 @@ public class Enemy_Warrior : MonoBehaviour
 
 	
 
-
 		var Treasure_Direction_Distance = Treasure.position - Warrior.position;
 		float Treasure_Distance = Treasure_Direction_Distance.x * Treasure_Direction_Distance.x + Treasure_Direction_Distance.y * Treasure_Direction_Distance.y + Treasure_Direction_Distance.z * Treasure_Direction_Distance.z;
 		// Рассчёт расстояния между кошкой и воином
@@ -52,8 +51,17 @@ public class Enemy_Warrior : MonoBehaviour
 		float Distance = Look_Dir.x*Look_Dir.x + Look_Dir.y*Look_Dir.y + Look_Dir.z*Look_Dir.z;
 		Distance = Mathf.Sqrt(Distance);
 		Treasure_Distance = Mathf.Sqrt(Treasure_Distance);
-
+	
 		 
+
+
+
+
+
+		
+
+
+
 
 
 

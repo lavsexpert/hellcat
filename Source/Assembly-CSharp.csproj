@@ -59,6 +59,7 @@
      <Compile Include="Assets\Logic\Object_Tree.cs" />
      <Compile Include="Assets\Logic\Player_Controller.cs" />
      <Compile Include="Assets\Logic\Starting_Game_Script.cs" />
+     <Compile Include="Assets\Object_Swamp.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
