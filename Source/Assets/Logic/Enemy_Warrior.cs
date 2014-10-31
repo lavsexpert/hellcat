@@ -16,11 +16,14 @@ public class Enemy_Warrior : MonoBehaviour
 	private bool Random_Point_Generated = false;// Генерация случайных навигационных точек выключена
 	private int Random_Point_Life_Time = 0;		// Время жизни случайных навигационных точек
 
-	public GameObject obj;
+
+
 
 	// При запуске
 	void Start() 
 	{
+
+		//Warrior_RigidBody.transform.localScale = new Vector3 (0.5f, 0.5f, 0.5f);
 		// Создание агента навигации по сетке
 		Agent = GetComponent<NavMeshAgent>();
 	}
@@ -29,14 +32,15 @@ public class Enemy_Warrior : MonoBehaviour
 	void Update()
 	{
 
-
-
+		var Treasure_Direction_Distance = Treasure.position - Warrior.position;
+		float Treasure_Distance = Treasure_Direction_Distance.x * Treasure_Direction_Distance.x + Treasure_Direction_Distance.y * Treasure_Direction_Distance.y + Treasure_Direction_Distance.z * Treasure_Direction_Distance.z;
 		// Рассчёт расстояния между кошкой и воином
 		var Look_Dir = Player.position - Warrior.position; 
+
 		Look_Dir.y = 0;
 		float Distance = Look_Dir.x*Look_Dir.x + Look_Dir.y*Look_Dir.y + Look_Dir.z*Look_Dir.z;
 		Distance = Mathf.Sqrt(Distance);
-
+		Treasure_Distance = Mathf.Sqrt(Treasure_Distance);
 
 
 
@@ -87,5 +91,14 @@ public class Enemy_Warrior : MonoBehaviour
 				}
 			}
 		}
+
+
+
+		if ( Treasure_Distance < 0.7f)
+		{
+			Application.LoadLevel("Game_Over");
+		}
+
+
 	}
 }
