@@ -94,10 +94,10 @@ public class Enemy_Warrior : MonoBehaviour
 
 
 
-		//if ( Treasure_Distance == 0.0f)
-		//{
-		//	Application.LoadLevel("Game_Over");
-		//}
+		if ( Treasure_Distance < 1f)
+		{
+			Application.LoadLevel("Game_Over");
+		}
 
 
 	}

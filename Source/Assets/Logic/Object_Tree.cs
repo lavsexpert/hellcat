@@ -36,8 +36,6 @@ public class Object_Tree : MonoBehaviour {
 		Random_Value = Random.Range(1,5);
 		Random_Value_Scale = 2 * Warrior_Height + Random.Range(-Percents_Of_Warrior_Height * Warrior_Height,
 		                                                       Percents_Of_Warrior_Height * Warrior_Height);
-		Tree_Box_Collider.size = new Vector3 (0.25f, 0.25f, 0.5f);
-
 
 		//первый тип дерева
 		if (Random_Value == 1)
