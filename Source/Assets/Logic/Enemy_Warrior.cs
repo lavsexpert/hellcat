@@ -19,6 +19,7 @@ public class Enemy_Warrior : MonoBehaviour
 	private int Random_Point_Life_Time = 0;		// Время жизни случайных навигационных точек
 
 
+	public static Vector3 Distance_Enemy_Player; 
 
 
 	// При запуске
@@ -119,5 +120,6 @@ public class Enemy_Warrior : MonoBehaviour
 		//}
 
 
+		Distance_Enemy_Player = Look_Dir;
 	}
 }
