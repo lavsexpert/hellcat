@@ -14,6 +14,9 @@ public class Enemy_Warrior : MonoBehaviour {
 
 	void Start() {
 		agent = GetComponent<NavMeshAgent>();
+		//rigidbody.centerOfMass = new Vector3 (0,0,0);
+		//Physics.minPenetrationForPenalty = 2.4f;
+		
 	}
 
 
@@ -96,4 +99,9 @@ public class Enemy_Warrior : MonoBehaviour {
 				}
 
 	}
+
+
+ 
+
+
 	}
