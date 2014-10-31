@@ -1,7 +1,7 @@
 Microsoft Visual Studio Solution File, Format Version 11.00
 # Visual Studio 2008
 
-Project("{E2A1E5DB-5888-8F4C-B992-CCBCE59D767E}") = "HellCatGame", "Assembly-CSharp-vs.csproj", "{9FDC85D0-4CB4-3552-2521-661F2C4CB015}"
+Project("{0C15C5D5-AB82-0055-B944-F50521F81C78}") = "HellCat", "Assembly-CSharp.csproj", "{D8CAC012-CAB8-F63C-B483-61D0042E28EB}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -9,15 +9,15 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{9FDC85D0-4CB4-3552-2521-661F2C4CB015}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{9FDC85D0-4CB4-3552-2521-661F2C4CB015}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{9FDC85D0-4CB4-3552-2521-661F2C4CB015}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{9FDC85D0-4CB4-3552-2521-661F2C4CB015}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D8CAC012-CAB8-F63C-B483-61D0042E28EB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D8CAC012-CAB8-F63C-B483-61D0042E28EB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D8CAC012-CAB8-F63C-B483-61D0042E28EB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D8CAC012-CAB8-F63C-B483-61D0042E28EB}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
-																																	GlobalSection(MonoDevelopProperties) = preSolution
+								GlobalSection(MonoDevelopProperties) = preSolution
 		StartupItem = Assembly-CSharp.csproj
 		Policies = $0
 		$0.TextStylePolicy = $1

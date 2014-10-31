@@ -7,7 +7,7 @@ public class Handicap_Hole : MonoBehaviour
 	{
 		if (tr.collider.tag == "Enemy_Warrior") 
 		{
-			Application.LoadLevel("Winner");
+			Application.LoadLevel("Game_Winner");
 		}
 	}
 }
