@@ -11,6 +11,8 @@ public class Enemy_Warrior : MonoBehaviour
 	public Transform Warrior;			// Неигровой персонаж (воин)
 	public float Warrior_Scope = 3f;	// Область видимости воина
 
+
+
 	private NavMeshAgent Agent;					// Агент навигации по сетке
 	public Transform Random_Direction;			// Случайное направление
 	private bool Random_Point_Generated = false;// Генерация случайных навигационных точек выключена
@@ -23,14 +25,22 @@ public class Enemy_Warrior : MonoBehaviour
 	void Start() 
 	{
 
+			
+	 
+
 		//Warrior_RigidBody.transform.localScale = new Vector3 (0.5f, 0.5f, 0.5f);
 		// Создание агента навигации по сетке
 		Agent = GetComponent<NavMeshAgent>();
+		//animation.AddClip (Animation_Warrior,"Take_001_Razgon" );
+		 
 	}
 
 	// При обновлении сцены
 	void Update()
 	{
+
+	
+
 
 		var Treasure_Direction_Distance = Treasure.position - Warrior.position;
 		float Treasure_Distance = Treasure_Direction_Distance.x * Treasure_Direction_Distance.x + Treasure_Direction_Distance.y * Treasure_Direction_Distance.y + Treasure_Direction_Distance.z * Treasure_Direction_Distance.z;
@@ -42,11 +52,18 @@ public class Enemy_Warrior : MonoBehaviour
 		Distance = Mathf.Sqrt(Distance);
 		Treasure_Distance = Mathf.Sqrt(Treasure_Distance);
 
+		 
 
+
+
+		//animation.Play("Take_001_Razgon");
+		//Warrior_Animation.CrossFade ("Take_001_Razgon");
+		//Warrior_Animation.Play;
 
 		// Если кошка попала в область видимости воина, т.е. воин видит кошку - то он идёт к ней
 		if ( (Distance < Warrior_Scope) && Player_Controller.Hellcat_Mode == false)
 		{
+
 			Agent.SetDestination(Player.position); 
 		}
 
@@ -60,6 +77,7 @@ public class Enemy_Warrior : MonoBehaviour
 			if (Random_Value == 1) 
 			{
 				Agent.SetDestination(Treasure.position); 
+
 			}
 			else
 			{
@@ -90,14 +108,15 @@ public class Enemy_Warrior : MonoBehaviour
 					Random_Point_Generated = false;
 				}
 			}
+
 		}
 
 
 
-		if ( Treasure_Distance < 1f)
-		{
-			Application.LoadLevel("Game_Over");
-		}
+		//if ( Treasure_Distance == 0.0f)
+		//{
+		//	Application.LoadLevel("Game_Over");
+		//}
 
 
 	}
