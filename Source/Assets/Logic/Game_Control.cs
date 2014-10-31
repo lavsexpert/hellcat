@@ -1,9 +1,14 @@
-﻿using UnityEngine;
+﻿
+using UnityEngine;
 using System.Collections;
 
 public class Game_Control : MonoBehaviour 
 {	
 	private string currentLevel;	// Имя текущего уровня
+
+
+
+
 
 	// При показе интерфейса
 	void OnGUI() 

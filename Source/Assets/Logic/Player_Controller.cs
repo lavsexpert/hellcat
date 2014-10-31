@@ -27,25 +27,28 @@ public class Player_Controller : MonoBehaviour
 		
 		if (Hellcat_Mode == false) 
 		{
-			rigidbody.isKinematic = false;
+
 			rigidbody.position = rigidbody.position + movement / Speed;
 		} 
 		else
 		{			
-			rigidbody.isKinematic = true;
+
 			rigidbody.position = rigidbody.position + movement / (Speed / 2);
 		}
 		
 		if (Input.GetKeyDown (KeyCode.Space)) 
+
 		{			
 			if (Hellcat_Mode == false) 
 			{
 				Hellcat_Mode = true;
+				rigidbody.isKinematic = true;
 				Cat_SpriteRender.sprite = HellCat_Sprite_Mode_Two;
 			} 
 			else 
 			{
 				Hellcat_Mode = false;
+				rigidbody.isKinematic = false;
 				Cat_SpriteRender.sprite = HellCat_Sprite_Mode_One;				
 			}
 		}
