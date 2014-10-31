@@ -1,0 +1,461 @@
+fileFormatVersion: 2
+guid: 0c35bfba82dd95c4c92bfc08fe5774f4
+ModelImporter:
+  serializedVersion: 16
+  fileIDToRecycleName:
+    100000: Bone001
+    100002: Bone002
+    100004: Bone003
+    100006: Bone004
+    100008: Bone005
+    100010: Bone006
+    100012: Bone007
+    100014: Bone008
+    100016: BoneGlaz002
+    100018: BoneGlaz01
+    100020: Circle001
+    100022: Circle002
+    100024: Circle003
+    100026: Circle004
+    100028: Circle005
+    100030: Circle006
+    100032: Circle007
+    100034: Circle008
+    100036: Circle009
+    100038: Circle010
+    100040: Glaz1
+    100042: Glaz2
+    100044: Point001
+    100046: Point002
+    100048: Rectangle001
+    100050: Rectangle002
+    100052: Rectangle003
+    100054: Rectangle004
+    100056: Rectangle005
+    100058: Rectangle006
+    100060: Star001
+    100062: Telo
+    100064: Veko1N
+    100066: Veko1V
+    100068: Veko2N
+    100070: Veko2V
+    100072: //RootNode
+    400000: Bone001
+    400002: Bone002
+    400004: Bone003
+    400006: Bone004
+    400008: Bone005
+    400010: Bone006
+    400012: Bone007
+    400014: Bone008
+    400016: BoneGlaz002
+    400018: BoneGlaz01
+    400020: Circle001
+    400022: Circle002
+    400024: Circle003
+    400026: Circle004
+    400028: Circle005
+    400030: Circle006
+    400032: Circle007
+    400034: Circle008
+    400036: Circle009
+    400038: Circle010
+    400040: Glaz1
+    400042: Glaz2
+    400044: Point001
+    400046: Point002
+    400048: Rectangle001
+    400050: Rectangle002
+    400052: Rectangle003
+    400054: Rectangle004
+    400056: Rectangle005
+    400058: Rectangle006
+    400060: Star001
+    400062: Telo
+    400064: Veko1N
+    400066: Veko1V
+    400068: Veko2N
+    400070: Veko2V
+    400072: //RootNode
+    2300000: Circle005
+    2300002: Glaz1
+    2300004: Glaz2
+    2300006: Veko1N
+    2300008: Veko1V
+    2300010: Veko2N
+    2300012: Veko2V
+    3300000: Circle005
+    3300002: Glaz1
+    3300004: Glaz2
+    3300006: Veko1N
+    3300008: Veko1V
+    3300010: Veko2N
+    3300012: Veko2V
+    4300000: Telo
+    4300002: Circle005
+    4300004: Glaz2
+    4300006: Veko2V
+    4300008: Veko2N
+    4300010: Glaz1
+    4300012: Veko1V
+    4300014: Veko1N
+    7400000: Take 001
+    7400002: Take 002
+    7400004: Take 003
+    9500000: //RootNode
+    11100000: //RootNode
+    13700000: Telo
+  materials:
+    importMaterials: 1
+    materialName: 0
+    materialSearch: 1
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    optimizeGameObjects: 0
+    motionNodeName: 
+    animationCompression: 1
+    animationRotationError: .5
+    animationPositionError: .5
+    animationScaleError: .5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    clipAnimations:
+    - serializedVersion: 16
+      name: Take 001
+      takeName: Take 001
+      firstFrame: 0
+      lastFrame: 101
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 1
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask:
+      - path: 
+        weight: 1
+      - path: Star001
+        weight: 1
+      - path: Star001/Circle001
+        weight: 1
+      - path: Star001/Circle001/Bone001
+        weight: 1
+      - path: Star001/Circle001/Bone001/Circle002
+        weight: 1
+      - path: Star001/Circle001/Bone001/Circle002/Bone002
+        weight: 1
+      - path: Star001/Circle001/Bone001/Circle002/Bone002/Circle003
+        weight: 1
+      - path: Star001/Circle001/Bone001/Circle002/Bone002/Circle003/Bone003
+        weight: 1
+      - path: Star001/Circle001/Bone001/Circle002/Bone002/Circle003/Bone003/Circle004
+        weight: 1
+      - path: Star001/Circle001/Bone001/Circle002/Bone002/Circle003/Bone003/Circle004/Bone004
+        weight: 1
+      - path: Star001/Circle001/Bone001/Circle002/Bone002/Circle003/Bone003/Circle004/Bone004/Circle005
+        weight: 1
+      - path: Star001/Circle001/Bone001/Circle002/Bone002/Circle003/Bone003/Circle004/Bone004/Circle005/Bone005
+        weight: 1
+      - path: Star001/Circle001/Bone001/Circle002/Bone002/Circle003/Bone003/Circle004/Bone004/Circle005/Bone005/Circle006
+        weight: 1
+      - path: Star001/Circle001/Bone001/Circle002/Bone002/Circle003/Bone003/Circle004/Bone004/Circle005/Bone005/Circle006/Bone006
+        weight: 1
+      - path: Star001/Circle001/Bone001/Circle002/Bone002/Circle003/Bone003/Circle004/Bone004/Circle005/Bone005/Circle006/Bone006/Circle007
+        weight: 1
+      - path: Star001/Circle001/Bone001/Circle002/Bone002/Circle003/Bone003/Circle004/Bone004/Circle005/Bone005/Circle006/Bone006/Circle007/Bone007
+        weight: 1
+      - path: Star001/Circle001/Bone001/Circle002/Bone002/Circle003/Bone003/Circle004/Bone004/Circle005/Bone005/Circle006/Bone006/Circle007/Bone007/Circle008
+        weight: 1
+      - path: Star001/Circle001/Bone001/Circle002/Bone002/Circle003/Bone003/Circle004/Bone004/Circle005/Bone005/Circle006/Bone006/Circle007/Bone007/Circle008/Bone008
+        weight: 1
+      - path: Star001/Circle001/Bone001/Circle002/Bone002/Circle003/Bone003/Circle004/Bone004/Circle005/Bone005/Circle006/Bone006/Circle007/Bone007/Point001
+        weight: 1
+      - path: Star001/Circle001/Bone001/Circle002/Bone002/Circle003/Bone003/Circle004/Bone004/Circle005/Bone005/Circle006/Bone006/Circle007/Bone007/Point001/BoneGlaz01
+        weight: 1
+      - path: Star001/Circle001/Bone001/Circle002/Bone002/Circle003/Bone003/Circle004/Bone004/Circle005/Bone005/Circle006/Bone006/Circle007/Bone007/Point001/BoneGlaz01/Glaz1
+        weight: 1
+      - path: Star001/Circle001/Bone001/Circle002/Bone002/Circle003/Bone003/Circle004/Bone004/Circle005/Bone005/Circle006/Bone006/Circle007/Bone007/Point001/Veko1N
+        weight: 1
+      - path: Star001/Circle001/Bone001/Circle002/Bone002/Circle003/Bone003/Circle004/Bone004/Circle005/Bone005/Circle006/Bone006/Circle007/Bone007/Point001/Veko1V
+        weight: 1
+      - path: Star001/Circle001/Bone001/Circle002/Bone002/Circle003/Bone003/Circle004/Bone004/Circle005/Bone005/Circle006/Bone006/Circle007/Bone007/Point002
+        weight: 1
+      - path: Star001/Circle001/Bone001/Circle002/Bone002/Circle003/Bone003/Circle004/Bone004/Circle005/Bone005/Circle006/Bone006/Circle007/Bone007/Point002/BoneGlaz002
+        weight: 1
+      - path: Star001/Circle001/Bone001/Circle002/Bone002/Circle003/Bone003/Circle004/Bone004/Circle005/Bone005/Circle006/Bone006/Circle007/Bone007/Point002/BoneGlaz002/Glaz2
+        weight: 1
+      - path: Star001/Circle001/Bone001/Circle002/Bone002/Circle003/Bone003/Circle004/Bone004/Circle005/Bone005/Circle006/Bone006/Circle007/Bone007/Point002/Veko2N
+        weight: 1
+      - path: Star001/Circle001/Bone001/Circle002/Bone002/Circle003/Bone003/Circle004/Bone004/Circle005/Bone005/Circle006/Bone006/Circle007/Bone007/Point002/Veko2V
+        weight: 1
+      - path: Star001/Rectangle001
+        weight: 1
+      - path: Star001/Rectangle001/Circle009
+        weight: 1
+      - path: Star001/Rectangle001/Circle010
+        weight: 1
+      - path: Star001/Rectangle006
+        weight: 1
+      - path: Star001/Rectangle006/Rectangle002
+        weight: 1
+      - path: Star001/Rectangle006/Rectangle003
+        weight: 1
+      - path: Star001/Rectangle006/Rectangle004
+        weight: 1
+      - path: Star001/Rectangle006/Rectangle005
+        weight: 1
+      - path: Telo
+        weight: 1
+      maskType: 0
+      maskSource: {instanceID: 0}
+    - serializedVersion: 16
+      name: Take 002
+      takeName: Take 001
+      firstFrame: 0
+      lastFrame: 40
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 1
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask:
+      - path: 
+        weight: 1
+      - path: Star001
+        weight: 1
+      - path: Star001/Circle001
+        weight: 1
+      - path: Star001/Circle001/Bone001
+        weight: 1
+      - path: Star001/Circle001/Bone001/Circle002
+        weight: 1
+      - path: Star001/Circle001/Bone001/Circle002/Bone002
+        weight: 1
+      - path: Star001/Circle001/Bone001/Circle002/Bone002/Circle003
+        weight: 1
+      - path: Star001/Circle001/Bone001/Circle002/Bone002/Circle003/Bone003
+        weight: 1
+      - path: Star001/Circle001/Bone001/Circle002/Bone002/Circle003/Bone003/Circle004
+        weight: 1
+      - path: Star001/Circle001/Bone001/Circle002/Bone002/Circle003/Bone003/Circle004/Bone004
+        weight: 1
+      - path: Star001/Circle001/Bone001/Circle002/Bone002/Circle003/Bone003/Circle004/Bone004/Circle005
+        weight: 1
+      - path: Star001/Circle001/Bone001/Circle002/Bone002/Circle003/Bone003/Circle004/Bone004/Circle005/Bone005
+        weight: 1
+      - path: Star001/Circle001/Bone001/Circle002/Bone002/Circle003/Bone003/Circle004/Bone004/Circle005/Bone005/Circle006
+        weight: 1
+      - path: Star001/Circle001/Bone001/Circle002/Bone002/Circle003/Bone003/Circle004/Bone004/Circle005/Bone005/Circle006/Bone006
+        weight: 1
+      - path: Star001/Circle001/Bone001/Circle002/Bone002/Circle003/Bone003/Circle004/Bone004/Circle005/Bone005/Circle006/Bone006/Circle007
+        weight: 1
+      - path: Star001/Circle001/Bone001/Circle002/Bone002/Circle003/Bone003/Circle004/Bone004/Circle005/Bone005/Circle006/Bone006/Circle007/Bone007
+        weight: 1
+      - path: Star001/Circle001/Bone001/Circle002/Bone002/Circle003/Bone003/Circle004/Bone004/Circle005/Bone005/Circle006/Bone006/Circle007/Bone007/Circle008
+        weight: 1
+      - path: Star001/Circle001/Bone001/Circle002/Bone002/Circle003/Bone003/Circle004/Bone004/Circle005/Bone005/Circle006/Bone006/Circle007/Bone007/Circle008/Bone008
+        weight: 1
+      - path: Star001/Circle001/Bone001/Circle002/Bone002/Circle003/Bone003/Circle004/Bone004/Circle005/Bone005/Circle006/Bone006/Circle007/Bone007/Point001
+        weight: 1
+      - path: Star001/Circle001/Bone001/Circle002/Bone002/Circle003/Bone003/Circle004/Bone004/Circle005/Bone005/Circle006/Bone006/Circle007/Bone007/Point001/BoneGlaz01
+        weight: 1
+      - path: Star001/Circle001/Bone001/Circle002/Bone002/Circle003/Bone003/Circle004/Bone004/Circle005/Bone005/Circle006/Bone006/Circle007/Bone007/Point001/BoneGlaz01/Glaz1
+        weight: 1
+      - path: Star001/Circle001/Bone001/Circle002/Bone002/Circle003/Bone003/Circle004/Bone004/Circle005/Bone005/Circle006/Bone006/Circle007/Bone007/Point001/Veko1N
+        weight: 1
+      - path: Star001/Circle001/Bone001/Circle002/Bone002/Circle003/Bone003/Circle004/Bone004/Circle005/Bone005/Circle006/Bone006/Circle007/Bone007/Point001/Veko1V
+        weight: 1
+      - path: Star001/Circle001/Bone001/Circle002/Bone002/Circle003/Bone003/Circle004/Bone004/Circle005/Bone005/Circle006/Bone006/Circle007/Bone007/Point002
+        weight: 1
+      - path: Star001/Circle001/Bone001/Circle002/Bone002/Circle003/Bone003/Circle004/Bone004/Circle005/Bone005/Circle006/Bone006/Circle007/Bone007/Point002/BoneGlaz002
+        weight: 1
+      - path: Star001/Circle001/Bone001/Circle002/Bone002/Circle003/Bone003/Circle004/Bone004/Circle005/Bone005/Circle006/Bone006/Circle007/Bone007/Point002/BoneGlaz002/Glaz2
+        weight: 1
+      - path: Star001/Circle001/Bone001/Circle002/Bone002/Circle003/Bone003/Circle004/Bone004/Circle005/Bone005/Circle006/Bone006/Circle007/Bone007/Point002/Veko2N
+        weight: 1
+      - path: Star001/Circle001/Bone001/Circle002/Bone002/Circle003/Bone003/Circle004/Bone004/Circle005/Bone005/Circle006/Bone006/Circle007/Bone007/Point002/Veko2V
+        weight: 1
+      - path: Star001/Rectangle001
+        weight: 1
+      - path: Star001/Rectangle001/Circle009
+        weight: 1
+      - path: Star001/Rectangle001/Circle010
+        weight: 1
+      - path: Star001/Rectangle006
+        weight: 1
+      - path: Star001/Rectangle006/Rectangle002
+        weight: 1
+      - path: Star001/Rectangle006/Rectangle003
+        weight: 1
+      - path: Star001/Rectangle006/Rectangle004
+        weight: 1
+      - path: Star001/Rectangle006/Rectangle005
+        weight: 1
+      - path: Telo
+        weight: 1
+      maskType: 0
+      maskSource: {instanceID: 0}
+    - serializedVersion: 16
+      name: Take 003
+      takeName: Take 001
+      firstFrame: 82
+      lastFrame: 101
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 1
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask:
+      - path: 
+        weight: 1
+      - path: Star001
+        weight: 1
+      - path: Star001/Circle001
+        weight: 1
+      - path: Star001/Circle001/Bone001
+        weight: 1
+      - path: Star001/Circle001/Bone001/Circle002
+        weight: 1
+      - path: Star001/Circle001/Bone001/Circle002/Bone002
+        weight: 1
+      - path: Star001/Circle001/Bone001/Circle002/Bone002/Circle003
+        weight: 1
+      - path: Star001/Circle001/Bone001/Circle002/Bone002/Circle003/Bone003
+        weight: 1
+      - path: Star001/Circle001/Bone001/Circle002/Bone002/Circle003/Bone003/Circle004
+        weight: 1
+      - path: Star001/Circle001/Bone001/Circle002/Bone002/Circle003/Bone003/Circle004/Bone004
+        weight: 1
+      - path: Star001/Circle001/Bone001/Circle002/Bone002/Circle003/Bone003/Circle004/Bone004/Circle005
+        weight: 1
+      - path: Star001/Circle001/Bone001/Circle002/Bone002/Circle003/Bone003/Circle004/Bone004/Circle005/Bone005
+        weight: 1
+      - path: Star001/Circle001/Bone001/Circle002/Bone002/Circle003/Bone003/Circle004/Bone004/Circle005/Bone005/Circle006
+        weight: 1
+      - path: Star001/Circle001/Bone001/Circle002/Bone002/Circle003/Bone003/Circle004/Bone004/Circle005/Bone005/Circle006/Bone006
+        weight: 1
+      - path: Star001/Circle001/Bone001/Circle002/Bone002/Circle003/Bone003/Circle004/Bone004/Circle005/Bone005/Circle006/Bone006/Circle007
+        weight: 1
+      - path: Star001/Circle001/Bone001/Circle002/Bone002/Circle003/Bone003/Circle004/Bone004/Circle005/Bone005/Circle006/Bone006/Circle007/Bone007
+        weight: 1
+      - path: Star001/Circle001/Bone001/Circle002/Bone002/Circle003/Bone003/Circle004/Bone004/Circle005/Bone005/Circle006/Bone006/Circle007/Bone007/Circle008
+        weight: 1
+      - path: Star001/Circle001/Bone001/Circle002/Bone002/Circle003/Bone003/Circle004/Bone004/Circle005/Bone005/Circle006/Bone006/Circle007/Bone007/Circle008/Bone008
+        weight: 1
+      - path: Star001/Circle001/Bone001/Circle002/Bone002/Circle003/Bone003/Circle004/Bone004/Circle005/Bone005/Circle006/Bone006/Circle007/Bone007/Point001
+        weight: 1
+      - path: Star001/Circle001/Bone001/Circle002/Bone002/Circle003/Bone003/Circle004/Bone004/Circle005/Bone005/Circle006/Bone006/Circle007/Bone007/Point001/BoneGlaz01
+        weight: 1
+      - path: Star001/Circle001/Bone001/Circle002/Bone002/Circle003/Bone003/Circle004/Bone004/Circle005/Bone005/Circle006/Bone006/Circle007/Bone007/Point001/BoneGlaz01/Glaz1
+        weight: 1
+      - path: Star001/Circle001/Bone001/Circle002/Bone002/Circle003/Bone003/Circle004/Bone004/Circle005/Bone005/Circle006/Bone006/Circle007/Bone007/Point001/Veko1N
+        weight: 1
+      - path: Star001/Circle001/Bone001/Circle002/Bone002/Circle003/Bone003/Circle004/Bone004/Circle005/Bone005/Circle006/Bone006/Circle007/Bone007/Point001/Veko1V
+        weight: 1
+      - path: Star001/Circle001/Bone001/Circle002/Bone002/Circle003/Bone003/Circle004/Bone004/Circle005/Bone005/Circle006/Bone006/Circle007/Bone007/Point002
+        weight: 1
+      - path: Star001/Circle001/Bone001/Circle002/Bone002/Circle003/Bone003/Circle004/Bone004/Circle005/Bone005/Circle006/Bone006/Circle007/Bone007/Point002/BoneGlaz002
+        weight: 1
+      - path: Star001/Circle001/Bone001/Circle002/Bone002/Circle003/Bone003/Circle004/Bone004/Circle005/Bone005/Circle006/Bone006/Circle007/Bone007/Point002/BoneGlaz002/Glaz2
+        weight: 1
+      - path: Star001/Circle001/Bone001/Circle002/Bone002/Circle003/Bone003/Circle004/Bone004/Circle005/Bone005/Circle006/Bone006/Circle007/Bone007/Point002/Veko2N
+        weight: 1
+      - path: Star001/Circle001/Bone001/Circle002/Bone002/Circle003/Bone003/Circle004/Bone004/Circle005/Bone005/Circle006/Bone006/Circle007/Bone007/Point002/Veko2V
+        weight: 1
+      - path: Star001/Rectangle001
+        weight: 1
+      - path: Star001/Rectangle001/Circle009
+        weight: 1
+      - path: Star001/Rectangle001/Circle010
+        weight: 1
+      - path: Star001/Rectangle006
+        weight: 1
+      - path: Star001/Rectangle006/Rectangle002
+        weight: 1
+      - path: Star001/Rectangle006/Rectangle003
+        weight: 1
+      - path: Star001/Rectangle006/Rectangle004
+        weight: 1
+      - path: Star001/Rectangle006/Rectangle005
+        weight: 1
+      - path: Telo
+        weight: 1
+      maskType: 0
+      maskSource: {instanceID: 0}
+    isReadable: 1
+  meshes:
+    lODScreenPercentages: []
+    globalScale: .00999999978
+    meshCompression: 0
+    addColliders: 0
+    importBlendShapes: 1
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    optimizeMeshForGPU: 1
+    weldVertices: 1
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+  tangentSpace:
+    normalSmoothAngle: 60
+    splitTangentsAcrossUV: 1
+    normalImportMode: 0
+    tangentImportMode: 1
+  importAnimation: 1
+  copyAvatar: 0
+  humanDescription:
+    human: []
+    skeleton: []
+    armTwist: .5
+    foreArmTwist: .5
+    upperLegTwist: .5
+    legTwist: .5
+    armStretch: .0500000007
+    legStretch: .0500000007
+    feetSpacing: 0
+    rootMotionBoneName: 
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  animationType: 1
+  additionalBone: 0
+  userData: 
