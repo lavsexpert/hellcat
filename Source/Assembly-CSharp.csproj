@@ -53,6 +53,7 @@
      <Compile Include="Assets\Logic\Enemy_Warrior.cs" />
      <Compile Include="Assets\Logic\Enemy_Warrior_Model_Animation.cs" />
      <Compile Include="Assets\Logic\Game_Control.cs" />
+     <Compile Include="Assets\Logic\HellCat_LifeBar_Script.cs" />
      <Compile Include="Assets\Logic\Level_Border_Script.cs" />
      <Compile Include="Assets\Logic\Object_Swamp.cs" />
      <Compile Include="Assets\Logic\Object_Trap.cs" />

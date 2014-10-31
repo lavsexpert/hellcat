@@ -29,6 +29,9 @@ public class Enemy_Warrior_Model_Animation : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 
+		float Warrior_Atack_Success_Factor;
+
+
 				const int ANIMATION_RAZGON = 1;
 				const int ANIMATION_STOP = 2;
 				const int ANIMATION_ATACK = 3;
@@ -134,7 +137,7 @@ public class Enemy_Warrior_Model_Animation : MonoBehaviour {
 
 
 						//if ((Previous_Animation_Play == ANIMATION_STOP) && (Distance == 0.0f)) {
-						if (Distance == 0.0f) {
+						/*if (Distance == 0.0f) {
 								//Previous_Animation_Play = Current_Animation_Play;
 								Current_Animation_Play = ANIMATION_ATACK;
 			
@@ -142,18 +145,21 @@ public class Enemy_Warrior_Model_Animation : MonoBehaviour {
 			
 			
 						 
+						}*/
+		if (animation.isPlaying == false) {
+						if (Distance == 0.0f) {
+								//Previous_Animation_Play = Current_Animation_Play;
+								Current_Animation_Play = ANIMATION_ATACK;
+			
+								animation.CrossFade ("Take_003_Atack");
+
+
+								Warrior_Atack_Success_Factor = Random.Range (0.0f, 1.0f);
+								if (Warrior_Atack_Success_Factor >= 0.5f) {
+										HellCat_LifeBar_Script.HellCat_LifeBar_Value = HellCat_LifeBar_Script.HellCat_LifeBar_Value - 1;
+								}
 						}
-
-		if (Distance == 0.0f) {
-			//Previous_Animation_Play = Current_Animation_Play;
-			Current_Animation_Play = ANIMATION_ATACK;
-			
-			animation.CrossFade ("Take_003_Atack");
-			
-			
-			
-		}
-
+				}
 
 
 					
