@@ -5,7 +5,7 @@
 	<Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
 	<ProductVersion>10.0.20506</ProductVersion>
 	<SchemaVersion>2.0</SchemaVersion>
-	<ProjectGuid>{3608503A-3613-B71C-F2F0-366C6055FFC6}</ProjectGuid>
+	<ProjectGuid>{D8CAC012-CAB8-F63C-B483-61D0042E28EB}</ProjectGuid>
 	<OutputType>Library</OutputType>
 	<AppDesignerFolder>Properties</AppDesignerFolder>
 	<RootNamespace></RootNamespace>
@@ -46,16 +46,16 @@
 	</Reference>
   </ItemGroup>
   <ItemGroup>
-     <Compile Include="Assets\Logic\Scripts\Camera_Controller.cs" />
-     <Compile Include="Assets\Logic\Scripts\Enemy_Warrior.cs" />
-     <Compile Include="Assets\Logic\Scripts\Game_Control.cs" />
-     <Compile Include="Assets\Logic\Scripts\Handicap_Hole.cs" />
-     <Compile Include="Assets\Logic\Scripts\NavMesh_Simple.cs" />
-     <Compile Include="Assets\Logic\Scripts\Next_Level.cs" />
-     <Compile Include="Assets\Logic\Scripts\Player_Controller.cs" />
-     <Compile Include="Assets\Logic\Scripts\Spawner.cs" />
-     <Compile Include="Assets\Logic\Scripts\Treasure.cs" />
-     <Compile Include="Assets\Logic\Scripts\Tree.cs" />
+     <Compile Include="Assets\Logic\Camera_Controller.cs" />
+     <Compile Include="Assets\Logic\Demo\NavMesh_Simple.cs" />
+     <Compile Include="Assets\Logic\Demo\Next_Level.cs" />
+     <Compile Include="Assets\Logic\Demo\Spawner.cs" />
+     <Compile Include="Assets\Logic\Enemy_Warrior.cs" />
+     <Compile Include="Assets\Logic\Game_Control.cs" />
+     <Compile Include="Assets\Logic\Object_Trap.cs" />
+     <Compile Include="Assets\Logic\Object_Treasure.cs" />
+     <Compile Include="Assets\Logic\Object_Tree.cs" />
+     <Compile Include="Assets\Logic\Player_Controller.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
