@@ -126,6 +126,17 @@ public class Enemy_Warrior : MonoBehaviour
 		//{
 		//	Application.LoadLevel("Game_Over");
 		//}
+		
+		/*if ( (Distance < 2.0f) && (Input.GetKeyDown (KeyCode.LeftControl) ))
+		{
+			//Previous_Animation_Play = Current_Animation_Play;
+			 Destroy(gameObject);
+			
+			
+		}*/
+
+
+
 
 
 		Distance_Enemy_Player = Look_Dir;

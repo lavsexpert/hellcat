@@ -11,6 +11,16 @@ public class Enemy_Warrior_Model_Animation : MonoBehaviour {
 	public Transform Swamp;
 	public GameObject Warrior_Game_Object;
 
+
+
+
+
+
+
+
+
+
+
 	// Use this for initialization
 	void Start () {
 	
@@ -152,7 +162,8 @@ public class Enemy_Warrior_Model_Animation : MonoBehaviour {
 			Current_Animation_Play = ANIMATION_IN_SWAMP;
 			
 			animation.CrossFade ("Take_007_In_Swamp");
-			
+			Destroy(gameObject, 0.8f);
+
 			
 			
 		}
@@ -164,6 +175,7 @@ public class Enemy_Warrior_Model_Animation : MonoBehaviour {
 			Current_Animation_Play = ANIMATION_IN_TRAP;
 			
 			animation.CrossFade ("Take_006_In_Trap");
+			Destroy(gameObject, 0.8f);
 		
 			
 			
@@ -172,10 +184,22 @@ public class Enemy_Warrior_Model_Animation : MonoBehaviour {
 
 
 
+		if ( (Distance < 2.0f) && (Input.GetKeyDown (KeyCode.LeftControl) ))
+		{
+			//Previous_Animation_Play = Current_Animation_Play;
+			Current_Animation_Play = ANIMATION_FALLING;
+			animation.CrossFade ("Take_005_Falling");
+
+		
+				Destroy(gameObject, 0.8f);
 
 
+		
+			
+		}
 
 
+	
 
 		}
 
