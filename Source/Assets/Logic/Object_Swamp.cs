@@ -3,7 +3,7 @@ using System.Collections;
 
 public class Object_Swamp : MonoBehaviour 
 {
-	bool Caught_In_Trap = false;
+//	bool Caught_In_Trap = false;
 
 	public Transform Swamp;
 	public Transform Warrior;	

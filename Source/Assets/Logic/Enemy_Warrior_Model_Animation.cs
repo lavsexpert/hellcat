@@ -12,25 +12,17 @@ public class Enemy_Warrior_Model_Animation : MonoBehaviour {
 	public GameObject Warrior_Game_Object;
  
 
-	private float timeLeft;
-
-
-		
-
-
-
-
-
+//	private float timeLeft;
 
 	// Use this for initialization
 	void Start () {
-		timeLeft = 3.0f;
+//		timeLeft = 3.0f;
 	}
 	
 	// Update is called once per frame
 	void Update () {
 
-		float Warrior_Atack_Success_Factor;
+//		float Warrior_Atack_Success_Factor;
 
 
 				const int ANIMATION_RAZGON = 1;
@@ -39,7 +31,7 @@ public class Enemy_Warrior_Model_Animation : MonoBehaviour {
 				const int ANIMATION_GO = 4;
 				const int ANIMATION_FALLING = 5;
 				const int ANIMATION_IN_TRAP = 6;
-				const int ANIMATION_IN_SWAMP = 7;
+//				const int ANIMATION_IN_SWAMP = 7;
 				const int ANIMATION_TORMOZIT = 8;
 
 				int Current_Animation_Play = ANIMATION_GO;
@@ -185,7 +177,7 @@ public class Enemy_Warrior_Model_Animation : MonoBehaviour {
 
 			if (Distance == 0.0f)
 			{
-				HellCat_LifeBar_Script.HellCat_LifeBar_Value = HellCat_LifeBar_Script.HellCat_LifeBar_Value - 1;
+				Player_LifeBar.HellCat_LifeBar_Value = Player_LifeBar.HellCat_LifeBar_Value - 1;
 			}
 			}
 			 
