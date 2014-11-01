@@ -8,13 +8,14 @@ public class Enemy_Warrior_Model_Animation : MonoBehaviour {
 	public Transform Warrior;			// Неигровой персонаж (воин)
 	public float Warrior_Scope = 3f;	// Область видимости воина
 	public Transform Trap; 
-	public Transform Swamp;
+	//public Transform Swamp;
 	public GameObject Warrior_Game_Object;
+ 
+
+	private float timeLeft;
 
 
-
-
-
+		
 
 
 
@@ -23,11 +24,14 @@ public class Enemy_Warrior_Model_Animation : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
-	
+		timeLeft = 3.0f;
 	}
 	
 	// Update is called once per frame
 	void Update () {
+
+		float Warrior_Atack_Success_Factor;
+
 
 				const int ANIMATION_RAZGON = 1;
 				const int ANIMATION_STOP = 2;
@@ -50,9 +54,9 @@ public class Enemy_Warrior_Model_Animation : MonoBehaviour {
 		Trap_Direction_Distance.y = 0;
 		float Trap_Distance = Trap_Direction_Distance.x * Trap_Direction_Distance.x + Trap_Direction_Distance.y * Trap_Direction_Distance.y + Trap_Direction_Distance.z * Trap_Direction_Distance.z;
 
-		var Swamp_Direction_Distance = Swamp.position -  Warrior.position;
-		Swamp_Direction_Distance.y = 0;
-		float Swamp_Distance = Swamp_Direction_Distance.x * Swamp_Direction_Distance.x + Swamp_Direction_Distance.y * Swamp_Direction_Distance.y + Swamp_Direction_Distance.z * Swamp_Direction_Distance.z;
+	//	var Swamp_Direction_Distance = Swamp.position -  Warrior.position;
+	//	Swamp_Direction_Distance.y = 0;
+	//	float Swamp_Distance = Swamp_Direction_Distance.x * Swamp_Direction_Distance.x + Swamp_Direction_Distance.y * Swamp_Direction_Distance.y + Swamp_Direction_Distance.z * Swamp_Direction_Distance.z;
 
 
 
@@ -64,9 +68,13 @@ public class Enemy_Warrior_Model_Animation : MonoBehaviour {
 				Distance = Mathf.Sqrt (Distance);
 				Treasure_Distance = Mathf.Sqrt (Treasure_Distance);
 		Trap_Distance = Mathf.Sqrt (Trap_Distance);
-		Swamp_Distance = Mathf.Sqrt (Swamp_Distance);
+	//	Swamp_Distance = Mathf.Sqrt (Swamp_Distance);
 
 	
+
+
+
+
 
 						if (animation.isPlaying == false) {
 								Previous_Animation_Play = Current_Animation_Play;
@@ -91,7 +99,6 @@ public class Enemy_Warrior_Model_Animation : MonoBehaviour {
 								if ((Previous_Animation_Play == ANIMATION_GO) && ((Distance < (0.05f)) && (Distance > (0.0f)))) {
 										//Previous_Animation_Play = Current_Animation_Play;
 										Current_Animation_Play = ANIMATION_STOP;
-			
 										animation.CrossFade ("Take_008_Tormozit");
 
 										animation.PlayQueued ("Take_002_Stop");
@@ -134,7 +141,7 @@ public class Enemy_Warrior_Model_Animation : MonoBehaviour {
 
 
 						//if ((Previous_Animation_Play == ANIMATION_STOP) && (Distance == 0.0f)) {
-						if (Distance == 0.0f) {
+						/*if (Distance == 0.0f) {
 								//Previous_Animation_Play = Current_Animation_Play;
 								Current_Animation_Play = ANIMATION_ATACK;
 			
@@ -142,41 +149,77 @@ public class Enemy_Warrior_Model_Animation : MonoBehaviour {
 			
 			
 						 
+						}*/
+
+
+		if (animation.isPlaying == false) {
+						if (Distance == 0.0f) {
+								//Previous_Animation_Play = Current_Animation_Play;
+								Current_Animation_Play = ANIMATION_ATACK;
+			
+
+
+
+								animation["Take_003_Atack"].speed = 0.2f;
+								animation.CrossFade ("Take_003_Atack");
+				animation["Take_002_Stop"].speed = 0.001f;
+				animation.CrossFadeQueued ("Take_002_Stop");
+
+					
+
+		 
+					
+
+					
+				} 
+
+
+			if ( Current_Animation_Play == ANIMATION_ATACK )
+			{
+
+				 Look_Dir = Player.position - Warrior.position; 
+				
+				Look_Dir.y = 0;
+				 Distance = Look_Dir.x * Look_Dir.x + Look_Dir.y * Look_Dir.y + Look_Dir.z * Look_Dir.z;
+				Distance = Mathf.Sqrt (Distance);
+
+			if (Distance == 0.0f)
+			{
+				HellCat_LifeBar_Script.HellCat_LifeBar_Value = HellCat_LifeBar_Script.HellCat_LifeBar_Value - 1;
+			}
+			}
+			 
+
+								//Warrior_Atack_Success_Factor = Random.Range (0.0f, 1.0f);
+								//if (Warrior_Atack_Success_Factor >= 0.5f) {
+
+
+								//}
 						}
-
-		if (Distance == 0.0f) {
-			//Previous_Animation_Play = Current_Animation_Play;
-			Current_Animation_Play = ANIMATION_ATACK;
-			
-			animation.CrossFade ("Take_003_Atack");
-			
-			
-			
-		}
-
+				//}
 
 
 					
-		if (Trap_Distance < 0.5f) {
+	/*	if (Trap_Distance < 0.5f) {
 			//Previous_Animation_Play = Current_Animation_Play;
 			Current_Animation_Play = ANIMATION_IN_SWAMP;
 			
 			animation.CrossFade ("Take_007_In_Swamp");
-			Destroy(gameObject, 0.8f);
-
+			Destroy(gameObject, 1.8f);
+			//Enemy_Warrior.Warrior_Destroyed = true;
 			
 			
 		}
 
+*/
 
-
-		if (Swamp_Distance < 0.5f) {
+		if (Trap_Distance < 0.4f) {
 			//Previous_Animation_Play = Current_Animation_Play;
 			Current_Animation_Play = ANIMATION_IN_TRAP;
 			
 			animation.CrossFade ("Take_006_In_Trap");
 			Destroy(gameObject, 0.8f);
-		
+			//Enemy_Warrior.Warrior_Destroyed = true;
 			
 			
 			
@@ -192,7 +235,7 @@ public class Enemy_Warrior_Model_Animation : MonoBehaviour {
 
 		
 				Destroy(gameObject, 0.8f);
-
+			//Enemy_Warrior.Warrior_Destroyed = true;
 
 		
 			
@@ -201,7 +244,13 @@ public class Enemy_Warrior_Model_Animation : MonoBehaviour {
 
 	
 
-		}
+
+
+		
+		
+		
+		
+	}
 
 }
 
