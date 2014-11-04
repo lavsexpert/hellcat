@@ -14,6 +14,13 @@ public class Object_Tree : MonoBehaviour {
 	public Transform    Tree_Transform;
 	public BoxCollider  Tree_Box_Collider;
 
+
+	public MeshRenderer Tree_Mesh_Renderer;
+	public Material    Tree_Material_1;
+	public Material    Tree_Material_2;
+	public Material    Tree_Material_3;
+	public Material    Tree_Material_4;
+
 	//модели конкретных деревьев
 	public Mesh Tree_Model_1;
 	public Mesh Tree_Model_2;
@@ -31,7 +38,7 @@ public class Object_Tree : MonoBehaviour {
 		//получение доступа к объекту с моделями в дереве
 		Tree_Mesh_Filter = GetComponent<MeshFilter>();
 		Tree_Animator = GetComponent<Animator>();
-
+		Tree_Mesh_Renderer = GetComponent<MeshRenderer>();
 		//получение слуайного значения
 		Random_Value = Random.Range(1,5);
 		Random_Value_Scale = 2 * Warrior_Height + Random.Range(-Percents_Of_Warrior_Height * Warrior_Height,
@@ -44,6 +51,7 @@ public class Object_Tree : MonoBehaviour {
 		{
 			Tree_Mesh_Filter.mesh = Tree_Model_1;
 			Tree_Animator.avatar = Tree_Animation_1; 
+			Tree_Mesh_Renderer.material = Tree_Material_1;
 			Tree_Transform.localScale = new Vector3(Random_Value_Scale, Random_Value_Scale, Random_Value_Scale); 
 			Tree_Transform.rotation = Quaternion.AngleAxis(90, Vector3.left); 
 			//Tree_Box_Collider.size = new Vector3(1f, 1f, 1);
@@ -54,7 +62,8 @@ public class Object_Tree : MonoBehaviour {
 		if (Random_Value == 2)
 		{
 			Tree_Mesh_Filter.mesh = Tree_Model_2;
-			//Tree_Animator.avatar = Tree_Animation_2;
+			Tree_Animator.avatar = Tree_Animation_2;
+			Tree_Mesh_Renderer.material = Tree_Material_2;
 			Tree_Transform.localScale = new Vector3(Random_Value_Scale, Random_Value_Scale, Random_Value_Scale); 
 			Tree_Transform.rotation = Quaternion.AngleAxis(90, Vector3.left); 
 			//Tree_Box_Collider.size = new Vector3(1f, 1f, 1);
@@ -65,7 +74,8 @@ public class Object_Tree : MonoBehaviour {
 		if (Random_Value == 3)
 		{			
 			Tree_Mesh_Filter.mesh = Tree_Model_3;
-			//Tree_Animator.avatar = Tree_Animation_3;
+			Tree_Animator.avatar = Tree_Animation_3;
+			Tree_Mesh_Renderer.material = Tree_Material_3;
 			Tree_Transform.localScale = new Vector3(Random_Value_Scale, Random_Value_Scale, Random_Value_Scale); 
 			Tree_Transform.rotation = Quaternion.AngleAxis(90, Vector3.left); 
 			//Tree_Box_Collider.size = new Vector3(1f, 1f, 1);
@@ -76,7 +86,8 @@ public class Object_Tree : MonoBehaviour {
 		if (Random_Value == 4)
 		{
 			Tree_Mesh_Filter.mesh = Tree_Model_4;
-			//Tree_Animator.avatar = Tree_Animation_4;
+			Tree_Mesh_Renderer.material = Tree_Material_4;
+			Tree_Animator.avatar = Tree_Animation_4;
 			Tree_Transform.localScale = new Vector3(Random_Value_Scale/3, Random_Value_Scale/3, Random_Value_Scale/3); 
 			Tree_Transform.rotation = Quaternion.AngleAxis(90, Vector3.left); 
 			//Tree_Box_Collider.size = new Vector3(1f, 1f, 1);

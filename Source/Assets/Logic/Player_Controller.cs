@@ -133,17 +133,484 @@ public class Player_Controller : MonoBehaviour
 			HellCat_Mesh_Filter.mesh = HellCat_Mesh_Mode_One;
 		}
 	}
+
+
+
+
+
 	
 	// Перемещение кошки
 	public void Go(Vector3 Move)
 	{
 		float current_angle = rigidbody.rotation.eulerAngles.y;
-		float Angle_Rotation_Speed = 2.0f;
+		float Angle_Rotation_Speed = 5.0f;
 		float Rotation_Variable;
+
+		//------------------------------------------------------------------
+		//-------NOT USED CODE . ATTEMPT OF AUTOMATIZATION
+		//------------------------------------------------------------------
+		float Left_Angle = 180;
+		float Right_Angle = 0;
+		float Down_Angle = 90;
+		float Up_Angle = 270;
+
+		float Up_Right_Angle = 315;
+		float Down_Right_Angle = 45;
+		float Down_Left_Angle = 135;
+		float Up_Left_Angle = 225;
+
+		float Rotation_Angle_Steps = 0;
+		float [] Angle_Steps = new float[361];
+		float [] Angle_Steps_Difference_with_Angle_Left_Side = new float[361];
+		float [] Angle_Steps_Difference_with_Angle_Right_Side = new float[361];
+		float  Angle_Steps_Difference_with_Angle_Left_Side_MIN = 0;
+		float  Angle_Steps_Difference_with_Angle_Right_Side_MIN =0;
+
+		bool Action = false;
+
+		for( int Counter = 0; Counter < 361 ; Counter++ )
+		{
+			Angle_Steps [ Counter ] = Rotation_Angle_Steps + Angle_Rotation_Speed;
+			Angle_Steps_Difference_with_Angle_Left_Side [Counter] = Down_Right_Angle - Angle_Steps [ Counter ]; 
+			Angle_Steps_Difference_with_Angle_Right_Side  [Counter] = Angle_Steps [ Counter ] - Down_Right_Angle; 
+		}
+
+		Angle_Steps_Difference_with_Angle_Left_Side_MIN = Angle_Steps_Difference_with_Angle_Left_Side [0];
+		Angle_Steps_Difference_with_Angle_Right_Side_MIN = Angle_Steps_Difference_with_Angle_Right_Side [0];
+		for( int Counter = 0; Counter < 361 ; Counter++ )
+		{
+
+			if  ( Angle_Steps_Difference_with_Angle_Left_Side [Counter] < Angle_Steps_Difference_with_Angle_Left_Side_MIN )
+			{
+				Angle_Steps_Difference_with_Angle_Left_Side_MIN = Angle_Steps_Difference_with_Angle_Left_Side[Counter];
+
+			}
+
+			if (	Angle_Steps_Difference_with_Angle_Right_Side  [Counter]  < Angle_Steps_Difference_with_Angle_Right_Side_MIN )
+			{
+
+				Angle_Steps_Difference_with_Angle_Right_Side_MIN  = Angle_Steps_Difference_with_Angle_Right_Side  [Counter] ;
+			}
+		}
+		//------------------------------------------------------------------
+		//-------NOT USED CODE . ATTEMPT OF AUTOMATIZATION
+		//------------------------------------------------------------------
 
 
 		Rotation_Variable = rigidbody.rotation.eulerAngles.y;
-			if ((MoveVertical < 0) && (MoveHorizontal == 0) ) 
+
+
+
+		//-----------------------------------------------------------------
+		// ------------------------- Go DOWN  -----------------------------
+		//-----------------------------------------------------------------
+		if ((MoveVertical < 0) && (MoveHorizontal == 0)  )
+		{
+			//rigidbody.rotation = Quaternion.Euler (0.0f, 90.0f, 0.0f);
+
+
+
+		
+			if ((current_angle < 270.0f) && (current_angle > 90.0f))
+			{
+				Rotation_Variable = rigidbody.rotation.eulerAngles.y - Angle_Rotation_Speed;
+				//rigidbody.rotation = Quaternion.Euler (0.0f, Rotation_Variable, 0.0f);
+				
+			}
+			
+		
+
+			
+			 
+			if ((current_angle >= 270.0f) && (current_angle < 360.0f))
+			{
+				Rotation_Variable = rigidbody.rotation.eulerAngles.y + Angle_Rotation_Speed;
+				//rigidbody.rotation = Quaternion.Euler (0.0f, Rotation_Variable, 0.0f);
+			
+		 
+			}
+
+
+	
+			if (current_angle == 360.0f)
+			{
+				Rotation_Variable = 0.0f;
+				//rigidbody.rotation = Quaternion.Euler (0.0f, Rotation_Variable, 0.0f);
+			
+				
+			}
+			
+
+			
+		
+			if ((current_angle >= 0.0f) && (current_angle < 90.0f))
+			{
+				Rotation_Variable = rigidbody.rotation.eulerAngles.y + Angle_Rotation_Speed;
+				//rigidbody.rotation = Quaternion.Euler (0.0f, Rotation_Variable, 0.0f);
+				
+			}
+			
+
+			
+
+	
+			if ((current_angle >= 90.0f -Angle_Rotation_Speed ) && (current_angle <= 90.0f +Angle_Rotation_Speed ))
+			{
+				Rotation_Variable = 90.0f;
+				//rigidbody.rotation = Quaternion.Euler (0.0f, Rotation_Variable, 0.0f);
+
+			
+			}
+		
+			//rigidbody.rotation = Quaternion.Euler (0.0f, Rotation_Variable, 0.0f);
+		}
+		//-----------------------------------------------------------------
+		// ------------------------- Go DOWN  -----------------------------
+		//-----------------------------------------------------------------
+
+
+
+
+
+
+
+
+
+		//-----------------------------------------------------------------
+		// ------------------------- Go UP  -----------------------------
+		//-----------------------------------------------------------------
+		if ((MoveVertical > 0) && (MoveHorizontal == 0)) 
+		{
+			//	rigidbody.rotation = Quaternion.Euler (0.0f, 270.0f, 0.0f);
+			if ((current_angle >= 90.0f) && (current_angle < 270.0f))
+			{
+				Rotation_Variable = rigidbody.rotation.eulerAngles.y + Angle_Rotation_Speed;
+				//rigidbody.rotation = Quaternion.Euler (0.0f, Rotation_Variable, 0.0f);
+			}
+			
+			
+			
+			
+			
+			if ((current_angle < 90.0f) && (current_angle > 0.0f))
+			{
+				Rotation_Variable = rigidbody.rotation.eulerAngles.y - Angle_Rotation_Speed;
+				//rigidbody.rotation = Quaternion.Euler (0.0f, Rotation_Variable, 0.0f);
+			}
+			
+			if (current_angle <= 00.0f)
+			{
+				Rotation_Variable = 360;
+				//rigidbody.rotation = Quaternion.Euler (0.0f, Rotation_Variable, 0.0f);
+				
+			}
+			
+			
+			if ((current_angle <= 360.0f) && (current_angle > 270.0f))
+			{
+				Rotation_Variable = rigidbody.rotation.eulerAngles.y - Angle_Rotation_Speed;
+				//rigidbody.rotation = Quaternion.Euler (0.0f, Rotation_Variable, 0.0f);
+			}
+
+
+			if ((current_angle <= 270.0f + Angle_Rotation_Speed ) && (current_angle >= 270.0f - Angle_Rotation_Speed))
+			{
+				Rotation_Variable =  270.0f;
+				//rigidbody.rotation = Quaternion.Euler (0.0f, Rotation_Variable, 0.0f);
+			}
+
+			//rigidbody.rotation = Quaternion.Euler (0.0f, Rotation_Variable, 0.0f);
+		}
+		//-----------------------------------------------------------------
+		// ------------------------- Go UP  -----------------------------
+		//-----------------------------------------------------------------
+
+
+
+
+		//-----------------------------------------------------------------
+		// ------------------------- Go LEFT  -----------------------------
+		//-----------------------------------------------------------------
+		if ((MoveVertical == 0) && (MoveHorizontal < 0)) 
+		{
+			//rigidbody.rotation = Quaternion.Euler (0.0f, 180.0f, 0.0f);
+			
+			if ((current_angle <= 360.0f) && (current_angle > 180.0f))
+			{
+				Rotation_Variable = rigidbody.rotation.eulerAngles.y - Angle_Rotation_Speed;
+				//rigidbody.rotation = Quaternion.Euler (0.0f, Rotation_Variable, 0.0f);
+			}
+
+
+			
+			if ((current_angle >=0.0f) && (current_angle < 180.0f))
+			{
+				Rotation_Variable = rigidbody.rotation.eulerAngles.y + Angle_Rotation_Speed;
+				//rigidbody.rotation = Quaternion.Euler (0.0f, Rotation_Variable, 0.0f);
+			}
+
+			
+			if ((current_angle >=180.0f - Angle_Rotation_Speed) && (current_angle <= 180.0f + Angle_Rotation_Speed))
+			{
+				Rotation_Variable = 180.0f;
+				//rigidbody.rotation = Quaternion.Euler (0.0f, Rotation_Variable, 0.0f);
+			}
+			//rigidbody.rotation = Quaternion.Euler (0.0f, Rotation_Variable, 0.0f);
+			
+			
+		}
+		//-----------------------------------------------------------------
+		// ------------------------- Go LEFT  -----------------------------
+		//-----------------------------------------------------------------
+
+
+
+
+
+
+
+		//-----------------------------------------------------------------
+		// ------------------------- Go RIGHT  -----------------------------
+		//-----------------------------------------------------------------
+		if ((MoveVertical == 0) && (MoveHorizontal > 0)) 
+		{
+			//rigidbody.rotation = Quaternion.Euler (0.0f, 360.0f, 0.0f);
+			if ((current_angle >= 180.0f) && (current_angle < 360.0f))
+			{
+				Rotation_Variable = rigidbody.rotation.eulerAngles.y + Angle_Rotation_Speed;
+				//rigidbody.rotation = Quaternion.Euler (0.0f, Rotation_Variable, 0.0f);
+			}
+			
+			
+			if ((current_angle < 180.0f) && (current_angle > 0.0f))
+			{
+				Rotation_Variable = rigidbody.rotation.eulerAngles.y - Angle_Rotation_Speed;
+				//rigidbody.rotation = Quaternion.Euler (0.0f, Rotation_Variable, 0.0f);
+			}
+
+			if ((current_angle >= 360.0f - Angle_Rotation_Speed) && (current_angle <= 360.0f + Angle_Rotation_Speed))
+			{
+				Rotation_Variable = 0.0f;
+				//rigidbody.rotation = Quaternion.Euler (0.0f, Rotation_Variable, 0.0f);
+			}
+	
+			if ((current_angle >= 0.0f - Angle_Rotation_Speed) && (current_angle <= 0.0f + Angle_Rotation_Speed))
+			{
+				Rotation_Variable = 0.0f;
+				//rigidbody.rotation = Quaternion.Euler (0.0f, Rotation_Variable, 0.0f);
+			}
+
+			//rigidbody.rotation = Quaternion.Euler (0.0f, Rotation_Variable, 0.0f);
+		}
+		//-----------------------------------------------------------------
+		// ------------------------- Go RIGHT  -----------------------------
+		//-----------------------------------------------------------------
+		
+
+
+
+
+
+
+		//-----------------------------------------------------------------
+		// ------------------------- Go LEFT-DOWM  -----------------------------
+		//-----------------------------------------------------------------
+		if ((MoveVertical < 0) && (MoveHorizontal < 0)) 
+		{
+			//rigidbody.rotation = Quaternion.Euler (0.0f, 135.0f, 0.0f);
+			
+			if ((current_angle <= 315.0f) && (current_angle > 135.0f))
+			{
+				Rotation_Variable = rigidbody.rotation.eulerAngles.y - Angle_Rotation_Speed;
+				//rigidbody.rotation = Quaternion.Euler (0.0f, Rotation_Variable, 0.0f);
+			}
+			
+			if ((current_angle > 315.0f) && (current_angle <= 360.0f))
+			{
+				Rotation_Variable = rigidbody.rotation.eulerAngles.y + Angle_Rotation_Speed;
+				//rigidbody.rotation = Quaternion.Euler (0.0f, Rotation_Variable, 0.0f);
+			}
+			
+			if (current_angle >= 360.0f)
+			{
+				current_angle = 0.0f;
+				
+			}
+			
+			if ((current_angle >= 0.0f) && (current_angle < 135.0f))
+			{
+				Rotation_Variable = rigidbody.rotation.eulerAngles.y + Angle_Rotation_Speed;
+			//	rigidbody.rotation = Quaternion.Euler (0.0f, Rotation_Variable, 0.0f);
+			}
+
+
+
+			if ((current_angle >= 135.0f - Angle_Rotation_Speed) && (current_angle <= 135.0f + Angle_Rotation_Speed ))
+			{
+				Rotation_Variable = 135.0f;
+				//	rigidbody.rotation = Quaternion.Euler (0.0f, Rotation_Variable, 0.0f);
+			}
+
+		//	rigidbody.rotation = Quaternion.Euler (0.0f, Rotation_Variable, 0.0f)
+		}
+		//-----------------------------------------------------------------
+		// ------------------------- Go LEFT-DOWM  -----------------------------
+		//-----------------------------------------------------------------
+
+
+		//-----------------------------------------------------------------
+		// ------------------------- Go RIGHT-UP  -----------------------------
+		//-----------------------------------------------------------------
+		if ((MoveVertical > 0) && (MoveHorizontal > 0)) 
+		{
+			//rigidbody.rotation = Quaternion.Euler (0.0f, 315.0f, 0.0f);
+			if ((current_angle >= 135.0f) && (current_angle < 315.0f))
+			{
+				Rotation_Variable = rigidbody.rotation.eulerAngles.y + Angle_Rotation_Speed;
+				//rigidbody.rotation = Quaternion.Euler (0.0f, Rotation_Variable, 0.0f);
+			}
+			
+			
+			if ((current_angle < 135.0f) && (current_angle > 0.0f))
+			{
+				Rotation_Variable = rigidbody.rotation.eulerAngles.y - Angle_Rotation_Speed;
+				//rigidbody.rotation = Quaternion.Euler (0.0f, Rotation_Variable, 0.0f);
+			}
+			
+			
+			if (current_angle == 0.0f)
+			{
+				current_angle = 360.0f;
+				
+			}
+			
+			if ((current_angle <= 360.0f) && (current_angle > 315.0f))
+			{
+				Rotation_Variable = rigidbody.rotation.eulerAngles.y - Angle_Rotation_Speed;
+				//rigidbody.rotation = Quaternion.Euler (0.0f, Rotation_Variable, 0.0f);
+			}
+
+			if ((current_angle >= 315.0f - Angle_Rotation_Speed ) && (current_angle <= 315.0f + Angle_Rotation_Speed ))
+			{
+				Rotation_Variable = 315.0f;
+				//rigidbody.rotation = Quaternion.Euler (0.0f, Rotation_Variable, 0.0f);
+			}
+			//rigidbody.rotation = Quaternion.Euler (0.0f, Rotation_Variable, 0.0f);
+			
+		}
+		//-----------------------------------------------------------------
+		// ------------------------- Go RIGHT-UP  -----------------------------
+		//-----------------------------------------------------------------
+
+
+
+
+
+		//-----------------------------------------------------------------
+		// ------------------------- Go LEFT-UP  -----------------------------
+		//-----------------------------------------------------------------
+
+		if ((MoveVertical > 0) && (MoveHorizontal < 0)) 
+		{
+			//rigidbody.rotation = Quaternion.Euler (0.0f, 225.0f, 0.0f);
+			if ((current_angle <= 360.0f) && (current_angle > 225.0f))
+			{
+				Rotation_Variable = rigidbody.rotation.eulerAngles.y - Angle_Rotation_Speed;
+				//rigidbody.rotation = Quaternion.Euler (0.0f, Rotation_Variable, 0.0f);
+			}
+			
+			if ((current_angle <= 45.0f) && (current_angle > 0.0f))
+			{
+				Rotation_Variable = rigidbody.rotation.eulerAngles.y - Angle_Rotation_Speed;
+				//rigidbody.rotation = Quaternion.Euler (0.0f, Rotation_Variable, 0.0f);
+			}
+			
+			if (current_angle == 0.0f)
+			{
+				
+				current_angle = 360.0f;
+			}
+			
+			
+			if ((current_angle <  225.0f) && (current_angle > 45.0f))
+			{
+				Rotation_Variable = rigidbody.rotation.eulerAngles.y + Angle_Rotation_Speed;
+				//rigidbody.rotation = Quaternion.Euler (0.0f, Rotation_Variable, 0.0f);
+			}
+
+			if ((current_angle >=  225.0f - Angle_Rotation_Speed) && (current_angle <= 225.0f + Angle_Rotation_Speed ))
+			{
+				Rotation_Variable = 225.0f;
+				//rigidbody.rotation = Quaternion.Euler (0.0f, Rotation_Variable, 0.0f);
+			}
+
+		//	rigidbody.rotation = Quaternion.Euler (0.0f, Rotation_Variable, 0.0f);
+		}
+		//-----------------------------------------------------------------
+		// ------------------------- Go LEFT-UP  -----------------------------
+		//-----------------------------------------------------------------
+
+
+
+
+
+
+
+		//-----------------------------------------------------------------
+		// ------------------------- Go RIGHT-DOWN  -----------------------------
+		//-----------------------------------------------------------------
+		if ((MoveVertical < 0) && (MoveHorizontal > 0)) 
+		{
+			//rigidbody.rotation = Quaternion.Euler (0.0f, 45.0f, 0.0f);
+			if ((current_angle >=  225.0f) && (current_angle < 360.0f))
+			{
+				Rotation_Variable = rigidbody.rotation.eulerAngles.y + Angle_Rotation_Speed;
+				//rigidbody.rotation = Quaternion.Euler (0.0f, Rotation_Variable, 0.0f);
+			}
+			
+			
+			if (current_angle ==  360.0f) 
+			{
+				current_angle = 0.0f;
+				
+			}
+			
+			if ((current_angle >=  0.0f) && (current_angle < 45.0f))
+			{
+				Rotation_Variable = rigidbody.rotation.eulerAngles.y + Angle_Rotation_Speed;
+				//rigidbody.rotation = Quaternion.Euler (0.0f, Rotation_Variable, 0.0f);
+			}
+			
+			if ((current_angle <  225.0f) && (current_angle > 45.0f))
+			{
+				Rotation_Variable = rigidbody.rotation.eulerAngles.y - Angle_Rotation_Speed;
+				//rigidbody.rotation = Quaternion.Euler (0.0f, Rotation_Variable, 0.0f);
+			}
+
+			if ((current_angle >= 45.0f - Angle_Rotation_Speed) && (current_angle <= 45.0f + Angle_Rotation_Speed))
+			{
+				Rotation_Variable = 45.0f;
+				//rigidbody.rotation = Quaternion.Euler (0.0f, Rotation_Variable, 0.0f);
+			}
+
+		//	rigidbody.rotation = Quaternion.Euler (0.0f, Rotation_Variable, 0.0f);
+		}	
+		//-----------------------------------------------------------------
+		// ------------------------- Go RIGHT-DOWN  -----------------------------
+		//-----------------------------------------------------------------
+
+
+		rigidbody.rotation = Quaternion.Euler (0.0f, Rotation_Variable , 0.0f);
+
+
+
+
+
+
+
+
+		/*
+		if ((MoveVertical < 0) && (MoveHorizontal == 0) ) 
 			{
 			//rigidbody.rotation = Quaternion.Euler (0.0f, 90.0f, 0.0f);
 			if ((current_angle < 270.0f) && (current_angle > 90.0f))
@@ -371,6 +838,7 @@ public class Player_Controller : MonoBehaviour
 			}
 			
 		}
+		 */
 
 		
 			
