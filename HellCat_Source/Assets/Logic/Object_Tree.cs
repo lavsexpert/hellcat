@@ -13,13 +13,11 @@ public class Object_Tree : MonoBehaviour {
 	public Animator     Tree_Animator;
 	public Transform    Tree_Transform;
 	public BoxCollider  Tree_Box_Collider;
-
-
 	public MeshRenderer Tree_Mesh_Renderer;
-	public Material    Tree_Material_1;
-	public Material    Tree_Material_2;
-	public Material    Tree_Material_3;
-	public Material    Tree_Material_4;
+	public Material     Tree_Material_1;
+	public Material     Tree_Material_2;
+	public Material     Tree_Material_3;
+	public Material     Tree_Material_4;
 
 	//модели конкретных деревьев
 	public Mesh Tree_Model_1;
@@ -44,7 +42,6 @@ public class Object_Tree : MonoBehaviour {
 		Random_Value_Scale = 2 * Warrior_Height + Random.Range(-Percents_Of_Warrior_Height * Warrior_Height,
 		                                                       Percents_Of_Warrior_Height * Warrior_Height);
 		Tree_Box_Collider.size = new Vector3 (0.25f, 0.25f, 0.5f);
-
 
 		//первый тип дерева
 		if (Random_Value == 1)

@@ -12,107 +12,65 @@ public class Player_Controller : MonoBehaviour
 	private float MoveHorizontal;			// Перемещение по горизонтали
 
 	//режим кошки, false = кошка видна целиком true = кошка ушла под землю
-	public static bool Hellcat_Mode = false;  //режим кошки, false = кошка видна целиком true = кошка ушла под землю 
+	public static bool Hellcat_Mode = false;
 
-	//массив с номером уровня и координатами границ уровней.
-	private  float [,] Level_Borders_Array = new float[99, 5];
+	//Карта и её координаты
+	private GameObject Land;
+	private double LeftX;
+	private double RightX;
+	private double UpperZ;
+	private double LowerZ;
+	
+	// При запуске
+	void Start()
+	{
+		// Сохранение краёв карты в переменные
+		Land = GameObject.Find("Land");
+		LeftX = Land.renderer.bounds.min.x;
+		RightX = Land.renderer.bounds.max.x;
+		UpperZ = Land.renderer.bounds.min.z;
+		LowerZ = Land.renderer.bounds.max.z;
+	}
 
+	// Перед обновлением сцены	
+	void FixedUpdate()
+	{		
+		//Считываем со стрелок клавиатуры движения по горизонтали (-1  = влево и 1 = вправо) и вертикали (вверх = 1 и вниз = -1)
+		MoveHorizontal = Input.GetAxis("Horizontal");
+		MoveVertical = Input.GetAxis("Vertical");
+		
+		//формируем вектор перемещения и отрабатываем пермещение
+		Vector3 Move = new Vector3(MoveHorizontal, 0.0f, MoveVertical);
+		Go(Move);
+		
+		//клавишей ПРОБЕЛ меняем режим кошки
+		if (Input.GetKeyDown (KeyCode.Space)) 
+		{			
+			Mode();
+		}		
+	}
+	
+	// При обновлении сцены	
+	void Update ()
+	{
+		//animation.CrossFade ("HellCat_Take_004_Go");
+	}
 
-	private int    Level_Number_Current; 
-	private  float Level_Left_Border_value ;    //Левая граница по оси X уровня
-	private  float Level_Right_Border_value ;    //Правая граница по оси X уровня
-	private  float Level_Up_Border_value    ;	  //Верхняя граница по оси Z уровня
-	private  float Level_Down_Border_value  ; 
-
-
-
-	bool Level_Borders_Check ( Vector3 Position)
+	// Проверка, находится ли кошка в пределах карты
+	bool Level_Borders_Check(Vector3 Position)
 	{
 		bool Inside_Level_Indicator = false;
 		
-		if (
-			((Position.x > Level_Left_Border_value) && (Position.x < Level_Right_Border_value))
-			&&
-			((Position.z > Level_Up_Border_value) && (Position.z < Level_Down_Border_value))) {
+		if (((Position.x > LeftX) && (Position.x < RightX))	&& ((Position.z > UpperZ) && (Position.z < LowerZ))) 
+		{
 			Inside_Level_Indicator = true;
 		} 
 		else
 		{
 			Inside_Level_Indicator = false;
-			
 		}
 		
 		return Inside_Level_Indicator;
-	}
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-	void Start ()
-	{
-
-		//Границы 1 уровня 
-		Level_Borders_Array[1,0] = 1;  //Номер уровня
-		Level_Borders_Array[1,1] = -15.0f;  //Левая граница по оси X уровня
-		Level_Borders_Array[1,2] = 15.0f;  //Правая граница по оси X уровня
-		Level_Borders_Array[1,3] = -15.0f;  //Верхняя граница по оси Z уровня
-		Level_Borders_Array[1,4] = 15.0f;  //Нижняя граница по оси Z уровня
-
-
-		//Границы 2 уровня 
-		Level_Borders_Array[2,0] = 2;  //Номер уровня
-		Level_Borders_Array[2,1] = 10.0f;  //Левая граница по оси X уровня
-		Level_Borders_Array[2,2] = 10.0f;  //Правая граница по оси X уровня
-		Level_Borders_Array[2,3] = 10.0f;  //Верхняя граница по оси Z уровня
-		Level_Borders_Array[2,4] = 10.0f;  //Нижняя граница по оси Z уровня
-
-
-
-		Level_Number_Current = (int)  Level_Borders_Array [1, 0]  ; 
-		Level_Left_Border_value = Level_Borders_Array [1, 1];
-		Level_Right_Border_value = Level_Borders_Array [1, 2];
-		Level_Up_Border_value = Level_Borders_Array [1, 3];
-		Level_Down_Border_value = Level_Borders_Array [1, 4];
-	}
-
-
-
-	// Перед обновлением сцены	
-	void FixedUpdate()
-	{		
-
-		//считываем со стрелок клавиатуры движения по горизонтали (-1  = влево и 1 = вправо) и вертикали (вверх = 1б вниз = -1)
-		MoveHorizontal = Input.GetAxis("Horizontal");
-		MoveVertical = Input.GetAxis("Vertical");
-
-		//формируем вектор перемещения и отрабатываем пермещение
-		//Vector3 Move = new Vector3(MoveHorizontal, 0.0f, MoveVertical);
-		Vector3 Move = new Vector3(MoveHorizontal, 0.0f, MoveVertical);
-		Go(Move);
-
-		//клавишей ПРОБЕЛ меняем режим кошки
-		if (Input.GetKeyDown (KeyCode.Space)) 
-		{			
-			Mode();
-		}
-		
-	}
-
-	// При обновлении сцены	
-	void Update ()
-	{
-		//animation.CrossFade ("HellCat_Take_004_Go");
 	}
 
 	// Изменение положения кошки (режим кошки)
@@ -133,11 +91,6 @@ public class Player_Controller : MonoBehaviour
 			HellCat_Mesh_Filter.mesh = HellCat_Mesh_Mode_One;
 		}
 	}
-
-
-
-
-
 	
 	// Перемещение кошки
 	public void Go(Vector3 Move)
@@ -149,15 +102,15 @@ public class Player_Controller : MonoBehaviour
 		//------------------------------------------------------------------
 		//-------NOT USED CODE . ATTEMPT OF AUTOMATIZATION
 		//------------------------------------------------------------------
-		float Left_Angle = 180;
-		float Right_Angle = 0;
-		float Down_Angle = 90;
-		float Up_Angle = 270;
-
-		float Up_Right_Angle = 315;
-		float Down_Right_Angle = 45;
-		float Down_Left_Angle = 135;
-		float Up_Left_Angle = 225;
+//		float Left_Angle = 180f;
+//		float Right_Angle = 0f;
+//		float Down_Angle = 90f;
+//		float Up_Angle = 270f;
+//
+//		float Up_Right_Angle = 315f;
+		float Down_Right_Angle = 45f;
+//		float Down_Left_Angle = 135f;
+//		float Up_Left_Angle = 225f;
 
 		float Rotation_Angle_Steps = 0;
 		float [] Angle_Steps = new float[361];
@@ -165,8 +118,6 @@ public class Player_Controller : MonoBehaviour
 		float [] Angle_Steps_Difference_with_Angle_Right_Side = new float[361];
 		float  Angle_Steps_Difference_with_Angle_Left_Side_MIN = 0;
 		float  Angle_Steps_Difference_with_Angle_Right_Side_MIN =0;
-
-		bool Action = false;
 
 		for( int Counter = 0; Counter < 361 ; Counter++ )
 		{
@@ -602,272 +553,21 @@ public class Player_Controller : MonoBehaviour
 
 		rigidbody.rotation = Quaternion.Euler (0.0f, Rotation_Variable , 0.0f);
 
-
-
-
-
-
-
-
-		/*
-		if ((MoveVertical < 0) && (MoveHorizontal == 0) ) 
+		// Формирование движения кошки
+		if (Level_Borders_Check(rigidbody.position + Move / Speed) == true) 
 			{
-			//rigidbody.rotation = Quaternion.Euler (0.0f, 90.0f, 0.0f);
-			if ((current_angle < 270.0f) && (current_angle > 90.0f))
-			{
-				Rotation_Variable = rigidbody.rotation.eulerAngles.y - Angle_Rotation_Speed;
-				rigidbody.rotation = Quaternion.Euler (0.0f, Rotation_Variable, 0.0f);
-			}
-
-			if ((current_angle >= 270.0f) && (current_angle < 360.0f))
-			{
-				Rotation_Variable = rigidbody.rotation.eulerAngles.y + Angle_Rotation_Speed;
-				rigidbody.rotation = Quaternion.Euler (0.0f, Rotation_Variable, 0.0f);
-			}
-
-
-			if (current_angle == 360.0f)
-			{
-				Rotation_Variable = 0;
-				rigidbody.rotation = Quaternion.Euler (0.0f, Rotation_Variable, 0.0f);
-
-			}
-
-			if ((current_angle >= 0.0f) && (current_angle < 90.0f))
-			{
-				Rotation_Variable = rigidbody.rotation.eulerAngles.y + Angle_Rotation_Speed;
-				rigidbody.rotation = Quaternion.Euler (0.0f, Rotation_Variable, 0.0f);
-			}
-
-
-			}
-			
-			if ((MoveVertical > 0) && (MoveHorizontal == 0)) 
-			{
-			//	rigidbody.rotation = Quaternion.Euler (0.0f, 270.0f, 0.0f);
-			if ((current_angle >= 90.0f) && (current_angle < 270.0f))
-			{
-				Rotation_Variable = rigidbody.rotation.eulerAngles.y + Angle_Rotation_Speed;
-				rigidbody.rotation = Quaternion.Euler (0.0f, Rotation_Variable, 0.0f);
-			}
-
-
-		
-	
-
-			if ((current_angle < 90.0f) && (current_angle > 0.0f))
-			{
-				Rotation_Variable = rigidbody.rotation.eulerAngles.y - Angle_Rotation_Speed;
-				rigidbody.rotation = Quaternion.Euler (0.0f, Rotation_Variable, 0.0f);
-			}
-
-			if (current_angle <= 00.0f)
-			{
-				Rotation_Variable = 360;
-				rigidbody.rotation = Quaternion.Euler (0.0f, Rotation_Variable, 0.0f);
-				
-			}
-
-
-			if ((current_angle <= 360.0f) && (current_angle > 270.0f))
-			{
-				Rotation_Variable = rigidbody.rotation.eulerAngles.y - Angle_Rotation_Speed;
-				rigidbody.rotation = Quaternion.Euler (0.0f, Rotation_Variable, 0.0f);
-			}
-
-		}
-			
-			if ((MoveVertical == 0) && (MoveHorizontal < 0)) 
-			{
-				//rigidbody.rotation = Quaternion.Euler (0.0f, 180.0f, 0.0f);
-			
-			if ((current_angle <= 360.0f) && (current_angle > 180.0f))
-			{
-				Rotation_Variable = rigidbody.rotation.eulerAngles.y - Angle_Rotation_Speed;
-				rigidbody.rotation = Quaternion.Euler (0.0f, Rotation_Variable, 0.0f);
-			}
-
-
-			if ((current_angle >=0.0f) && (current_angle < 180.0f))
-			{
-				Rotation_Variable = rigidbody.rotation.eulerAngles.y + Angle_Rotation_Speed;
-				rigidbody.rotation = Quaternion.Euler (0.0f, Rotation_Variable, 0.0f);
-			}
-
-			
-	
-			}
-			
-			if ((MoveVertical == 0) && (MoveHorizontal > 0)) 
-			{
-				//rigidbody.rotation = Quaternion.Euler (0.0f, 360.0f, 0.0f);
-			if ((current_angle >= 180.0f) && (current_angle < 360.0f))
-			{
-				Rotation_Variable = rigidbody.rotation.eulerAngles.y + Angle_Rotation_Speed;
-				rigidbody.rotation = Quaternion.Euler (0.0f, Rotation_Variable, 0.0f);
-			}
-
-
-			if ((current_angle < 180.0f) && (current_angle > 0.0f))
-			{
-				Rotation_Variable = rigidbody.rotation.eulerAngles.y - Angle_Rotation_Speed;
-				rigidbody.rotation = Quaternion.Euler (0.0f, Rotation_Variable, 0.0f);
-			}
-			
-			}
-			
-			
-			if ((MoveVertical < 0) && (MoveHorizontal < 0)) 
-			{
-				//rigidbody.rotation = Quaternion.Euler (0.0f, 135.0f, 0.0f);
-
-			if ((current_angle <= 315.0f) && (current_angle > 135.0f))
-			{
-				Rotation_Variable = rigidbody.rotation.eulerAngles.y - Angle_Rotation_Speed;
-				rigidbody.rotation = Quaternion.Euler (0.0f, Rotation_Variable, 0.0f);
-			}
-
-			if ((current_angle > 315.0f) && (current_angle <= 360.0f))
-			{
-				Rotation_Variable = rigidbody.rotation.eulerAngles.y + Angle_Rotation_Speed;
-				rigidbody.rotation = Quaternion.Euler (0.0f, Rotation_Variable, 0.0f);
-			}
-
-			if (current_angle >= 360.0f)
-			{
-				current_angle = 0.0f;
-
-			}
-
-			if ((current_angle >= 0.0f) && (current_angle < 135.0f))
-			{
-				Rotation_Variable = rigidbody.rotation.eulerAngles.y + Angle_Rotation_Speed;
-				rigidbody.rotation = Quaternion.Euler (0.0f, Rotation_Variable, 0.0f);
-			}
-
-
-			}
-			
-			if ((MoveVertical > 0) && (MoveHorizontal > 0)) 
-			{
-				//rigidbody.rotation = Quaternion.Euler (0.0f, 315.0f, 0.0f);
-			if ((current_angle >= 135.0f) && (current_angle < 315.0f))
-			{
-				Rotation_Variable = rigidbody.rotation.eulerAngles.y + Angle_Rotation_Speed;
-				rigidbody.rotation = Quaternion.Euler (0.0f, Rotation_Variable, 0.0f);
-			}
-
-
-			if ((current_angle < 135.0f) && (current_angle > 0.0f))
-			{
-				Rotation_Variable = rigidbody.rotation.eulerAngles.y - Angle_Rotation_Speed;
-				rigidbody.rotation = Quaternion.Euler (0.0f, Rotation_Variable, 0.0f);
-			}
-
-
-			if (current_angle == 0.0f)
-			{
-				current_angle = 360.0f;
-
-			}
-
-			if ((current_angle <= 360.0f) && (current_angle > 315.0f))
-			{
-				Rotation_Variable = rigidbody.rotation.eulerAngles.y - Angle_Rotation_Speed;
-				rigidbody.rotation = Quaternion.Euler (0.0f, Rotation_Variable, 0.0f);
-			}
-			
-		}
-			
-			if ((MoveVertical > 0) && (MoveHorizontal < 0)) 
-			{
-				//rigidbody.rotation = Quaternion.Euler (0.0f, 225.0f, 0.0f);
-			if ((current_angle <= 360.0f) && (current_angle > 225.0f))
-			{
-				Rotation_Variable = rigidbody.rotation.eulerAngles.y - Angle_Rotation_Speed;
-				rigidbody.rotation = Quaternion.Euler (0.0f, Rotation_Variable, 0.0f);
-			}
-
-			if ((current_angle <= 45.0f) && (current_angle > 0.0f))
-			{
-				Rotation_Variable = rigidbody.rotation.eulerAngles.y - Angle_Rotation_Speed;
-				rigidbody.rotation = Quaternion.Euler (0.0f, Rotation_Variable, 0.0f);
-			}
-			
-			if (current_angle == 0.0f)
-			{
-
-				current_angle = 360.0f;
-			}
-
-			
-			if ((current_angle <  225.0f) && (current_angle > 45.0f))
-			{
-				Rotation_Variable = rigidbody.rotation.eulerAngles.y + Angle_Rotation_Speed;
-				rigidbody.rotation = Quaternion.Euler (0.0f, Rotation_Variable, 0.0f);
-			}
-
-			}
-			
-			if ((MoveVertical < 0) && (MoveHorizontal > 0)) 
-			{
-				//rigidbody.rotation = Quaternion.Euler (0.0f, 45.0f, 0.0f);
-			if ((current_angle >=  225.0f) && (current_angle < 360.0f))
-			{
-				Rotation_Variable = rigidbody.rotation.eulerAngles.y + Angle_Rotation_Speed;
-				rigidbody.rotation = Quaternion.Euler (0.0f, Rotation_Variable, 0.0f);
-			}
-
-
-			if (current_angle ==  360.0f) 
-			{
-				current_angle = 0.0f;
-
-			}
-
-			if ((current_angle >=  0.0f) && (current_angle < 45.0f))
-			{
-				Rotation_Variable = rigidbody.rotation.eulerAngles.y + Angle_Rotation_Speed;
-				rigidbody.rotation = Quaternion.Euler (0.0f, Rotation_Variable, 0.0f);
-			}
-
-			if ((current_angle <  225.0f) && (current_angle > 45.0f))
-			{
-				Rotation_Variable = rigidbody.rotation.eulerAngles.y - Angle_Rotation_Speed;
-				rigidbody.rotation = Quaternion.Euler (0.0f, Rotation_Variable, 0.0f);
-			}
-			
-		}
-		 */
-
-		
-			
-
-
-
-
-
-
-
-				
-						//формирвоание движения кошки
-						if (Level_Borders_Check (rigidbody.position + Move / Speed) == true) {
-								if (Hellcat_Mode == false) {			
-										//кошка над землей
-					rigidbody.position =  rigidbody.position + Move  / Speed;			
-								} else {		
-										//кошка под землей (быстрее двигается чем над землей)
-										rigidbody.position = rigidbody.position + Move / (Speed / 2);
-								}
-						}
-				
+			if (Hellcat_Mode == false) 
+				{			
+					//кошка над землей
+					rigidbody.position = rigidbody.position + Move / Speed;			
+				} 
+				else 
+				{		
+					//кошка под землей (быстрее двигается чем над землей)
+					rigidbody.position = rigidbody.position + Move / (Speed / 2);
 				}
-
-
-
-	 
-
-
+			}
+		}
 	}
 
 

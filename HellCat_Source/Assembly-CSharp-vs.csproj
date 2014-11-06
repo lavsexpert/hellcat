@@ -5,7 +5,7 @@
 	<Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
 	<ProductVersion>10.0.20506</ProductVersion>
 	<SchemaVersion>2.0</SchemaVersion>
-	<ProjectGuid>{9A11237F-ED63-616E-DBDE-C39399B84FC5}</ProjectGuid>
+	<ProjectGuid>{A6AE78E5-D73A-95FB-3FB1-8E93051D21E6}</ProjectGuid>
 	<OutputType>Library</OutputType>
 	<AppDesignerFolder>Properties</AppDesignerFolder>
 	<RootNamespace></RootNamespace>
@@ -50,13 +50,11 @@
      <Compile Include="Assets\Logic\Demo\NavMesh_Simple.cs" />
      <Compile Include="Assets\Logic\Demo\Next_Level.cs" />
      <Compile Include="Assets\Logic\Demo\Spawner.cs" />
-     <Compile Include="Assets\Logic\ENV_Global_Variables.cs" />
      <Compile Include="Assets\Logic\Enemy_Warrior.cs" />
      <Compile Include="Assets\Logic\Enemy_Warrior_Model_Animation.cs" />
      <Compile Include="Assets\Logic\Enemy_Wolf.cs" />
      <Compile Include="Assets\Logic\Game_Control.cs" />
      <Compile Include="Assets\Logic\Game_Map.cs" />
-     <Compile Include="Assets\Logic\Object_Level_Border.cs" />
      <Compile Include="Assets\Logic\Object_Swamp.cs" />
      <Compile Include="Assets\Logic\Object_Trap.cs" />
      <Compile Include="Assets\Logic\Object_Treasure.cs" />

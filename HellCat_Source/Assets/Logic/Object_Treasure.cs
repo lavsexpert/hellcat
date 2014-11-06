@@ -5,7 +5,7 @@ public class Object_Treasure : MonoBehaviour
 {
 	public int TimeToWaitOnTreasureFound = 1;
 
-	private GameObject camera;
+	private GameObject MainCamera;
 	private float TimeWaitStarted = 0;
 	private bool TreasureTriggered = false;
 	private Vector3 cameraStartPosition;
@@ -13,18 +13,20 @@ public class Object_Treasure : MonoBehaviour
 	// При запуске
 	void Start() 
 	{
-		// Поиск объектов на сцене
-		camera = GameObject.FindWithTag ("MainCamera");
+		// Поиск камеры на сцене
+		MainCamera = GameObject.Find("Camera");
 	}
+
+	// При обновлении сцены
 	void Update () 
 	{
 		if (TreasureTriggered == true) 
 		{
-			camera.transform.LookAt(transform.position);
+			MainCamera.transform.LookAt(transform.position);
 			if (TimeWaitStarted == 0)
 			{
-				cameraStartPosition = camera.transform.position;
-				camera.BroadcastMessage("SetFollowPlayer", false);
+				cameraStartPosition = MainCamera.transform.position;
+				MainCamera.BroadcastMessage("SetFollowPlayer", false);
 				TimeWaitStarted = Time.time;
 				audio.Play();
 				return;

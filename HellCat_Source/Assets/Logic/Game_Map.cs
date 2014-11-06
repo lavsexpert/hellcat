@@ -3,77 +3,53 @@ using System.Collections;
 
 public class Game_Map : MonoBehaviour
 {
-	public Texture2D Map;
-	public Texture2D PlayerOnTheMap;
-	public Texture2D TreasureOnTheMap;
-	public Texture2D TrapOnTheMap;
-	public Texture2D WarriorOnTheMap;
-	public Texture2D WolfOnTheMap;
-
+	// Окно и его размеры
+	private Rect WindowRect;
 	const int MapCaptionHeight = 20;
 	private int MapWidth;
 	private int MapHeight;
-	private Rect windowRect;
 
-	private GameObject player;
-	private GameObject treasure;
-	private GameObject[] warriors;
-	private GameObject[] wolfs;
-	private GameObject[] traps;
-	private GameObject[] borders;
-	private double[] MapCoordinates;//LeftX, UpperZ, RightX, LowerZ
+	// Координаты поверхности карты
+	private double LeftX;
+	private double RightX;
+	private double UpperZ;
+	private double LowerZ;
+
+	// Текстуры для показа персонажей и объектов
+	public Texture2D Map2D;
+	public Texture2D HellCat2D;
+	public Texture2D Treasure2D;
+	public Texture2D Trap2D;
+	public Texture2D Warrior2D;
+	public Texture2D Wolf2D;
+
+	// Персонажи и объекты, показываемые на карте
+	private GameObject Land;
+	private GameObject[] HellCats;
+	private GameObject[] Treasures;
+	private GameObject[] Traps;
+	private GameObject[] Warriors;
+	private GameObject[] Wolfs;
 
 	// При запуске
 	void Start() 
 	{
 		// Поиск объектов на сцене
-		player 	= GameObject.FindWithTag("Player");
-		treasure = GameObject.FindWithTag("Treasure");
-		traps = GameObject.FindGameObjectsWithTag("Trap");
-		warriors = GameObject.FindGameObjectsWithTag("Enemy_Warrior");
-		wolfs = GameObject.FindGameObjectsWithTag("Enemy_Wolf");
+		HellCats	= GameObject.FindGameObjectsWithTag("Player");
+		Treasures 	= GameObject.FindGameObjectsWithTag("Treasure");
+		Traps 		= GameObject.FindGameObjectsWithTag("Trap");
+		Warriors 	= GameObject.FindGameObjectsWithTag("Enemy_Warrior");
+		Wolfs 		= GameObject.FindGameObjectsWithTag("Enemy_Wolf");
 
 		// Подготовка карты и её краёв
-		borders = new GameObject[4];
-		MapCoordinates = new double[4];
-		borders[0] = GameObject.FindWithTag("Border_Z_Minus");
-		borders[1] = GameObject.FindWithTag("Border_Z_Plus");
-		borders[2] = GameObject.FindWithTag("Border_X_Minus");
-		borders[3]= GameObject.FindWithTag("Border_X_Plus");
-		for (int i = 0; i < 4; i++) 
-		{
-			if (i == 0)
-			{
-				MapCoordinates[0] = borders[i].transform.position.x;
-				MapCoordinates[1] = borders[i].transform.position.z;
-				MapCoordinates[2] = borders[i].transform.position.x;
-				MapCoordinates[3] = borders[i].transform.position.z;
-			}
-			else
-			{
-				if (MapCoordinates[0] > borders[i].transform.position.x)
-				{
-					MapCoordinates[0] = borders[i].transform.position.x;
-				}
-				if (MapCoordinates[1] > borders[i].transform.position.z)
-				{
-					MapCoordinates[1] = borders[i].transform.position.z;
-				}
-				if (MapCoordinates[2] < borders[i].transform.position.x)
-				{
-					MapCoordinates[2] = borders[i].transform.position.x;
-				}
-				if (MapCoordinates[3] < borders[i].transform.position.z)
-				{
-					MapCoordinates[3] = borders[i].transform.position.z;
-				}
-			}
-
-
-		}
+		Land = GameObject.Find("Land");
+		LeftX = Land.renderer.bounds.min.x;
+		RightX = Land.renderer.bounds.max.x;
+		UpperZ = Land.renderer.bounds.min.z;
+		LowerZ = Land.renderer.bounds.max.z;
 
 		// Вычисление логических размеров карты (чтобы не зависеть от размера экрана)
-		int DesiredWidth 	= (int) Screen.width / 4;
+		int DesiredWidth  = (int)Screen.width  / 4;
 		int DesiredHeight = (int)Screen.height / 3; 
 		if (DesiredWidth > DesiredHeight) 
 		{
@@ -83,96 +59,58 @@ public class Game_Map : MonoBehaviour
 		{
 			MapWidth = DesiredWidth;
 		}
-		MapHeight = (int) ((double)Map.height / (double)Map.width * (double)MapWidth); 
-
+		MapHeight = (int)((double)Map2D.height / (double)Map2D.width * (double)MapWidth); 
 		if (MapHeight > (MapWidth - MapCaptionHeight))
 		{
 			MapHeight = MapWidth - MapCaptionHeight;
-			MapWidth = (int) ((double)Map.width / (double)Map.height * (double)MapHeight);
+			MapWidth = (int)((double)Map2D.width / (double)Map2D.height * (double)MapHeight);
 		}
-		windowRect = new Rect (Screen.width - MapWidth, 0, MapWidth, MapHeight + MapCaptionHeight);
-
+		WindowRect = new Rect(Screen.width - MapWidth, 0, MapWidth, MapHeight + MapCaptionHeight);
 	}
 
 	// При показе интерфейса
 	void OnGUI ()
 	{
-		windowRect 	= GUI.Window (0, windowRect, WindowFunction, "Map");
+		WindowRect 	= GUI.Window(0, WindowRect, WindowFunction, "Карта");
 	}
 
 	// Рисование окна
-	void WindowFunction (int windowID) 
+	void WindowFunction(int windowID) 
 	{
 		// Подготовка окна
-		Color c = GUI.color;
-		c.a = 0.5f;
-		GUI.color = c;
+		Color WindowColor = GUI.color;
+		WindowColor.a = 0.5f;
+		GUI.color = WindowColor;
 		GUI.DragWindow();
 		int MapOffset = 0;
 
 		// Рисование карты в окне
-		GUI.Box (new Rect (MapOffset, MapCaptionHeight, MapWidth, MapHeight), Map);
+		GUI.Box (new Rect(MapOffset, MapCaptionHeight, MapWidth, MapHeight), Map2D);
 
-		// Показ игрока на карте
-		double PlayerX = player.transform.position.x;
-		double PlayerZ = player.transform.position.z;
-		double OffsetX = (PlayerX - MapCoordinates [0]) / (MapCoordinates [2] - MapCoordinates [0]);
-		double OffsetZ = (MapCoordinates[3] - PlayerZ)/(MapCoordinates[3] - MapCoordinates[1]);
-		int PositionOnMapX = (int) (MapWidth * OffsetX);
-		int PositionOnMapZ = (int) (MapHeight * OffsetZ);
-		GUI.color = Color.green;
-		GUI.DrawTexture (new Rect (MapOffset + PositionOnMapX - 8, MapCaptionHeight + PositionOnMapZ - 8,16,16), PlayerOnTheMap, ScaleMode.ScaleToFit);
-		
-		// Показ сундука на карте
-		double TreasureX = treasure.transform.position.x;
-		double TreasureZ = treasure.transform.position.z;
-		double TreasureOffsetX = (TreasureX - MapCoordinates [0]) / (MapCoordinates [2] - MapCoordinates [0]);
-		double TreasureOffsetZ = (MapCoordinates[3] - TreasureZ)/(MapCoordinates[3] - MapCoordinates[1]);
-		int TreasurePositionOnMapX = (int) (MapWidth * TreasureOffsetX);
-		int TreasurePositionOnMapZ = (int) (MapHeight * TreasureOffsetZ);
-		GUI.color = Color.yellow;
-		GUI.DrawTexture (new Rect (MapOffset + TreasurePositionOnMapX - 8, MapCaptionHeight + TreasurePositionOnMapZ - 8,16,16), TreasureOnTheMap, ScaleMode.ScaleToFit);
-		//GUI.Box (new Rect (0,0,100,50), player.transform.position.x.ToString());
-
-		// Показ ловушек на карте
-		GUI.color = Color.red;
-		for (int i = 0; i < traps.Length; i++) 
-		{
-			double TrapX = traps[i].transform.position.x;
-			double TrapZ = traps[i].transform.position.z;
-			double TrapOffsetX = (TrapX - MapCoordinates [0]) / (MapCoordinates [2] - MapCoordinates [0]);
-			double TrapOffsetZ = (MapCoordinates[3] - TrapZ)/(MapCoordinates[3] - MapCoordinates[1]);
-			int TrapPositionOnMapX = (int) (MapWidth * TrapOffsetX);
-			int TrapPositionOnMapZ = (int) (MapHeight * TrapOffsetZ);
-			GUI.DrawTexture (new Rect (MapOffset + TrapPositionOnMapX - 8, MapCaptionHeight + TrapPositionOnMapZ - 8,16,16), TrapOnTheMap, ScaleMode.ScaleToFit);
-		}
-
-		// Показ воинов на карте
-		GUI.color = Color.red;
-		for (int i = 0; i < warriors.Length; i++) 
-		{
-			double WarriorX = warriors[i].transform.position.x;
-			double WarriorZ = warriors[i].transform.position.z;
-			double WarriorOffsetX = (WarriorX - MapCoordinates [0]) / (MapCoordinates [2] - MapCoordinates [0]);
-			double WarriorOffsetZ = (MapCoordinates[3] - WarriorZ)/(MapCoordinates[3] - MapCoordinates[1]);
-			int WarriorPositionOnMapX = (int) (MapWidth * WarriorOffsetX);
-			int WarriorPositionOnMapZ = (int) (MapHeight * WarriorOffsetZ);
-			GUI.DrawTexture (new Rect (MapOffset + WarriorPositionOnMapX - 8, MapCaptionHeight + WarriorPositionOnMapZ - 8,16,16), WarriorOnTheMap, ScaleMode.ScaleToFit);
-		}
-		
-		// Показ волков на карте
-		GUI.color = Color.red;
-		for (int i = 0; i < wolfs.Length; i++) 
-		{
-			double WolfX = wolfs[i].transform.position.x;
-			double WolfZ = wolfs[i].transform.position.z;
-			double WolfOffsetX = (WolfX - MapCoordinates [0]) / (MapCoordinates [2] - MapCoordinates [0]);
-			double WolfOffsetZ = (MapCoordinates[3] - WolfZ)/(MapCoordinates[3] - MapCoordinates[1]);
-			int WolfPositionOnMapX = (int) (MapWidth * WolfOffsetX);
-			int WolfPositionOnMapZ = (int) (MapHeight * WolfOffsetZ);
-			GUI.DrawTexture (new Rect (MapOffset + WolfPositionOnMapX - 8, MapCaptionHeight + WolfPositionOnMapZ - 8,16,16), WolfOnTheMap, ScaleMode.ScaleToFit);
-		}
-
+		// Показ персонажей и объектов на карте
+		ShowOnTheMap(HellCats, HellCat2D, Color.black, MapOffset);		// Кошки
+		ShowOnTheMap(Treasures, Treasure2D, Color.yellow, MapOffset);	// Сундуки
+		ShowOnTheMap(Traps, Trap2D, Color.yellow, MapOffset);			// Ловушки
+		ShowOnTheMap(Warriors, Warrior2D, Color.red, MapOffset);		// Воины
+		ShowOnTheMap(Wolfs, Wolf2D, Color.red, MapOffset);				// Волки
 	}
-	
+
+	// Отрисовка массива персонажей или объектов на карте
+	void ShowOnTheMap(GameObject[] Objects, Texture2D Object2D, Color Object2DColor, int MapOffset)
+	{
+		GUI.color = Object2DColor;
+		for (int i = 0; i < Objects.Length; i++) 
+		{
+			double ObjectX = Objects[i].transform.position.x;
+			double ObjectZ = Objects[i].transform.position.z;
+			double ObjectOffsetX = (ObjectX - LeftX) / (RightX - LeftX);
+			double ObjectOffsetZ = (LowerZ - ObjectZ) / (LowerZ - UpperZ);
+			int ObjectPositionOnMapX = (int)(MapWidth * ObjectOffsetX);
+			int ObjectPositionOnMapZ = (int)(MapHeight * ObjectOffsetZ);
+			GUI.DrawTexture(new Rect(MapOffset + ObjectPositionOnMapX - 8, 
+			                         MapCaptionHeight + ObjectPositionOnMapZ - 8,
+			                         16,
+			                         16), Object2D, ScaleMode.ScaleToFit);
+		}
+	}
 }
