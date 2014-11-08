@@ -70,6 +70,10 @@ ModelImporter:
     7400010: Take_006_In_Trap
     7400012: Take_007_In_Swamp
     7400014: Take_008_Tormozit
+    7400016: Take_009_Attack_End
+    7400018: Take_010_End
+    7400020: Take_011_See_Cat
+    7400022: Take_012_Miss_Cat
     9500000: //RootNode
     11100000: //RootNode
     13700000: Voin
@@ -260,8 +264,8 @@ ModelImporter:
     - serializedVersion: 16
       name: Take_003_Atack
       takeName: Take 001
-      firstFrame: 53
-      lastFrame: 75
+      firstFrame: 51
+      lastFrame: 80
       wrapMode: 0
       orientationOffsetY: 0
       level: 0
@@ -682,6 +686,342 @@ ModelImporter:
       takeName: Take 001
       firstFrame: 10
       lastFrame: 10.1000004
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask:
+      - path: 
+        weight: 1
+      - path: BELLY
+        weight: 1
+      - path: BELLY/BODY
+        weight: 1
+      - path: BELLY/BODY/BREAST
+        weight: 1
+      - path: BELLY/BODY/BREAST/BREAST L
+        weight: 1
+      - path: BELLY/BODY/BREAST/BREAST L/CLAVIC L
+        weight: 1
+      - path: BELLY/BODY/BREAST/BREAST L/CLAVIC L/SHOULDER L
+        weight: 1
+      - path: BELLY/BODY/BREAST/BREAST L/CLAVIC L/SHOULDER L/ARM L
+        weight: 1
+      - path: BELLY/BODY/BREAST/BREAST L/CLAVIC L/SHOULDER L/ARM L/HAND L
+        weight: 1
+      - path: BELLY/BODY/BREAST/BREAST L/CLAVIC L/SHOULDER L/ARM L/HAND L/FINGERS
+          L
+        weight: 1
+      - path: BELLY/BODY/BREAST/BREAST R
+        weight: 1
+      - path: BELLY/BODY/BREAST/BREAST R/CLAVIC R
+        weight: 1
+      - path: BELLY/BODY/BREAST/BREAST R/CLAVIC R/SHOULDER R
+        weight: 1
+      - path: BELLY/BODY/BREAST/BREAST R/CLAVIC R/SHOULDER R/ARM R
+        weight: 1
+      - path: BELLY/BODY/BREAST/BREAST R/CLAVIC R/SHOULDER R/ARM R/HAND R
+        weight: 1
+      - path: BELLY/BODY/BREAST/BREAST R/CLAVIC R/SHOULDER R/ARM R/HAND R/FINDERS
+          R
+        weight: 1
+      - path: BELLY/BODY/BREAST/BREAST R/CLAVIC R/SHOULDER R/ARM R/HAND R/WEAPON
+        weight: 1
+      - path: BELLY/BODY/BREAST/HEAD
+        weight: 1
+      - path: BELLY/SASH 1
+        weight: 1
+      - path: BELLY/SASH 1/THIGH R
+        weight: 1
+      - path: BELLY/SASH 1/THIGH R/KNEE R
+        weight: 1
+      - path: BELLY/SASH 1/THIGH R/KNEE R/FOOT R
+        weight: 1
+      - path: BELLY/SASH 2
+        weight: 1
+      - path: BELLY/SASH 2/THIGH L
+        weight: 1
+      - path: BELLY/SASH 2/THIGH L/KNEE L
+        weight: 1
+      - path: BELLY/SASH 2/THIGH L/KNEE L/FOOT L
+        weight: 1
+      - path: Cylinder005
+        weight: 1
+      - path: Voin
+        weight: 1
+      maskType: 0
+      maskSource: {instanceID: 0}
+    - serializedVersion: 16
+      name: Take_009_Attack_End
+      takeName: Take 001
+      firstFrame: 66
+      lastFrame: 66.0999985
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask:
+      - path: 
+        weight: 1
+      - path: BELLY
+        weight: 1
+      - path: BELLY/BODY
+        weight: 1
+      - path: BELLY/BODY/BREAST
+        weight: 1
+      - path: BELLY/BODY/BREAST/BREAST L
+        weight: 1
+      - path: BELLY/BODY/BREAST/BREAST L/CLAVIC L
+        weight: 1
+      - path: BELLY/BODY/BREAST/BREAST L/CLAVIC L/SHOULDER L
+        weight: 1
+      - path: BELLY/BODY/BREAST/BREAST L/CLAVIC L/SHOULDER L/ARM L
+        weight: 1
+      - path: BELLY/BODY/BREAST/BREAST L/CLAVIC L/SHOULDER L/ARM L/HAND L
+        weight: 1
+      - path: BELLY/BODY/BREAST/BREAST L/CLAVIC L/SHOULDER L/ARM L/HAND L/FINGERS
+          L
+        weight: 1
+      - path: BELLY/BODY/BREAST/BREAST R
+        weight: 1
+      - path: BELLY/BODY/BREAST/BREAST R/CLAVIC R
+        weight: 1
+      - path: BELLY/BODY/BREAST/BREAST R/CLAVIC R/SHOULDER R
+        weight: 1
+      - path: BELLY/BODY/BREAST/BREAST R/CLAVIC R/SHOULDER R/ARM R
+        weight: 1
+      - path: BELLY/BODY/BREAST/BREAST R/CLAVIC R/SHOULDER R/ARM R/HAND R
+        weight: 1
+      - path: BELLY/BODY/BREAST/BREAST R/CLAVIC R/SHOULDER R/ARM R/HAND R/FINDERS
+          R
+        weight: 1
+      - path: BELLY/BODY/BREAST/BREAST R/CLAVIC R/SHOULDER R/ARM R/HAND R/WEAPON
+        weight: 1
+      - path: BELLY/BODY/BREAST/HEAD
+        weight: 1
+      - path: BELLY/SASH 1
+        weight: 1
+      - path: BELLY/SASH 1/THIGH R
+        weight: 1
+      - path: BELLY/SASH 1/THIGH R/KNEE R
+        weight: 1
+      - path: BELLY/SASH 1/THIGH R/KNEE R/FOOT R
+        weight: 1
+      - path: BELLY/SASH 2
+        weight: 1
+      - path: BELLY/SASH 2/THIGH L
+        weight: 1
+      - path: BELLY/SASH 2/THIGH L/KNEE L
+        weight: 1
+      - path: BELLY/SASH 2/THIGH L/KNEE L/FOOT L
+        weight: 1
+      - path: Cylinder005
+        weight: 1
+      - path: Voin
+        weight: 1
+      maskType: 0
+      maskSource: {instanceID: 0}
+    - serializedVersion: 16
+      name: Take_010_End
+      takeName: Take 001
+      firstFrame: 100
+      lastFrame: 100.099998
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask:
+      - path: 
+        weight: 1
+      - path: BELLY
+        weight: 1
+      - path: BELLY/BODY
+        weight: 1
+      - path: BELLY/BODY/BREAST
+        weight: 1
+      - path: BELLY/BODY/BREAST/BREAST L
+        weight: 1
+      - path: BELLY/BODY/BREAST/BREAST L/CLAVIC L
+        weight: 1
+      - path: BELLY/BODY/BREAST/BREAST L/CLAVIC L/SHOULDER L
+        weight: 1
+      - path: BELLY/BODY/BREAST/BREAST L/CLAVIC L/SHOULDER L/ARM L
+        weight: 1
+      - path: BELLY/BODY/BREAST/BREAST L/CLAVIC L/SHOULDER L/ARM L/HAND L
+        weight: 1
+      - path: BELLY/BODY/BREAST/BREAST L/CLAVIC L/SHOULDER L/ARM L/HAND L/FINGERS
+          L
+        weight: 1
+      - path: BELLY/BODY/BREAST/BREAST R
+        weight: 1
+      - path: BELLY/BODY/BREAST/BREAST R/CLAVIC R
+        weight: 1
+      - path: BELLY/BODY/BREAST/BREAST R/CLAVIC R/SHOULDER R
+        weight: 1
+      - path: BELLY/BODY/BREAST/BREAST R/CLAVIC R/SHOULDER R/ARM R
+        weight: 1
+      - path: BELLY/BODY/BREAST/BREAST R/CLAVIC R/SHOULDER R/ARM R/HAND R
+        weight: 1
+      - path: BELLY/BODY/BREAST/BREAST R/CLAVIC R/SHOULDER R/ARM R/HAND R/FINDERS
+          R
+        weight: 1
+      - path: BELLY/BODY/BREAST/BREAST R/CLAVIC R/SHOULDER R/ARM R/HAND R/WEAPON
+        weight: 1
+      - path: BELLY/BODY/BREAST/HEAD
+        weight: 1
+      - path: BELLY/SASH 1
+        weight: 1
+      - path: BELLY/SASH 1/THIGH R
+        weight: 1
+      - path: BELLY/SASH 1/THIGH R/KNEE R
+        weight: 1
+      - path: BELLY/SASH 1/THIGH R/KNEE R/FOOT R
+        weight: 1
+      - path: BELLY/SASH 2
+        weight: 1
+      - path: BELLY/SASH 2/THIGH L
+        weight: 1
+      - path: BELLY/SASH 2/THIGH L/KNEE L
+        weight: 1
+      - path: BELLY/SASH 2/THIGH L/KNEE L/FOOT L
+        weight: 1
+      - path: Cylinder005
+        weight: 1
+      - path: Voin
+        weight: 1
+      maskType: 0
+      maskSource: {instanceID: 0}
+    - serializedVersion: 16
+      name: Take_011_See_Cat
+      takeName: Take 001
+      firstFrame: 186
+      lastFrame: 215
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask:
+      - path: 
+        weight: 1
+      - path: BELLY
+        weight: 1
+      - path: BELLY/BODY
+        weight: 1
+      - path: BELLY/BODY/BREAST
+        weight: 1
+      - path: BELLY/BODY/BREAST/BREAST L
+        weight: 1
+      - path: BELLY/BODY/BREAST/BREAST L/CLAVIC L
+        weight: 1
+      - path: BELLY/BODY/BREAST/BREAST L/CLAVIC L/SHOULDER L
+        weight: 1
+      - path: BELLY/BODY/BREAST/BREAST L/CLAVIC L/SHOULDER L/ARM L
+        weight: 1
+      - path: BELLY/BODY/BREAST/BREAST L/CLAVIC L/SHOULDER L/ARM L/HAND L
+        weight: 1
+      - path: BELLY/BODY/BREAST/BREAST L/CLAVIC L/SHOULDER L/ARM L/HAND L/FINGERS
+          L
+        weight: 1
+      - path: BELLY/BODY/BREAST/BREAST R
+        weight: 1
+      - path: BELLY/BODY/BREAST/BREAST R/CLAVIC R
+        weight: 1
+      - path: BELLY/BODY/BREAST/BREAST R/CLAVIC R/SHOULDER R
+        weight: 1
+      - path: BELLY/BODY/BREAST/BREAST R/CLAVIC R/SHOULDER R/ARM R
+        weight: 1
+      - path: BELLY/BODY/BREAST/BREAST R/CLAVIC R/SHOULDER R/ARM R/HAND R
+        weight: 1
+      - path: BELLY/BODY/BREAST/BREAST R/CLAVIC R/SHOULDER R/ARM R/HAND R/FINDERS
+          R
+        weight: 1
+      - path: BELLY/BODY/BREAST/BREAST R/CLAVIC R/SHOULDER R/ARM R/HAND R/WEAPON
+        weight: 1
+      - path: BELLY/BODY/BREAST/HEAD
+        weight: 1
+      - path: BELLY/SASH 1
+        weight: 1
+      - path: BELLY/SASH 1/THIGH R
+        weight: 1
+      - path: BELLY/SASH 1/THIGH R/KNEE R
+        weight: 1
+      - path: BELLY/SASH 1/THIGH R/KNEE R/FOOT R
+        weight: 1
+      - path: BELLY/SASH 2
+        weight: 1
+      - path: BELLY/SASH 2/THIGH L
+        weight: 1
+      - path: BELLY/SASH 2/THIGH L/KNEE L
+        weight: 1
+      - path: BELLY/SASH 2/THIGH L/KNEE L/FOOT L
+        weight: 1
+      - path: Cylinder005
+        weight: 1
+      - path: Voin
+        weight: 1
+      maskType: 0
+      maskSource: {instanceID: 0}
+    - serializedVersion: 16
+      name: Take_012_Miss_Cat
+      takeName: Take 001
+      firstFrame: 216
+      lastFrame: 216.100006
       wrapMode: 0
       orientationOffsetY: 0
       level: 0

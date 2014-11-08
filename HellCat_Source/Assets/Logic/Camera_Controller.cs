@@ -4,8 +4,8 @@ using System.Collections;
 public class Camera_Controller : MonoBehaviour
 {	
 	public GameObject HellCat; 			// Игровой персонаж
-	public int Distance2D = 20; 		// Расстояние от игрового персонажа до плоской камеры (вид сверху)
-	public int Distance3D = 5; 		// Расстояние от игрового персонажа до изометрической камеры (вид сзади)
+	public int Distance2D = 40; 		// Расстояние от игрового персонажа до плоской камеры (вид сверху)
+	public int Distance3D = 10; 		// Расстояние от игрового персонажа до изометрической камеры (вид сзади)
 	private Vector3 Offset;				// Вектор смещения
 	private bool Camera_Mode = false;
 	private bool FollowPlayer = true;
@@ -43,6 +43,21 @@ public class Camera_Controller : MonoBehaviour
 		if (FollowPlayer == true) 
 		{		
 			transform.position = HellCat.transform.position + Offset;
+		}
+	}
+
+	public void SetCamera()
+	{
+		// Переключение режимов показа карты 2D(плоский вид сверху)/3D(изометрический вид сзади)
+		if ( Camera_Mode == false)
+		{
+			Camera_Mode = true;
+			SetCamera2D();
+		}
+		else
+		{
+			Camera_Mode = false;
+			SetCamera3D();
 		}
 	}
 
