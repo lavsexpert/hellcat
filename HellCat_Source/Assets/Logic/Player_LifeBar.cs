@@ -3,51 +3,34 @@ using System.Collections;
 
 public class Player_LifeBar : MonoBehaviour {
 
-	public GUITexture HellCat_LifeBar_GUITexture;
-	public Texture HellCat_3_Lifes_texture;
-	public Texture HellCat_2_Lifes_texture;
-	public Texture HellCat_1_Lifes_texture;
-	public static int HellCat_LifeBar_Value = 3;
-	public int TimeToWaitWhenKilled = 1;
+	public GUITexture LifeBar;
+	public Texture[] HellCat_Lifes;
+	public static int Lifes = 3;
 
-	private float TimeWaitStarted = 0;
+	private float WaitTimeStarted = 0;
+	public int WaitTimeKilled = 1;
 
-	// Use this for initialization
-	void Start () {
-	
-	}
-	
-	// Update is called once per frame
-	void Update () {
-	  
-		if (HellCat_LifeBar_Value == 3)
+	// При обновлении сцены
+	void Update () 
+	{  
+		if (Lifes > 0)
 		{
-			HellCat_LifeBar_GUITexture.texture = HellCat_3_Lifes_texture;
+			LifeBar.texture = HellCat_Lifes[Lifes-1];
 		}
 
-		if (HellCat_LifeBar_Value == 2)
+		if (Lifes <= 0)
 		{
-			HellCat_LifeBar_GUITexture.texture = HellCat_2_Lifes_texture;
-		}
-
-		if (HellCat_LifeBar_Value == 1)
-		{
-			HellCat_LifeBar_GUITexture.texture = HellCat_1_Lifes_texture;
-		}
-
-		if (HellCat_LifeBar_Value <= 0)
-		{
-			if (TimeWaitStarted == 0)
+			if (WaitTimeStarted == 0)
 			{
-				TimeWaitStarted = Time.time;
+				WaitTimeStarted = Time.time;
 				audio.Play();
 				return;
 			}
-			if (((Time.time - TimeWaitStarted) > TimeToWaitWhenKilled)&&(audio.isPlaying == false))
+			if (((Time.time - WaitTimeStarted) > WaitTimeKilled)&&(audio.isPlaying == false))
 			{
-				TimeWaitStarted = 0;
+				WaitTimeStarted = 0;
 				Application.LoadLevel("Game_Over_Killed");
-				HellCat_LifeBar_Value = 3;
+				Lifes = 3;
 			}
 		}
 	}

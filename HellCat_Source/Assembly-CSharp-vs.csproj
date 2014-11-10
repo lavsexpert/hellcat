@@ -51,7 +51,6 @@
      <Compile Include="Assets\Logic\Demo\Next_Level.cs" />
      <Compile Include="Assets\Logic\Demo\Spawner.cs" />
      <Compile Include="Assets\Logic\Enemy_Warrior.cs" />
-     <Compile Include="Assets\Logic\Enemy_Warrior_Model_Animation.cs" />
      <Compile Include="Assets\Logic\Enemy_Wolf.cs" />
      <Compile Include="Assets\Logic\Game_Control.cs" />
      <Compile Include="Assets\Logic\Game_Map.cs" />

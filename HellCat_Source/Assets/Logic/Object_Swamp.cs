@@ -3,8 +3,7 @@ using System.Collections;
 
 public class Object_Swamp : MonoBehaviour 
 {
-//	bool Caught_In_Trap = false;
-
+	public bool Caught_In_Trap = false;
 	public Transform Swamp;
 	public Transform Warrior;	
 
@@ -25,18 +24,17 @@ public class Object_Swamp : MonoBehaviour
 	
 		if (Swamp_Distance < 0.5f)
 		{
-			StartCoroutine (WAINTING ());
+			StartCoroutine (WAINTING());
 		}
 	}
-	
-	/*
+
 	// При столкновении
 	void OnTriggerEnter (Collider Trigger)		
 	{
 		// Если в ловушку попал воин - загрузить победный экран
 		if (Trigger.collider.tag == "Enemy_Warrior") 
 		{
-			//StartCoroutine (WAINTING2 ());
+			//StartCoroutine (WAINTING2());
 			Caught_In_Trap = true;
 		}
 	}
@@ -46,11 +44,10 @@ public class Object_Swamp : MonoBehaviour
 		// Если в ловушку попал воин - загрузить победный экран
 		if (Trigger.collider.tag == "Enemy_Warrior") 
 		{
-			//StartCoroutine (WAINTING2 ());
+			//StartCoroutine (WAINTING2());
 			Caught_In_Trap = false;
 		}
 	}
-	 */
 }
 
  

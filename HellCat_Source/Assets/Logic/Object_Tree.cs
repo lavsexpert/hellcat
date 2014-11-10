@@ -85,7 +85,7 @@ public class Object_Tree : MonoBehaviour {
 			Tree_Mesh_Filter.mesh = Tree_Model_4;
 			Tree_Mesh_Renderer.material = Tree_Material_4;
 			Tree_Animator.avatar = Tree_Animation_4;
-			Tree_Transform.localScale = new Vector3(Random_Value_Scale/3, Random_Value_Scale/3, Random_Value_Scale/3); 
+			Tree_Transform.localScale = new Vector3(Random_Value_Scale/4, Random_Value_Scale/4, Random_Value_Scale/4); 
 			Tree_Transform.rotation = Quaternion.AngleAxis(90, Vector3.left); 
 			//Tree_Box_Collider.size = new Vector3(1f, 1f, 1);
 			//Tree_Transform.position = Tree_Transform.position - new Vector3(0, 0.5f, 0);

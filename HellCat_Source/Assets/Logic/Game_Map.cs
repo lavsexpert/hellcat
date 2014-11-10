@@ -88,11 +88,11 @@ public class Game_Map : MonoBehaviour
 		GUI.Box (new Rect(MapOffset, MapCaptionHeight, MapWidth, MapHeight), Map2D);
 
 		// Показ персонажей и объектов на карте
-		ShowOnTheMap(HellCats, HellCat2D, Color.black, MapOffset);		// Кошки
 		ShowOnTheMap(Treasures, Treasure2D, Color.yellow, MapOffset);	// Сундуки
 		ShowOnTheMap(Traps, Trap2D, Color.yellow, MapOffset);			// Ловушки
 		ShowOnTheMap(Warriors, Warrior2D, Color.red, MapOffset);		// Воины
 		ShowOnTheMap(Wolfs, Wolf2D, Color.red, MapOffset);				// Волки
+		ShowOnTheMap(HellCats, HellCat2D, Color.black, MapOffset);		// Кошки
 	}
 
 	// Отрисовка массива персонажей или объектов на карте
@@ -101,16 +101,19 @@ public class Game_Map : MonoBehaviour
 		GUI.color = Object2DColor;
 		for (int i = 0; i < Objects.Length; i++) 
 		{
-			double ObjectX = Objects[i].transform.position.x;
-			double ObjectZ = Objects[i].transform.position.z;
-			double ObjectOffsetX = (ObjectX - LeftX) / (RightX - LeftX);
-			double ObjectOffsetZ = (LowerZ - ObjectZ) / (LowerZ - UpperZ);
-			int ObjectPositionOnMapX = (int)(MapWidth * ObjectOffsetX);
-			int ObjectPositionOnMapZ = (int)(MapHeight * ObjectOffsetZ);
-			GUI.DrawTexture(new Rect(MapOffset + ObjectPositionOnMapX - 8, 
-			                         MapCaptionHeight + ObjectPositionOnMapZ - 8,
-			                         16,
-			                         16), Object2D, ScaleMode.ScaleToFit);
+			if (Objects[i] != null)
+			{
+				double ObjectX = Objects[i].transform.position.x;
+				double ObjectZ = Objects[i].transform.position.z;
+				double ObjectOffsetX = (ObjectX - LeftX) / (RightX - LeftX);
+				double ObjectOffsetZ = (LowerZ - ObjectZ) / (LowerZ - UpperZ);
+				int ObjectPositionOnMapX = (int)(MapWidth * ObjectOffsetX);
+				int ObjectPositionOnMapZ = (int)(MapHeight * ObjectOffsetZ);
+				GUI.DrawTexture(new Rect(MapOffset + ObjectPositionOnMapX - 8, 
+				                         MapCaptionHeight + ObjectPositionOnMapZ - 8,
+				                         16,
+				                         16), Object2D, ScaleMode.ScaleToFit);
+			}
 		}
 	}
 }
