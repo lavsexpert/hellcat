@@ -8,8 +8,10 @@ public class Game_Control : MonoBehaviour
 	// Объекты для управления движением кошкой
 	private Player_Controller HellCat;
 	private Camera_Controller MainCamera;
+
 	private short X_Direction;
 	private short Y_Direction;
+
 	private float X_Cell;
 	private float Y_Cell;
 	private float X_Move;
