@@ -74,7 +74,7 @@ public class Camera_Controller : MonoBehaviour
 	void SetCamera3D()
 	{
 		camera.fieldOfView = 60;
-		transform.rotation = Quaternion.Euler(37.5f, 45.0f, 0.0f); 
+		transform.rotation = Quaternion.Euler(37.5f, 45.0f, 0.0f); //Устанавливаем стандартные углы наклона камеры для изометрической проекции
 		if (Distance3D == 0) Distance3D = 5;
 		Vector3 CameraDirection = transform.rotation.eulerAngles;
 		float DistanceXZ = Distance3D * Mathf.Cos(CameraDirection.x * Mathf.Deg2Rad);
