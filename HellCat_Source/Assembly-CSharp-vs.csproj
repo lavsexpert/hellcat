@@ -47,9 +47,6 @@
   </ItemGroup>
   <ItemGroup>
      <Compile Include="Assets\Logic\Camera_Controller.cs" />
-     <Compile Include="Assets\Logic\Demo\NavMesh_Simple.cs" />
-     <Compile Include="Assets\Logic\Demo\Next_Level.cs" />
-     <Compile Include="Assets\Logic\Demo\Spawner.cs" />
      <Compile Include="Assets\Logic\Enemy_Warrior.cs" />
      <Compile Include="Assets\Logic\Enemy_Wolf.cs" />
      <Compile Include="Assets\Logic\Game_Control.cs" />
@@ -60,6 +57,10 @@
      <Compile Include="Assets\Logic\Object_Tree.cs" />
      <Compile Include="Assets\Logic\Player_Controller.cs" />
      <Compile Include="Assets\Logic\Player_LifeBar.cs" />
+     <None Include="Assets\Standard Assets\Toon Shading\Sources\Shaders\Toony-Basic.shader" />
+     <None Include="Assets\Standard Assets\Toon Shading\Sources\Shaders\Toony-BasicOutline.shader" />
+     <None Include="Assets\Standard Assets\Toon Shading\Sources\Shaders\Toony-LightedOutline.shader" />
+     <None Include="Assets\Standard Assets\Toon Shading\Sources\Shaders\Toony-Lighted.shader" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

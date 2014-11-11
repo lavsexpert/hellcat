@@ -35,7 +35,10 @@ public class Game_Control : MonoBehaviour
 				if (GUI.Button (new Rect (6 * X_Cell, 7 * Y_Cell, 3 * X_Cell, 1 * Y_Cell), "Загрузить"))
 					Application.LoadLevel("Game_Load");
 				if (GUI.Button (new Rect (6 * X_Cell, 8f * Y_Cell, 3 * X_Cell, 1 * Y_Cell), "Выйти"))
+				{
+					PlayerPrefs.SetString("Level", "");
 					Application.Quit();
+				}
 			}
 			else
 			{
@@ -43,7 +46,10 @@ public class Game_Control : MonoBehaviour
 				if (GUI.Button (new Rect (6 * X_Cell, 5 * Y_Cell, 3 * X_Cell, 1 * Y_Cell), "Играть"))
 					Application.LoadLevel("Game_Load");
 				if (GUI.Button (new Rect (6 * X_Cell, 6.5f * Y_Cell, 3 * X_Cell, 1 * Y_Cell), "Выйти"))
+				{
+					PlayerPrefs.SetString("Level", "");
 					Application.Quit();
+				}
 			}
 		}
 		
@@ -58,14 +64,10 @@ public class Game_Control : MonoBehaviour
 			GUI.skin.box.alignment = TextAnchor.UpperCenter;
 			GUI.Box (new Rect (4 * X_Cell, 1 * Y_Cell, 7 * X_Cell, 8 * Y_Cell), "Загрузить уровень");
 
-			if (GUI.Button (new Rect (5 * X_Cell, 2.5f * Y_Cell, 5 * X_Cell, 1 * Y_Cell), "Уровень 1"))
+			if (GUI.Button (new Rect (5 * X_Cell, 4f * Y_Cell, 5 * X_Cell, 1 * Y_Cell), "Уровень 1"))
 				currentLevel = "Level_01";
-			if (GUI.Button (new Rect (5 * X_Cell, 4f * Y_Cell, 5 * X_Cell, 1 * Y_Cell), "Уровень 2"))
+			if (GUI.Button (new Rect (5 * X_Cell, 6f * Y_Cell, 5 * X_Cell, 1 * Y_Cell), "Уровень 2"))
 				currentLevel = "Level_02";
-			if (GUI.Button (new Rect (5 * X_Cell, 5.5f * Y_Cell, 5 * X_Cell, 1 * Y_Cell), "Демо 1 (уровень)"))
-				currentLevel = "Demo_01";
-			if (GUI.Button (new Rect (5 * X_Cell, 7f * Y_Cell, 5 * X_Cell, 1 * Y_Cell), "Демо 2 (карта)"))
-				currentLevel = "Demo_02";
 
 			if (currentLevel != "") 
 			{
@@ -108,8 +110,11 @@ public class Game_Control : MonoBehaviour
 		else
 		{
 			// Рисуется кнопка: "Пауза"(открывает меню)
-			if (GUI.Button (new Rect (6 * X_Cell, 0 * Y_Cell, 3 * X_Cell, 1 * Y_Cell), "Пауза"))
+			if (GUI.Button (new Rect (5 * X_Cell, 0 * Y_Cell, 3 * X_Cell, 1 * Y_Cell), "Пауза"))
 				Application.LoadLevel("Game_Menu");
+
+			MainCamera = GameObject.Find("Camera").GetComponent<Camera_Controller>();
+			if (GUI.Button (new Rect (8 * X_Cell, 0 * Y_Cell, 3 * X_Cell, 1 * Y_Cell), "Камера")) MainCamera.BroadcastMessage("SetCamera");
 
 			if ((Application.loadedLevelName != "Game_Over") && (Application.loadedLevelName != "Game_Over_Killed") && (Application.loadedLevelName != "Game_Winner"))
 			{
@@ -126,8 +131,6 @@ public class Game_Control : MonoBehaviour
 
 				HellCat = GameObject.Find("HellCat").GetComponent<Player_Controller>();
 				if (GUI.Button (new Rect (11 * X_Cell, 7 * Y_Cell, 3 * X_Cell, 1 * Y_Cell), "Режим")) HellCat.BroadcastMessage("Mode");
-				MainCamera = GameObject.Find("Camera").GetComponent<Camera_Controller>();
-				if (GUI.Button (new Rect (6 * X_Cell, 7 * Y_Cell, 3 * X_Cell, 1 * Y_Cell), "Камера")) MainCamera.BroadcastMessage("SetCamera");
 			}
 		}
 	}

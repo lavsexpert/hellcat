@@ -75,7 +75,7 @@ ModelImporter:
   materials:
     importMaterials: 1
     materialName: 2
-    materialSearch: 1
+    materialSearch: 0
   animations:
     legacyGenerateAnimations: 4
     bakeSimulation: 0
@@ -93,7 +93,7 @@ ModelImporter:
       takeName: Take 001
       firstFrame: 0
       lastFrame: 1
-      wrapMode: 2
+      wrapMode: 0
       orientationOffsetY: 0
       level: 0
       cycleOffset: 0
@@ -829,7 +829,7 @@ ModelImporter:
     isReadable: 1
   meshes:
     lODScreenPercentages: []
-    globalScale: .00999999978
+    globalScale: .100000001
     meshCompression: 0
     addColliders: 1
     importBlendShapes: 1
