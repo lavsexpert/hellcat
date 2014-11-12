@@ -83,4 +83,11 @@ public class Camera_Controller : MonoBehaviour
 		float ZOffset = DistanceXZ * Mathf.Cos(CameraDirection.y * Mathf.Deg2Rad);
 		Offset = new Vector3(- XOffset, YOffset, - ZOffset); 
 	}
+
+	// Установка следования за игроком
+	void SetFollowPlayer(bool folplayer)
+	{
+		FollowPlayer = folplayer;
+	}
+
 }
