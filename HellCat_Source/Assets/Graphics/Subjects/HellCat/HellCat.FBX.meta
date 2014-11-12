@@ -62,7 +62,11 @@ ModelImporter:
       name: HellCat_01_Go
       takeName: Take 001
       firstFrame: 10
+<<<<<<< HEAD
       lastFrame: 44
+=======
+      lastFrame: 40
+>>>>>>> 2f53c6df359fec4b7291462d0c885105b3614a6d
       wrapMode: 2
       orientationOffsetY: 0
       level: 0
