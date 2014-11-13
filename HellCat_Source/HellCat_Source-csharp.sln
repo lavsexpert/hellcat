@@ -1,7 +1,7 @@
 Microsoft Visual Studio Solution File, Format Version 11.00
 # Visual Studio 2008
 
-Project("{2E027ACB-2989-3BFF-2C58-25315AEBF23A}") = "HellCat_Source", "Assembly-CSharp.csproj", "{A6AE78E5-D73A-95FB-3FB1-8E93051D21E6}"
+Project("{2E027ACB-2989-3BFF-2C58-25315AEBF23A}") = "HellCat_Source", "Assembly-CSharp-vs.csproj", "{A6AE78E5-D73A-95FB-3FB1-8E93051D21E6}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -17,7 +17,7 @@ Global
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
-																									GlobalSection(MonoDevelopProperties) = preSolution
+																										GlobalSection(MonoDevelopProperties) = preSolution
 =======
 																											GlobalSection(MonoDevelopProperties) = preSolution
 =======
