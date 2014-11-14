@@ -14,6 +14,7 @@ public class Enemy_Warrior : MonoBehaviour
 	public Transform Random_Direction;			// Случайное направление
 	private bool Random_Point_Generated = false;// Генерация случайных навигационных точек выключена
 	private int Random_Point_Life_Time = 0;		// Время жизни случайных навигационных точек
+	private float Null_Distance = 10f;			// Если объекта нет на карте, то расстояние до него всегда равно этому числу
 
 	public static bool Warrior_Destroyed = false;
 	private string Current;
@@ -172,6 +173,7 @@ public class Enemy_Warrior : MonoBehaviour
 	// Вычисление расстояния между 2мя объектами в плоскости
 	float Distance2D(Transform First_Object, Transform Second_Object)
 	{
+		if ((First_Object == null) || (Second_Object == null)) return Null_Distance;
 		var Direction = First_Object.position - Second_Object.position;
 		Direction.y = 0;
 		float Distance = Direction.x * Direction.x + Direction.y * Direction.y + Direction.z * Direction.z;

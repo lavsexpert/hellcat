@@ -32,7 +32,7 @@ public class Object_Treasure : MonoBehaviour
 				return;
 			}
 			float fracPassed = (Time.time - TimeWaitStarted)/TimeToWaitOnTreasureFound;
-			camera.transform.position = Vector3.Lerp(cameraStartPosition, new Vector3(transform.position.x, transform.position.y + 5, transform.position.z), fracPassed);
+			MainCamera.transform.position = Vector3.Lerp(cameraStartPosition, new Vector3(transform.position.x, transform.position.y + 5, transform.position.z), fracPassed);
 			if (((Time.time - TimeWaitStarted) > TimeToWaitOnTreasureFound)&&(audio.isPlaying == false))
 			{
 				TreasureTriggered = false;
