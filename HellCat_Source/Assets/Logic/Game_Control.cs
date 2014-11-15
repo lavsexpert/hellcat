@@ -6,17 +6,26 @@ public class Game_Control : MonoBehaviour
 	private string currentLevel;	// Имя текущего уровня
 
 	// Объекты для управления движением кошкой
-	private Player_Controller HellCat;
+	private Player_Controller HellCat_Controller;
+	private GameObject HellCat_Object;
 	private Camera_Controller MainCamera;
 
-	private short X_Direction;
-	private short Y_Direction;
-
+	// Логические размеры элементов
 	private float X_Cell;
 	private float Y_Cell;
+
+	// Перемещение главного персоража
+	private float X_Direction;
+	private float Y_Direction;
 	private float X_Move;
 	private float Y_Move;
 	private Vector3 Мove;
+
+	// Джойстик
+	public Texture GamePad_Texture;
+	private Rect GamePad_Rect;
+	private GUIStyle GamePad_Style;
+	private Object [] Send_Parameters;
 
 	// При показе интерфейса
 	void OnGUI() 
@@ -83,7 +92,8 @@ public class Game_Control : MonoBehaviour
 		{
 			GUI.skin.box.fontSize = 36;
 			GUI.skin.box.alignment = TextAnchor.MiddleCenter;
-			GUI.Box(new Rect(1 * X_Cell, 1 * Y_Cell, 13 * X_Cell, 8 * Y_Cell), "Смерть.\r\nВоин убил кошку.");
+			GUI.Box(new Rect(1 * X_Cell, 1 * Y_Cell, 13 * X_Cell, 8 * Y_Cell), 
+			    "Смерть.\r\nВоин убил кошку.");
 			if (GUI.Button (new Rect (6 * X_Cell, 0 * Y_Cell, 3 * X_Cell, 1 * Y_Cell), "Меню"))
 				Application.LoadLevel("Game_Menu");
 		}
@@ -93,7 +103,8 @@ public class Game_Control : MonoBehaviour
 		{
 			GUI.skin.box.fontSize = 36;
 			GUI.skin.box.alignment = TextAnchor.MiddleCenter;
-			GUI.Box(new Rect(1 * X_Cell, 1 * Y_Cell, 13 * X_Cell, 8 * Y_Cell), "Проигрыш.\r\nВоин забрал сокровище.");
+			GUI.Box(new Rect(1 * X_Cell, 1 * Y_Cell, 13 * X_Cell, 8 * Y_Cell), 
+			    "Проигрыш.\r\nВоин забрал сокровище.");
 			if (GUI.Button (new Rect (6 * X_Cell, 0 * Y_Cell, 3 * X_Cell, 1 * Y_Cell), "Меню"))
 				Application.LoadLevel("Game_Menu");
 		}
@@ -103,7 +114,8 @@ public class Game_Control : MonoBehaviour
 		{
 			GUI.skin.box.fontSize = 36;
 			GUI.skin.box.alignment = TextAnchor.MiddleCenter;
-			GUI.Box(new Rect(1 * X_Cell, 1 * Y_Cell, 13 * X_Cell, 8 * Y_Cell), "Победа!\r\nВоин загнан в ловушку.");
+			GUI.Box(new Rect(1 * X_Cell, 1 * Y_Cell, 13 * X_Cell, 8 * Y_Cell), 
+			    "Победа!\r\nВоин загнан в ловушку.");
 			if (GUI.Button (new Rect (6 * X_Cell, 0 * Y_Cell, 3 * X_Cell, 1 * Y_Cell), "Меню"))
 				Application.LoadLevel("Game_Menu");
 		}
@@ -115,24 +127,25 @@ public class Game_Control : MonoBehaviour
 			if (GUI.Button (new Rect (5 * X_Cell, 0 * Y_Cell, 3 * X_Cell, 1 * Y_Cell), "Пауза"))
 				Application.LoadLevel("Game_Menu");
 
+			// Кнопка "Камера"
 			MainCamera = GameObject.Find("Camera").GetComponent<Camera_Controller>();
-			if (GUI.Button (new Rect (8 * X_Cell, 0 * Y_Cell, 3 * X_Cell, 1 * Y_Cell), "Камера")) MainCamera.BroadcastMessage("SetCamera");
+			if (GUI.Button (new Rect (8 * X_Cell, 0 * Y_Cell, 3 * X_Cell, 1 * Y_Cell), "Камера")) 
+				MainCamera.BroadcastMessage("SetCamera");
 
-			if ((Application.loadedLevelName != "Game_Over") && (Application.loadedLevelName != "Game_Over_Killed") && (Application.loadedLevelName != "Game_Winner"))
+			if ((Application.loadedLevelName != "Game_Over") 
+			 && (Application.loadedLevelName != "Game_Over_Killed") 
+			 && (Application.loadedLevelName != "Game_Winner"))
 			{
-				// Управление движением кошки
-				if (GUI.Button (new Rect (1 * X_Cell, 7 * Y_Cell, 1 * X_Cell, 1 * Y_Cell), "<")) X_Direction = -1;
-				if (GUI.Button (new Rect (3 * X_Cell, 7 * Y_Cell, 1 * X_Cell, 1 * Y_Cell), ">")) X_Direction = 1;
-				if (GUI.Button (new Rect (2 * X_Cell, 6 * Y_Cell, 1 * X_Cell, 1 * Y_Cell), "^")) Y_Direction = -1;
-				if (GUI.Button (new Rect (2 * X_Cell, 8 * Y_Cell, 1 * X_Cell, 1 * Y_Cell), "v")) Y_Direction = 1;
+				// Рисование джойстика с наложением на него текстуры
+				GamePad_Rect = new Rect (1 * Y_Cell, 6 * Y_Cell, 3 * Y_Cell, 3 * Y_Cell);
+				// GamePad_Style.border.Remove(GamePad_Rect);
+				GUI.backgroundColor = new Color();
+				GUI.Box(GamePad_Rect, GamePad_Texture); //, GamePad_Style);
 
-				if (GUI.Button (new Rect (1 * X_Cell, 6 * Y_Cell, 1 * X_Cell, 1 * Y_Cell), "")) {X_Direction = -1; Y_Direction = -1;}
-				if (GUI.Button (new Rect (3 * X_Cell, 6 * Y_Cell, 1 * X_Cell, 1 * Y_Cell), "")) {X_Direction = 1; Y_Direction = -1;}
-				if (GUI.Button (new Rect (1 * X_Cell, 8 * Y_Cell, 1 * X_Cell, 1 * Y_Cell), "")) {X_Direction = -1; Y_Direction = 1;}
-				if (GUI.Button (new Rect (3 * X_Cell, 8 * Y_Cell, 1 * X_Cell, 1 * Y_Cell), "")) {X_Direction = 1; Y_Direction = 1;}
-
-				HellCat = GameObject.Find("HellCat").GetComponent<Player_Controller>();
-				if (GUI.Button (new Rect (11 * X_Cell, 7 * Y_Cell, 3 * X_Cell, 1 * Y_Cell), "Режим")) HellCat.BroadcastMessage("Mode");
+				// Кнопка "Режим"
+				HellCat_Controller = GameObject.Find("HellCat").GetComponent<Player_Controller>();
+				if (GUI.Button (new Rect (11 * X_Cell, 7 * Y_Cell, 3 * X_Cell, 1 * Y_Cell), "Режим")) 
+					HellCat_Controller.BroadcastMessage("Mode");
 			}
 		}
 	}
@@ -145,66 +158,15 @@ public class Game_Control : MonoBehaviour
 		{
 			float x = Input.mousePosition.x;
 			float y = Input.mousePosition.y;
-			// Вверх
-			if (x >= 1 * X_Cell && x <= 2 * X_Cell && y >= 2 * Y_Cell && y <= 3 * Y_Cell)
+
+			if (x >= 1 * Y_Cell && x <= 4 * Y_Cell && y >= 1 * Y_Cell && y <= 4 * Y_Cell)
 			{
-				X_Direction = -1;
-				Y_Direction = 0;
+				X_Direction = x - 2.5f * Y_Cell;
+				Y_Direction = y - 2.5f * Y_Cell;
 				Moving();
 			}
-			// Вниз
-			else if (x >= 3 * X_Cell && x <= 4 * X_Cell && y >= 2 * Y_Cell && y <= 3 * Y_Cell)
+			else 
 			{
-				X_Direction = 1;
-				Y_Direction = 0;
-				Moving ();
-			}
-			// Вправо
-			else if (x >= 2 * X_Cell && x <= 3 * X_Cell && y >= 3 * Y_Cell && y <= 4 * Y_Cell)
-			{
-				X_Direction = 0;
-				Y_Direction = 1;
-				Moving();
-			}
-			// Влево
-			else if (x >= 2 * X_Cell && x <= 3 * X_Cell && y >= 1 * Y_Cell && y <= 2 * Y_Cell)
-			{
-				X_Direction = 0;
-				Y_Direction = -1;
-				Moving();
-			}
-			// Влево вверх
-			else if (x >= 1 * X_Cell && x <= 2 * X_Cell && y >= 3 * Y_Cell && y <= 4 * Y_Cell)
-			{
-				X_Direction = -1;
-				Y_Direction = 1;
-				Moving();
-			}
-			// Вправо вверх
-			else if (x >= 3 * X_Cell && x <= 4 * X_Cell && y >= 3 * Y_Cell && y <= 4 * Y_Cell)
-			{
-				X_Direction = 1;
-				Y_Direction = 1;
-				Moving ();
-			}
-			// Влево вниз
-			else if (x >= 1 * X_Cell && x <= 2 * X_Cell && y >= 1 * Y_Cell && y <= 2 * Y_Cell)
-			{
-				X_Direction = -1;
-				Y_Direction = -1;
-				Moving();
-			}
-			// Вправо вниз
-			else if (x >= 3 * X_Cell && x <= 4 * X_Cell && y >= 1 * Y_Cell && y <= 2 * Y_Cell)
-			{
-				X_Direction = 1;
-				Y_Direction = -1;
-				Moving();
-			}
-			else
-			{
-				X_Direction = 0;
-				Y_Direction = 0;
 				X_Move = 0;
 				Y_Move = 0;
 			}
@@ -232,8 +194,11 @@ public class Game_Control : MonoBehaviour
 		Vector3 Move = new Vector3(X_Move, 0.0f, Y_Move);
 		
 		// Передача информации кошке о том, куда она должна двигаться
-		HellCat = GameObject.FindGameObjectWithTag("Player").GetComponent<Player_Controller>();
-		HellCat.BroadcastMessage("Go", Move);		
+		HellCat_Object = GameObject.FindGameObjectWithTag("Player");
+		HellCat_Controller = HellCat_Object.GetComponent<Player_Controller>();
+//		HellCat_Controller.rigidbody = HellCat_Object.GetComponent<Rigidbody>;
+		HellCat_Controller.BroadcastMessage("Go", Move);	
+	
 	}	
 }
 

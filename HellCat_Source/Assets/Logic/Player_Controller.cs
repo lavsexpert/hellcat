@@ -10,6 +10,7 @@ public class Player_Controller : MonoBehaviour
 	public float Speed;              		// Скорость игрока
 	private float MoveVertical;				// Перемещение по вертикали
 	private float MoveHorizontal;			// Перемещение по горизонтали
+//	public Rigidbody rigitbody;
 
 	//режим кошки, false = кошка видна целиком true = кошка ушла под землю
 	public static bool Hellcat_Mode = false;
