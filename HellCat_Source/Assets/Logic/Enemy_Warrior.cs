@@ -5,7 +5,6 @@ public class Enemy_Warrior : MonoBehaviour
 {
 	public GameObject Warrior_Game_Object;		// Объект воина
 	public Transform Trap; 						// Ловушка
-	public Transform Swamp;						// Болото
 	public Transform Treasure;					// Сундук	
 	public Transform Hellcat;					// Игровой персонаж (кошка)
 	public Transform Warrior;					// Неигровой персонаж (воин)
@@ -34,7 +33,6 @@ public class Enemy_Warrior : MonoBehaviour
 		// Вычисление расстояний
 //		float Treasure_Distance = Distance2D(Treasure, Warrior);
 		float Trap_Distance 	= Distance2D(Trap, Warrior);
-		float Swamp_Distance 	= Distance2D(Swamp, Warrior);
 		float Distance			= Distance2D(Hellcat, Warrior);
 
 		// Если кошка попала в область видимости воина, т.е. воин видит кошку - то он идёт к ней
@@ -148,12 +146,12 @@ public class Enemy_Warrior : MonoBehaviour
 		}
 		
 		// Если до болота меньше 0.5 - то воин тонет и уничтожается
-		if (Swamp_Distance < 0.5f) 
-		{
-			PlayAnimation("Warrior_07_In_Swamp");
-			Destroy(gameObject, 1.8f);
-			//Enemy_Warrior.Warrior_Destroyed = true;
-		}
+		//if (Swamp_Distance < 0.5f) 
+		//{
+		//	PlayAnimation("Warrior_07_In_Swamp");
+		//	Destroy(gameObject, 1.8f);
+		//	//Enemy_Warrior.Warrior_Destroyed = true;
+		//}
 		
 		// Если до ловушки меньше 0.4 - то воин начинает падать в ловушку и уничтожается
 		if (Trap_Distance < 0.4f) 
