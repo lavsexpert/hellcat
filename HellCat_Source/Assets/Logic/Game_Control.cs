@@ -4,6 +4,7 @@ using System.Collections;
 public class Game_Control : MonoBehaviour 
 {	
 	private string currentLevel;	// Имя текущего уровня
+	private int Start_Number = 0;
 
 	// Объекты для управления движением кошкой
 	private Player_Controller HellCat_Controller;
@@ -24,8 +25,13 @@ public class Game_Control : MonoBehaviour
 	// Джойстик
 	public Texture GamePad_Texture;
 	private Rect GamePad_Rect;
-	private GUIStyle GamePad_Style;
-	private Object [] Send_Parameters;
+	public Texture GamePad_Point_Texture;
+	private Rect GamePad_Point_Rect;
+
+	void Start()
+	{
+		PlayerPrefs.SetString ("Level", "");
+	}
 
 	// При показе интерфейса
 	void OnGUI() 
@@ -41,15 +47,15 @@ public class Game_Control : MonoBehaviour
 			{
 				if (GUI.Button (new Rect (6 * X_Cell, 5 * Y_Cell, 3 * X_Cell, 1 * Y_Cell), "Заново"))
 					Application.LoadLevel(currentLevel);
-				if (GUI.Button (new Rect (6 * X_Cell, 6 * Y_Cell, 3 * X_Cell, 1 * Y_Cell), "Продолжить"))
-					Application.LoadLevel(currentLevel);
-				if (GUI.Button (new Rect (6 * X_Cell, 7 * Y_Cell, 3 * X_Cell, 1 * Y_Cell), "Загрузить"))
+				if (GUI.Button (new Rect (6 * X_Cell, 6 * Y_Cell, 3 * X_Cell, 1 * Y_Cell), "Загрузить"))
 					Application.LoadLevel("Game_Load");
-				if (GUI.Button (new Rect (6 * X_Cell, 8f * Y_Cell, 3 * X_Cell, 1 * Y_Cell), "Выйти"))
+				if (GUI.Button (new Rect (6 * X_Cell, 7 * Y_Cell, 3 * X_Cell, 1 * Y_Cell), "Выйти"))
 				{
 					PlayerPrefs.SetString("Level", "");
 					Application.Quit();
 				}
+				if (GUI.Button (new Rect (6 * X_Cell, 8 * Y_Cell, 3 * X_Cell, 1 * Y_Cell), Start_Number.ToString()))
+					Application.LoadLevel(currentLevel);
 			}
 			else
 			{
@@ -146,6 +152,45 @@ public class Game_Control : MonoBehaviour
 				HellCat_Controller = GameObject.Find("HellCat").GetComponent<Player_Controller>();
 				if (GUI.Button (new Rect (11 * X_Cell, 7 * Y_Cell, 3 * X_Cell, 1 * Y_Cell), "Режим")) 
 					HellCat_Controller.BroadcastMessage("Mode");
+
+				// Отслеживание, какая кнопка интерфейса нажата - от этого зависит направление движения
+				if (Input.GetMouseButton(0)) 
+				{
+					float x = Input.mousePosition.x;
+					float y = Input.mousePosition.y;
+
+
+					if (x >= 1 * Y_Cell && x <= 4 * Y_Cell && y >= 1 * Y_Cell && y <= 4 * Y_Cell)
+					{
+						// Рисование джойстика с наложением на него текстуры
+						GamePad_Point_Rect = new Rect (x - 0.5f * Y_Cell, -y + 9f * Y_Cell, 1 * Y_Cell, 1 * Y_Cell);
+						GUI.backgroundColor = new Color();
+						GUI.Box(GamePad_Point_Rect, GamePad_Point_Texture); //, GamePad_Style);
+
+						X_Direction = x - 2.5f * Y_Cell;
+						Y_Direction = y - 2.5f * Y_Cell;
+						Moving();
+					}
+					else 
+					{
+						// Рисование джойстика с наложением на него текстуры
+						GamePad_Point_Rect = new Rect (2 * Y_Cell, 7f * Y_Cell, 1 * Y_Cell, 1 * Y_Cell);
+						GUI.backgroundColor = new Color();
+						GUI.Box(GamePad_Point_Rect, GamePad_Point_Texture); //, GamePad_Style);
+
+						X_Move = 0;
+						Y_Move = 0;
+					}
+				} 
+				else 
+				{
+					X_Move = 0;
+					Y_Move = 0;
+					// Рисование джойстика с наложением на него текстуры
+					GamePad_Point_Rect = new Rect (2 * Y_Cell, 7f * Y_Cell, 1 * Y_Cell, 1 * Y_Cell);
+					GUI.backgroundColor = new Color();
+					GUI.Box(GamePad_Point_Rect, GamePad_Point_Texture); //, GamePad_Style);
+				}
 			}
 		}
 	}
@@ -153,29 +198,6 @@ public class Game_Control : MonoBehaviour
 	// При подготовке к обновлению 
 	void FixedUpdate ()
 	{
-		// Отслеживание, какая кнопка интерфейса нажата - от этого зависит направление движения
-		if (Input.GetMouseButton(0)) 
-		{
-			float x = Input.mousePosition.x;
-			float y = Input.mousePosition.y;
-
-			if (x >= 1 * Y_Cell && x <= 4 * Y_Cell && y >= 1 * Y_Cell && y <= 4 * Y_Cell)
-			{
-				X_Direction = x - 2.5f * Y_Cell;
-				Y_Direction = y - 2.5f * Y_Cell;
-				Moving();
-			}
-			else 
-			{
-				X_Move = 0;
-				Y_Move = 0;
-			}
-		} 
-		else 
-		{
-			X_Move = 0;
-			Y_Move = 0;
-		}
 	}
 
 	// Перемещение кошки
@@ -196,7 +218,7 @@ public class Game_Control : MonoBehaviour
 		// Передача информации кошке о том, куда она должна двигаться
 		HellCat_Object = GameObject.FindGameObjectWithTag("Player");
 		HellCat_Controller = HellCat_Object.GetComponent<Player_Controller>();
-//		HellCat_Controller.rigidbody = HellCat_Object.GetComponent<Rigidbody>;
+		HellCat_Controller.HellCat_Object = HellCat_Object;
 		HellCat_Controller.BroadcastMessage("Go", Move);	
 	
 	}	
