@@ -16,8 +16,8 @@ public class Game_Control : MonoBehaviour
 	private float Y_Cell;
 
 	// Перемещение главного персоража
-	private float X_Direction;
-	private float Y_Direction;
+	public float X_Direction;
+	public float Y_Direction;
 	private float X_Move;
 	private float Y_Move;
 	private Vector3 Мove;
@@ -167,8 +167,8 @@ public class Game_Control : MonoBehaviour
 						GUI.backgroundColor = new Color();
 						GUI.Box(GamePad_Point_Rect, GamePad_Point_Texture); //, GamePad_Style);
 
-						X_Direction = x - 2.5f * Y_Cell;
-						Y_Direction = y - 2.5f * Y_Cell;
+						X_Direction = (x - 2.5f * Y_Cell) / Y_Cell;
+						Y_Direction = (y - 2.5f * Y_Cell) / Y_Cell;
 						Moving();
 					}
 					else 
