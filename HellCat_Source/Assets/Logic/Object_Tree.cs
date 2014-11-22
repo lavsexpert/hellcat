@@ -1,0 +1,126 @@
+﻿using UnityEngine;
+using System.Collections;
+
+public class Object_Tree : MonoBehaviour {
+	
+	private int Random_Value = 0;                 	//случайное число для выбора дерева из списка
+	private float Random_Value_Scale = 0.0f;      	//случайное число для создания различной величины деревьев
+	private float Warrior_Height = 2.2f;   	//высота воина. высота дерева задана в пропорции от высоты воина
+	private float Percents_Of_Warrior_Height = 0.2f;//процент от высоты воина для отклоения размера дерева
+	
+	
+	 GameObject CurrentTree;
+
+	static  string Tree_Fir_1_Path_String = "Graphics/Objects/Trees/Tree_Fir_1";
+	static  string Tree_Fir_2_Path_String = "Graphics/Objects/Trees/Tree_Fir_2";
+	static  string Tree_Dry_Path_String = "Graphics/Objects/Trees/Tree_Dry";
+	static  string Tree_Birch_Path_String = "Graphics/Objects/Trees/Tree_Birch";
+
+
+	GameObject Tree_Fir_1_GameObject;
+	GameObject Tree_Fir_2_GameObject;
+	GameObject Tree_Dry_GameObject;
+	GameObject Tree_Birch_GameObject;
+
+
+	 
+
+	void Initialize_Tree_Models ()
+	{
+		Tree_Fir_1_GameObject = Resources.Load(Tree_Fir_1_Path_String,typeof(GameObject)) as GameObject;	
+		Tree_Fir_2_GameObject = Resources.Load(Tree_Fir_2_Path_String,typeof(GameObject)) as GameObject;	
+		Tree_Dry_GameObject = Resources.Load(Tree_Dry_Path_String,typeof(GameObject)) as GameObject;	
+		Tree_Birch_GameObject = Resources.Load(Tree_Birch_Path_String,typeof(GameObject)) as GameObject;	
+	}
+
+
+ 
+
+
+	void Set_A_Tree_Function (float TreeCoordX , float TreeCoordY ,float TreeCoordZ )
+	{	
+		
+		
+
+		
+		
+		
+		//получение слуайного значения
+		Random_Value = Random.Range(1,5);
+		Random_Value_Scale = 2 * Warrior_Height + Random.Range(-Percents_Of_Warrior_Height * Warrior_Height,Percents_Of_Warrior_Height * Warrior_Height);
+
+
+		//		var boxCollider = (BoxCollider)CurrentTree.collider;
+		//		boxCollider.size = new Vector3 (0.25f, 0.25f, 0.5f);
+
+
+
+		//первый тип дерева
+		if (Random_Value == 1)
+		{
+			CurrentTree = Instantiate(Tree_Fir_1_GameObject, new Vector3 ( TreeCoordX , TreeCoordY, TreeCoordZ),Quaternion.AngleAxis(90,Vector3.left))as GameObject;
+			CurrentTree.transform.localScale = new Vector3(Random_Value_Scale, Random_Value_Scale, Random_Value_Scale); 
+			
+			
+		}
+
+		//второй тип дерева
+		if (Random_Value == 2)
+		{
+			CurrentTree = Instantiate(Tree_Fir_2_GameObject, new Vector3 ( TreeCoordX , TreeCoordY, TreeCoordZ),Quaternion.AngleAxis(90,Vector3.left))as GameObject;
+			CurrentTree.transform.localScale = new Vector3(Random_Value_Scale, Random_Value_Scale, Random_Value_Scale); 
+			
+		}
+		
+		//третий тип дерева
+		if (Random_Value == 3)
+		{			
+			CurrentTree = Instantiate(Tree_Dry_GameObject, new Vector3 ( TreeCoordX , TreeCoordY, TreeCoordZ),Quaternion.AngleAxis(90,Vector3.left))as GameObject;
+			CurrentTree.transform.localScale = new Vector3(Random_Value_Scale, Random_Value_Scale, Random_Value_Scale); 
+			
+		}
+		
+		//четвертый тип дерева
+		if (Random_Value == 4)
+		{
+			CurrentTree = Instantiate(Tree_Birch_GameObject, new Vector3 ( TreeCoordX , TreeCoordY, TreeCoordZ),Quaternion.AngleAxis(90,Vector3.left))as GameObject;
+			CurrentTree.transform.localScale = new Vector3(Random_Value_Scale/3, Random_Value_Scale/3, Random_Value_Scale/3); 
+			
+		}
+
+
+		var Tree_BoxCollider = CurrentTree.AddComponent<BoxCollider>();
+		Tree_BoxCollider.size = new Vector3 (0.25f, 0.25f, 1.5f);
+
+		//Tree_BoxCollider.transform.localScale = new Vector3 (CurrentTree.transform.localScale.x , CurrentTree.transform.localScale.y, CurrentTree.transform.localScale.z);
+
+	}
+
+
+
+
+
+
+	// задание начальных значнией
+	void Start() 
+	{
+
+		
+
+					Initialize_Tree_Models (); 
+	
+
+
+	
+					var	Search = GameObject.FindGameObjectsWithTag ("Tree");
+						foreach (GameObject TreeX in Search) {
+						Set_A_Tree_Function (TreeX.transform.position.x, TreeX.transform.position.y, TreeX.transform.position.z);
+						DestroyObject (TreeX);
+		}
+				
+
+
+	
+	
+	}
+}

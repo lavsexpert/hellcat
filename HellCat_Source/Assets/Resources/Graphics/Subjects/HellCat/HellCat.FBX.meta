@@ -1,0 +1,311 @@
+fileFormatVersion: 2
+guid: b4e74c9318b18bf41a6dc8557b7d759f
+ModelImporter:
+  serializedVersion: 16
+  fileIDToRecycleName:
+    100000: BODY1
+    100002: BODY2
+    100004: GLAZ_L
+    100006: GLAZ_P
+    100008: HEAD
+    100010: //RootNode
+    100012: HVOST1
+    100014: HVOST2
+    100016: HVOST3
+    100018: HVOST4
+    100020: Line001
+    100022: ToeLB
+    100024: ToeLF
+    100026: ToeRB
+    100028: ToeRF
+    100030: UHO_L
+    100032: UHO_P
+    400000: BODY1
+    400002: BODY2
+    400004: GLAZ_L
+    400006: GLAZ_P
+    400008: HEAD
+    400010: //RootNode
+    400012: HVOST1
+    400014: HVOST2
+    400016: HVOST3
+    400018: HVOST4
+    400020: Line001
+    400022: ToeLB
+    400024: ToeLF
+    400026: ToeRB
+    400028: ToeRF
+    400030: UHO_L
+    400032: UHO_P
+    4300000: Line001
+    7400000: HellCat_02_Start
+    7400002: HellCat_01_Stand
+    7400004: HellCat_03_Finish
+    7400006: HellCat_04_Go
+    9500000: //RootNode
+    11100000: //RootNode
+    13700000: Line001
+  materials:
+    importMaterials: 1
+    materialName: 2
+    materialSearch: 0
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    optimizeGameObjects: 0
+    motionNodeName: 
+    animationCompression: 0
+    animationRotationError: .5
+    animationPositionError: .5
+    animationScaleError: .5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    clipAnimations:
+    - serializedVersion: 16
+      name: HellCat_01_Stand
+      takeName: Take 001
+      firstFrame: 0
+      lastFrame: 1
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask:
+      - path: 
+        weight: 1
+      - path: BODY1
+        weight: 1
+      - path: BODY1/BODY2
+        weight: 1
+      - path: BODY1/BODY2/HVOST1
+        weight: 1
+      - path: BODY1/BODY2/HVOST1/HVOST2
+        weight: 1
+      - path: BODY1/BODY2/HVOST1/HVOST2/HVOST3
+        weight: 1
+      - path: BODY1/BODY2/HVOST1/HVOST2/HVOST3/HVOST4
+        weight: 1
+      - path: BODY1/HEAD
+        weight: 1
+      - path: BODY1/HEAD/GLAZ_L
+        weight: 1
+      - path: BODY1/HEAD/GLAZ_P
+        weight: 1
+      - path: BODY1/HEAD/UHO_L
+        weight: 1
+      - path: BODY1/HEAD/UHO_P
+        weight: 1
+      - path: Line001
+        weight: 1
+      - path: ToeLB
+        weight: 1
+      - path: ToeLF
+        weight: 1
+      - path: ToeRB
+        weight: 1
+      - path: ToeRF
+        weight: 1
+      maskType: 0
+      maskSource: {instanceID: 0}
+    - serializedVersion: 16
+      name: HellCat_02_Start
+      takeName: Take 001
+      firstFrame: 1
+      lastFrame: 10
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask:
+      - path: 
+        weight: 1
+      - path: BODY1
+        weight: 1
+      - path: BODY1/BODY2
+        weight: 1
+      - path: BODY1/BODY2/HVOST1
+        weight: 1
+      - path: BODY1/BODY2/HVOST1/HVOST2
+        weight: 1
+      - path: BODY1/BODY2/HVOST1/HVOST2/HVOST3
+        weight: 1
+      - path: BODY1/HEAD
+        weight: 1
+      - path: BODY1/HEAD/GLAZ_L
+        weight: 1
+      - path: BODY1/HEAD/GLAZ_P
+        weight: 1
+      - path: BODY1/HEAD/UHO_L
+        weight: 1
+      - path: BODY1/HEAD/UHO_P
+        weight: 1
+      - path: Line001
+        weight: 1
+      maskType: 0
+      maskSource: {instanceID: 0}
+    - serializedVersion: 16
+      name: HellCat_03_Finish
+      takeName: Take 001
+      firstFrame: 10
+      lastFrame: 10.1000004
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask:
+      - path: 
+        weight: 1
+      - path: BODY1
+        weight: 1
+      - path: BODY1/BODY2
+        weight: 1
+      - path: BODY1/BODY2/HVOST1
+        weight: 1
+      - path: BODY1/BODY2/HVOST1/HVOST2
+        weight: 1
+      - path: BODY1/BODY2/HVOST1/HVOST2/HVOST3
+        weight: 1
+      - path: BODY1/HEAD
+        weight: 1
+      - path: BODY1/HEAD/GLAZ_L
+        weight: 1
+      - path: BODY1/HEAD/GLAZ_P
+        weight: 1
+      - path: BODY1/HEAD/UHO_L
+        weight: 1
+      - path: BODY1/HEAD/UHO_P
+        weight: 1
+      - path: Line001
+        weight: 1
+      maskType: 0
+      maskSource: {instanceID: 0}
+    - serializedVersion: 16
+      name: HellCat_04_Go
+      takeName: Take 001
+      firstFrame: 10
+      lastFrame: 40
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask:
+      - path: 
+        weight: 1
+      - path: BODY1
+        weight: 1
+      - path: BODY1/BODY2
+        weight: 1
+      - path: BODY1/BODY2/HVOST1
+        weight: 1
+      - path: BODY1/BODY2/HVOST1/HVOST2
+        weight: 1
+      - path: BODY1/BODY2/HVOST1/HVOST2/HVOST3
+        weight: 1
+      - path: BODY1/HEAD
+        weight: 1
+      - path: BODY1/HEAD/GLAZ_L
+        weight: 1
+      - path: BODY1/HEAD/GLAZ_P
+        weight: 1
+      - path: BODY1/HEAD/UHO_L
+        weight: 1
+      - path: BODY1/HEAD/UHO_P
+        weight: 1
+      - path: Line001
+        weight: 1
+      maskType: 0
+      maskSource: {instanceID: 0}
+    isReadable: 1
+  meshes:
+    lODScreenPercentages: []
+    globalScale: .100000001
+    meshCompression: 0
+    addColliders: 1
+    importBlendShapes: 1
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    optimizeMeshForGPU: 0
+    weldVertices: 1
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+  tangentSpace:
+    normalSmoothAngle: 60
+    splitTangentsAcrossUV: 1
+    normalImportMode: 0
+    tangentImportMode: 1
+  importAnimation: 1
+  copyAvatar: 0
+  humanDescription:
+    human: []
+    skeleton: []
+    armTwist: .5
+    foreArmTwist: .5
+    upperLegTwist: .5
+    legTwist: .5
+    armStretch: .0500000007
+    legStretch: .0500000007
+    feetSpacing: 0
+    rootMotionBoneName: 
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  animationType: 1
+  additionalBone: 0
+  userData: 
