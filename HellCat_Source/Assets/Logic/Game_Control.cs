@@ -3,6 +3,8 @@ using System.Collections;
 
 public class Game_Control : MonoBehaviour 
 {	
+
+
 	private string currentLevel;	// Имя текущего уровня
 	private int Start_Number = 0;
 
@@ -28,6 +30,10 @@ public class Game_Control : MonoBehaviour
 	public Texture GamePad_Point_Texture;
 	private Rect GamePad_Point_Rect;
 
+
+	private bool Game_Mode = false; 
+
+
 	void Start()
 	{
 		PlayerPrefs.SetString ("Level", "");
@@ -37,6 +43,9 @@ public class Game_Control : MonoBehaviour
 	// При показе интерфейса
 	void OnGUI() 
 	{		
+	 
+
+
 		X_Cell = Screen.width / 15;
 		Y_Cell = Screen.height / 10;
 
@@ -130,6 +139,14 @@ public class Game_Control : MonoBehaviour
 		// В окне любого уровня:
 		else
 		{
+
+
+		
+
+		
+
+
+
 			// Рисуется кнопка: "Пауза"(открывает меню)
 			if (GUI.Button (new Rect (5 * X_Cell, 0 * Y_Cell, 3 * X_Cell, 1 * Y_Cell), "Пауза"))
 				Application.LoadLevel("Game_Menu");
@@ -197,6 +214,11 @@ public class Game_Control : MonoBehaviour
 					GUI.Box(GamePad_Point_Rect, GamePad_Point_Texture); //, GamePad_Style);
 				}
 			}
+		
+
+
+	
+		
 		}
 	}
 

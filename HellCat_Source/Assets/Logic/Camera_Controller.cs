@@ -3,7 +3,7 @@ using System.Collections;
 
 public class Camera_Controller : MonoBehaviour
 {	
-
+	
 	private GameObject HellCat; 			// Игровой персонаж
 	public int Distance2D = 40; 		// Расстояние от игрового персонажа до плоской камеры (вид сверху)
 	public int Distance3D = 10; 		// Расстояние от игрового персонажа до изометрической камеры (вид сзади)
@@ -11,23 +11,27 @@ public class Camera_Controller : MonoBehaviour
 	private bool Camera_Mode = false;
 	private bool FollowPlayer = true;
 
+
+	private bool Game_Mode =false;
+
 	// При запуске
 	void Start() 
 	{
-
+		
 		HellCat = GameObject.Find ("HellCat(Clone)");
-	
+		
 		// По-умолчанию изометрический вид сзади
 		SetCamera3D();
 
 
+		
 	}
-
+	
 	// Перед обновлением сцены
 	void FixedUpdate()
 	{
 		if (Input.GetKeyDown (KeyCode.Tab)) {
-
+			
 			// Переключение режимов показа карты 2D(плоский вид сверху)/3D(изометрический вид сзади)
 			if ( Camera_Mode == false)
 			{
@@ -40,8 +44,25 @@ public class Camera_Controller : MonoBehaviour
 				SetCamera3D();
 			}
 		}
-	}
 
+
+		if ( Game_Mode == false)
+		{
+			SetCamera2D ();
+			
+		}
+
+			
+		if ( Game_Mode == true)
+		{
+			SetCamera3D ();
+			
+		}
+
+
+
+	}
+	
 	// После обновления сцены
 	void LateUpdate()
 	{	
@@ -51,7 +72,7 @@ public class Camera_Controller : MonoBehaviour
 			transform.position = HellCat.transform.position + Offset;
 		}
 	}
-
+	
 	public void SetCamera()
 	{
 		// Переключение режимов показа карты 2D(плоский вид сверху)/3D(изометрический вид сзади)
@@ -66,7 +87,7 @@ public class Camera_Controller : MonoBehaviour
 			SetCamera3D();
 		}
 	}
-
+	
 	// Установка камеры для показа плоского вида сверху
 	void SetCamera2D()
 	{
@@ -75,7 +96,7 @@ public class Camera_Controller : MonoBehaviour
 		if (Distance2D == 0) Distance2D = 20;
 		Offset =  new Vector3(3.0f , Distance2D, 3.0f);
 	}
-
+	
 	// Установка камеры для показа изометрического вида сзади
 	void SetCamera3D()
 	{
@@ -89,11 +110,11 @@ public class Camera_Controller : MonoBehaviour
 		float ZOffset = DistanceXZ * Mathf.Cos(CameraDirection.y * Mathf.Deg2Rad);
 		Offset = new Vector3(- XOffset, YOffset, - ZOffset); 
 	}
-
+	
 	// Установка следования за игроком
 	void SetFollowPlayer(bool folplayer)
 	{
 		FollowPlayer = folplayer;
 	}
-
+	
 }

@@ -25,6 +25,9 @@ public class Player_Controller : MonoBehaviour
 	private double RightX;
 	private double UpperZ;
 	private double LowerZ;
+
+
+
 	
 	// При запуске
 	void Start()
@@ -36,7 +39,7 @@ public class Player_Controller : MonoBehaviour
 		UpperZ = Land.renderer.bounds.min.z;
 		LowerZ = Land.renderer.bounds.max.z;
 
-	
+
 
 	}
 
