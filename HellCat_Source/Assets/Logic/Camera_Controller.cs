@@ -3,7 +3,8 @@ using System.Collections;
 
 public class Camera_Controller : MonoBehaviour
 {	
-	public GameObject HellCat; 			// Игровой персонаж
+
+	private GameObject HellCat; 			// Игровой персонаж
 	public int Distance2D = 40; 		// Расстояние от игрового персонажа до плоской камеры (вид сверху)
 	public int Distance3D = 10; 		// Расстояние от игрового персонажа до изометрической камеры (вид сзади)
 	private Vector3 Offset;				// Вектор смещения
@@ -13,8 +14,13 @@ public class Camera_Controller : MonoBehaviour
 	// При запуске
 	void Start() 
 	{
+
+		HellCat = GameObject.Find ("HellCat(Clone)");
+	
 		// По-умолчанию изометрический вид сзади
 		SetCamera3D();
+
+
 	}
 
 	// Перед обновлением сцены

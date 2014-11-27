@@ -31,6 +31,7 @@ public class Game_Control : MonoBehaviour
 	void Start()
 	{
 		PlayerPrefs.SetString ("Level", "");
+		HellCat_Object = GameObject.Find ("HellCat(Clone)");
 	}
 
 	// При показе интерфейса
@@ -134,7 +135,8 @@ public class Game_Control : MonoBehaviour
 				Application.LoadLevel("Game_Menu");
 
 			// Кнопка "Камера"
-			MainCamera = GameObject.Find("Camera").GetComponent<Camera_Controller>();
+			MainCamera = GameObject.Find("Camera(Clone)").GetComponent<Camera_Controller>(); 
+			//MainCamera = GameObject.Find("Camera").GetComponent<Camera_Controller>();
 			if (GUI.Button (new Rect (8 * X_Cell, 0 * Y_Cell, 3 * X_Cell, 1 * Y_Cell), "Камера")) 
 				MainCamera.BroadcastMessage("SetCamera");
 
@@ -148,11 +150,13 @@ public class Game_Control : MonoBehaviour
 				GUI.backgroundColor = new Color();
 				GUI.Box(GamePad_Rect, GamePad_Texture); //, GamePad_Style);
 
-				// Кнопка "Режим"
+				 //Кнопка "Режим"
+
+				HellCat_Controller = GameObject.Find("HellCat(Clone)").GetComponent<Player_Controller>();
 				//HellCat_Controller = GameObject.Find("Player").GetComponent<Player_Controller>();
-				//HellCat_Controller = HellCat_Object.GetComponent<Player_Controller>();
-				//if (GUI.Button (new Rect (11 * X_Cell, 7 * Y_Cell, 3 * X_Cell, 1 * Y_Cell), "Режим")) 
-				//	HellCat_Controller.BroadcastMessage("Mode");
+				HellCat_Controller = HellCat_Object.GetComponent<Player_Controller>();
+				if (GUI.Button (new Rect (11 * X_Cell, 7 * Y_Cell, 3 * X_Cell, 1 * Y_Cell), "Режим")) 
+					HellCat_Controller.BroadcastMessage("Mode");
 
 				// Отслеживание, какая кнопка интерфейса нажата - от этого зависит направление движения
 				if (Input.GetMouseButton(0)) 
@@ -217,7 +221,9 @@ public class Game_Control : MonoBehaviour
 		Vector3 Move = new Vector3(X_Move, 0.0f, Y_Move);
 		
 		// Передача информации кошке о том, куда она должна двигаться
-		HellCat_Object = GameObject.FindGameObjectWithTag("Player");
+		HellCat_Object = GameObject.Find ("HellCat(Clone)");
+	
+		//HellCat_Object = GameObject.FindGameObjectWithTag("Player");
 		HellCat_Controller = HellCat_Object.GetComponent<Player_Controller>();
 		HellCat_Controller.HellCat_Object = HellCat_Object;
 		HellCat_Controller.BroadcastMessage("Go", Move);	
