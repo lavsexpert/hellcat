@@ -1,12 +1,39 @@
-﻿using UnityEngine;
+﻿
+using UnityEngine;
 using System.Collections;
 
 public class Game_Control : MonoBehaviour 
 {	
 
 
+
+	
+	static  string Menu_Trap_Grib_GUI_Texture_Path_String  = "Graphics/GUI/Trap_Menu/Grib";
+	static  string Menu_Trap_Lovushka_GUI_Texture_Path_String  = "Graphics/GUI/Trap_Menu/lovushka";
+
+	private Texture  Menu_Trap_Grib_GUI_Texture ;
+	private Texture  Menu_Trap_Lovushka_GUI_Texture;
+
+	private int Menu_Trap_Lovushka_Counter = 2; 
+	private int Menu_Trap_Grib_Counter = 2;
+
+	private bool Menu_Trap_Lovushka_Button_Status = false;
+	private bool Menu_Trap_Grib_Button_Status = false;
+ 
+	private bool Menu_Trap_Lovushka_Function_Flag = false;
+	private bool Menu_Trap_Grib_Function_Flag = false;
+
+
+	private Vector2 Trap_Coordinates_To_Set_in;
+
+	GameObject  Current_Object;
+	GameObject Trap_GameObject;
+	static  string Trap_Path_String = "Trap";
+
+
 	private string currentLevel;	// Имя текущего уровня
 	private int Start_Number = 0;
+
 
 	// Объекты для управления движением кошкой
 	private Player_Controller HellCat_Controller;
@@ -31,13 +58,21 @@ public class Game_Control : MonoBehaviour
 	private Rect GamePad_Point_Rect;
 
 
-	private bool Game_Mode = false; 
-
+	//private bool Game_Mode = false; 
+	static public bool Game_Mode = false;
 
 	void Start()
 	{
 		PlayerPrefs.SetString ("Level", "");
 		HellCat_Object = GameObject.Find ("HellCat(Clone)");
+
+	
+
+		Menu_Trap_Grib_GUI_Texture = Resources.Load(Menu_Trap_Grib_GUI_Texture_Path_String, typeof (Texture)) as Texture;
+		Menu_Trap_Lovushka_GUI_Texture = Resources.Load(Menu_Trap_Lovushka_GUI_Texture_Path_String, typeof (Texture)) as Texture;
+
+
+		Trap_GameObject = Resources.Load(Trap_Path_String,typeof(GameObject)) as GameObject;	
 	}
 
 	// При показе интерфейса
@@ -140,10 +175,51 @@ public class Game_Control : MonoBehaviour
 		else
 		{
 
+		if (Game_Mode == false)
+			{
 
-		
+			Menu_Trap_Grib_Button_Status = GUI.Button (new Rect (1*X_Cell,1*Y_Cell,2*X_Cell,2*Y_Cell),"");
+			GUI.Box( new Rect (1*X_Cell,1*Y_Cell,2*X_Cell,2*Y_Cell),Menu_Trap_Grib_GUI_Texture );
 
-		
+			if ( true == Menu_Trap_Grib_Button_Status)
+			{
+
+
+				if ( Menu_Trap_Grib_Counter > 0 )
+				{
+					Menu_Trap_Grib_Function_Flag = true;
+				}
+				else
+				{
+					Menu_Trap_Grib_Function_Flag = false;
+				}
+
+			}
+
+			
+			Menu_Trap_Lovushka_Button_Status = GUI.Button (new Rect (3*X_Cell,1*Y_Cell,2*X_Cell,2*Y_Cell),"");
+			GUI.Box( new Rect (3*X_Cell,1*Y_Cell,2*X_Cell,2*Y_Cell),Menu_Trap_Lovushka_GUI_Texture );
+			if ( true == Menu_Trap_Lovushka_Button_Status)
+			{
+				if ( Menu_Trap_Lovushka_Counter > 0 )
+				{
+					Menu_Trap_Lovushka_Function_Flag = true;
+				}
+				else
+				{
+					Menu_Trap_Lovushka_Function_Flag = false;
+				}
+				 
+			}
+
+
+			if ((Menu_Trap_Lovushka_Counter <=0 ) && (Menu_Trap_Grib_Counter <=0))
+			{
+				Game_Mode = true;
+			}
+			}
+
+
 
 
 
@@ -222,9 +298,70 @@ public class Game_Control : MonoBehaviour
 		}
 	}
 
+
+	void Update ()
+	{
+
+
+		
+	}
+	
+	
+
 	// При подготовке к обновлению 
 	void FixedUpdate ()
 	{
+
+		
+		if (Menu_Trap_Grib_Function_Flag == true) {
+
+			//
+			
+			
+			if(Input.GetMouseButtonDown(0)){
+				Menu_Trap_Grib_Counter--;
+				//Vector3 mousePos = Camera.main.ScreenToWorldPoint (new Vector3 (Input.mousePosition.x, Input.mousePosition.y, 0.0f));
+				Vector3 mousePos = Camera.main.ScreenToWorldPoint(new Vector3 (Input.mousePosition.x, Input.mousePosition.y, 40.0f));
+				Current_Object = Instantiate (Trap_GameObject, new Vector3 (mousePos.x, 0.0f, mousePos.z), Quaternion.AngleAxis (0, Vector3.left))as GameObject;
+				//Current_Object = Instantiate (Trap_GameObject, new Vector3 (1.0f, 1.0f , 0.0f), Quaternion.AngleAxis (0, Vector3.left))as GameObject;
+				var Tree_BoxCollider = Current_Object.AddComponent<BoxCollider> ();
+				Tree_BoxCollider.size = new Vector3 (0.5f, 0.5f, 0.5f);	
+				Tree_BoxCollider.center = new Vector3 (0.0f, 0.2f, 0.0f);	
+
+
+				Menu_Trap_Grib_Function_Flag = false;
+			}
+
+			
+		}
+
+
+
+
+
+		if (Menu_Trap_Lovushka_Function_Flag == true) {
+
+			//
+			
+			
+			if(Input.GetMouseButtonDown(0)){
+				Menu_Trap_Lovushka_Counter--;
+				//Vector3 mousePos = Camera.main.ScreenToWorldPoint (new Vector3 (Input.mousePosition.x, Input.mousePosition.y, 0.0f));
+				Vector3 mousePos = Camera.main.ScreenToWorldPoint(new Vector3 (Input.mousePosition.x, Input.mousePosition.y, 40.0f));
+				Current_Object = Instantiate (Trap_GameObject, new Vector3 (mousePos.x, 0.0f, mousePos.z), Quaternion.AngleAxis (0, Vector3.left))as GameObject;
+				//Current_Object = Instantiate (Trap_GameObject, new Vector3 (1.0f, 1.0f , 0.0f), Quaternion.AngleAxis (0, Vector3.left))as GameObject;
+				var Tree_BoxCollider = Current_Object.AddComponent<BoxCollider> ();
+				Tree_BoxCollider.size = new Vector3 (0.5f, 0.5f, 0.5f);	
+				Tree_BoxCollider.center = new Vector3 (0.0f, 0.2f, 0.0f);	
+
+
+				Menu_Trap_Lovushka_Function_Flag = false;
+			}
+			
+			
+		}
+
+
 	}
 
 	// Перемещение кошки

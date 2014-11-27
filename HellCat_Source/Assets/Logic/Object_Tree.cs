@@ -22,7 +22,7 @@ public class Object_Tree : MonoBehaviour {
 	static  string HellCat_Path_String = "HellCat";
 	static  string Trap_Path_String = "Trap";
 	static  string Treasure_Warrior_Path_String = "Treasure";
-
+	static  string Enemy_Seeker_Path_String = "Graphics/Subjects/Seeker/seeker";
 	static  string Camera_Path_String = "Graphics/Camera/Camera";
 
 
@@ -32,6 +32,7 @@ public class Object_Tree : MonoBehaviour {
 	GameObject Tree_Dry_GameObject;
 	GameObject Tree_Birch_GameObject;
 
+	GameObject Enemy_Seeker_GameObject;
 	GameObject Enemy_Warrior_GameObject;
 	GameObject HellCat_GameObject;
 	GameObject Trap_GameObject;
@@ -50,6 +51,7 @@ public class Object_Tree : MonoBehaviour {
 		Tree_Birch_GameObject = Resources.Load(Tree_Birch_Path_String,typeof(GameObject)) as GameObject;	
 
 		Enemy_Warrior_GameObject = Resources.Load(Enemy_Warrior_Path_String,typeof(GameObject)) as GameObject;	
+		Enemy_Seeker_GameObject = Resources.Load(Enemy_Seeker_Path_String,typeof(GameObject)) as GameObject;	
 		HellCat_GameObject = Resources.Load(HellCat_Path_String,typeof(GameObject)) as GameObject;	
 		Trap_GameObject = Resources.Load(Trap_Path_String,typeof(GameObject)) as GameObject;	
 		Treasure_GameObject = Resources.Load(Treasure_Warrior_Path_String,typeof(GameObject)) as GameObject;	
@@ -176,7 +178,15 @@ public class Object_Tree : MonoBehaviour {
 			
 		}
 	
-
+		
+		Search = GameObject.FindGameObjectsWithTag ("Enemy_Seeker");
+		foreach (GameObject TreeX in Search) {
+			CurrentTree = Instantiate (Enemy_Seeker_GameObject, new Vector3 (TreeX.transform.position.x, TreeX.transform.position.y, TreeX.transform.position.z), Quaternion.AngleAxis (0, Vector3.left))as GameObject;
+			//var Tree_BoxCollider = CurrentTree.AddComponent<BoxCollider> ();
+			//Tree_BoxCollider.size = new Vector3 (0.25f, 0.25f, 1.5f);	
+			DestroyObject (TreeX);
+			
+		}
 
 		Search = GameObject.FindGameObjectsWithTag ("Player");
 		foreach (GameObject TreeX in Search) {

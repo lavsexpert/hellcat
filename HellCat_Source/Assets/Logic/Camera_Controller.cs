@@ -12,7 +12,7 @@ public class Camera_Controller : MonoBehaviour
 	private bool FollowPlayer = true;
 
 
-	private bool Game_Mode =false;
+	//private bool Game_Mode =false;
 
 	// При запуске
 	void Start() 
@@ -46,14 +46,14 @@ public class Camera_Controller : MonoBehaviour
 		}
 
 
-		if ( Game_Mode == false)
+		if ( Game_Control.Game_Mode  == false)
 		{
 			SetCamera2D ();
 			
 		}
 
 			
-		if ( Game_Mode == true)
+		if (  Game_Control.Game_Mode  == true)
 		{
 			SetCamera3D ();
 			
