@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿
+using UnityEngine;
 using System.Collections;
 
 public class Object_Tree : MonoBehaviour {
@@ -16,14 +17,26 @@ public class Object_Tree : MonoBehaviour {
 	static  string Tree_Dry_Path_String = "Graphics/Objects/Trees/Tree_Dry";
 	static  string Tree_Birch_Path_String = "Graphics/Objects/Trees/Tree_Birch";
 
+	static  string Enemy_Warrior_Path_String = "Warrior";
+	static  string HellCat_Path_String = "HellCat";
+	static  string Trap_Path_String = "Trap";
+	static  string Treasure_Warrior_Path_String = "Treasure";
+
+
 
 	GameObject Tree_Fir_1_GameObject;
 	GameObject Tree_Fir_2_GameObject;
 	GameObject Tree_Dry_GameObject;
 	GameObject Tree_Birch_GameObject;
 
+	GameObject Enemy_Warrior_GameObject;
+	GameObject HellCat_GameObject;
+	GameObject Trap_GameObject;
+	GameObject Treasure_GameObject;
 
-	 
+
+	//static public Transform Trap_Coord_Transform = new Vector3 (0.0f,0.0f, 0.0f );
+	//static public Transform Treasure_Coord_Transform = new Vector3 (0.0f,0.0f, 0.0f );
 
 	void Initialize_Tree_Models ()
 	{
@@ -31,6 +44,12 @@ public class Object_Tree : MonoBehaviour {
 		Tree_Fir_2_GameObject = Resources.Load(Tree_Fir_2_Path_String,typeof(GameObject)) as GameObject;	
 		Tree_Dry_GameObject = Resources.Load(Tree_Dry_Path_String,typeof(GameObject)) as GameObject;	
 		Tree_Birch_GameObject = Resources.Load(Tree_Birch_Path_String,typeof(GameObject)) as GameObject;	
+
+		Enemy_Warrior_GameObject = Resources.Load(Enemy_Warrior_Path_String,typeof(GameObject)) as GameObject;	
+		HellCat_GameObject = Resources.Load(HellCat_Path_String,typeof(GameObject)) as GameObject;	
+		Trap_GameObject = Resources.Load(Trap_Path_String,typeof(GameObject)) as GameObject;	
+		Treasure_GameObject = Resources.Load(Treasure_Warrior_Path_String,typeof(GameObject)) as GameObject;	
+
 	}
 
 
@@ -115,12 +134,57 @@ public class Object_Tree : MonoBehaviour {
 					var	Search = GameObject.FindGameObjectsWithTag ("Tree");
 						foreach (GameObject TreeX in Search) {
 						Set_A_Tree_Function (TreeX.transform.position.x, TreeX.transform.position.y, TreeX.transform.position.z);
-						DestroyObject (TreeX);
+			var Tree_BoxCollider = CurrentTree.AddComponent<BoxCollider> ();
+					Tree_BoxCollider.size = new Vector3 (0.25f, 0.25f, 1.5f);	
+			DestroyObject (TreeX);
 		}
-				
+
+					Search = GameObject.FindGameObjectsWithTag ("Trap");
+					foreach (GameObject TreeX in Search) {
+			CurrentTree = Instantiate(Trap_GameObject, new Vector3 ( TreeX.transform.position.x, TreeX.transform.position.y-0.6f, TreeX.transform.position.z),Quaternion.AngleAxis(0,Vector3.left))as GameObject;
+			var Tree_BoxCollider = CurrentTree.AddComponent<BoxCollider> ();
+						Tree_BoxCollider.size = new Vector3 (0.5f, 0.5f, 0.5f);	
+			Tree_BoxCollider.center = new Vector3 (0.0f, 0.2f, 0.0f);	
+
+			DestroyObject (TreeX);
 
 
+
+		}
+
+			Search = GameObject.FindGameObjectsWithTag ("Treasure");
+			foreach (GameObject TreeX in Search) {
+						CurrentTree = Instantiate (Treasure_GameObject, new Vector3 (TreeX.transform.position.x, TreeX.transform.position.y, TreeX.transform.position.z), Quaternion.AngleAxis (0, Vector3.left))as GameObject;
+			var Tree_BoxCollider = CurrentTree.AddComponent<BoxCollider> ();
+				Tree_BoxCollider.size = new Vector3 (0.3f, 0.25f, 0.3f);	
+			Tree_BoxCollider.center = new Vector3 (0.0f, 0.0f, 0.1f);		
+						DestroyObject (TreeX);
+				}
+
+	Search = GameObject.FindGameObjectsWithTag ("Enemy_Warrior");
+		foreach (GameObject TreeX in Search) {
+			CurrentTree = Instantiate (Enemy_Warrior_GameObject, new Vector3 (TreeX.transform.position.x, TreeX.transform.position.y - 0.6f, TreeX.transform.position.z), Quaternion.AngleAxis (0, Vector3.left))as GameObject;
+			//var Tree_BoxCollider = CurrentTree.AddComponent<BoxCollider> ();
+			//Tree_BoxCollider.size = new Vector3 (0.25f, 0.25f, 1.5f);	
+			DestroyObject (TreeX);
+			
+		}
 	
+
+
+		Search = GameObject.FindGameObjectsWithTag ("Player");
+		foreach (GameObject TreeX in Search) {
+
+			CurrentTree = Instantiate (HellCat_GameObject, new Vector3 (TreeX.transform.position.x, TreeX.transform.position.y , TreeX.transform.position.z), Quaternion.AngleAxis (0, Vector3.left))as GameObject;
 	
-	}
+			//	var Tree_BoxCollider = CurrentTree.AddComponent<BoxCollider> ();
+		//	Tree_BoxCollider.size = new Vector3 (0.25f, 0.25f, 1.5f);	
+			DestroyObject (TreeX);
+			
+		}
+
+
+
+
+}
 }

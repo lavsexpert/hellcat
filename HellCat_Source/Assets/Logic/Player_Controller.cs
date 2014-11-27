@@ -8,11 +8,16 @@ public class Player_Controller : MonoBehaviour
 	public Mesh HellCat_Mesh_Mode_Two;      //Модель кошки - Модель кошки под землей
  
 	public float Speed;              		// Скорость игрока
-	private float MoveVertical;				// Перемещение по вертикали
-	private float MoveHorizontal;			// Перемещение по горизонтали
 
+	public GameObject HellCat_Object;		// Кошка
+	//private GameObject HellCat_Object;		// Кошка
 	//режим кошки, false = кошка видна целиком true = кошка ушла под землю
 	public static bool Hellcat_Mode = false;
+
+
+	private float MoveVertical;				// Перемещение по вертикали
+	private float MoveHorizontal;			// Перемещение по горизонтали
+//	public Rigidbody rigitbody;
 
 	//Карта и её координаты
 	private GameObject Land;
@@ -30,6 +35,9 @@ public class Player_Controller : MonoBehaviour
 		RightX = Land.renderer.bounds.max.x;
 		UpperZ = Land.renderer.bounds.min.z;
 		LowerZ = Land.renderer.bounds.max.z;
+
+	
+
 	}
 
 	// Перед обновлением сцены	
@@ -40,8 +48,11 @@ public class Player_Controller : MonoBehaviour
 		MoveVertical = Input.GetAxis("Vertical");
 		
 		//формируем вектор перемещения и отрабатываем пермещение
-		Vector3 Move = new Vector3(MoveHorizontal, 0.0f, MoveVertical);
-		Go(Move);
+		if ((MoveHorizontal != 0.0f) || (MoveVertical != 0.0f))
+		{
+			Vector3 Move = new Vector3(MoveHorizontal, 0.0f, MoveVertical);
+			Go(Move);
+		}
 		
 		//клавишей ПРОБЕЛ меняем режим кошки
 		if (Input.GetKeyDown (KeyCode.Space)) 
@@ -80,14 +91,14 @@ public class Player_Controller : MonoBehaviour
 		if (Hellcat_Mode == false) 
 		{
 			Hellcat_Mode = true;
-			rigidbody.isKinematic = true;
+			HellCat_Object.rigidbody.isKinematic = true;
 			HellCat_Mesh_Filter.mesh = HellCat_Mesh_Mode_Two;
 		} 
 		else 
 		{
 			//Кошка над землей
 			Hellcat_Mode = false;
-			rigidbody.isKinematic = false;
+			HellCat_Object.rigidbody.isKinematic = false;
 			HellCat_Mesh_Filter.mesh = HellCat_Mesh_Mode_One;
 		}
 	}
@@ -95,7 +106,7 @@ public class Player_Controller : MonoBehaviour
 	// Перемещение кошки
 	public void Go(Vector3 Move)
 	{
-		float current_angle = rigidbody.rotation.eulerAngles.y;
+		float current_angle = HellCat_Object.rigidbody.rotation.eulerAngles.y;
 		float Angle_Rotation_Speed = 5.0f;
 		float Rotation_Variable;
 
@@ -117,7 +128,7 @@ public class Player_Controller : MonoBehaviour
 		float [] Angle_Steps_Difference_with_Angle_Left_Side = new float[361];
 		float [] Angle_Steps_Difference_with_Angle_Right_Side = new float[361];
 		float  Angle_Steps_Difference_with_Angle_Left_Side_MIN = 0;
-		float  Angle_Steps_Difference_with_Angle_Right_Side_MIN =0;
+		float  Angle_Steps_Difference_with_Angle_Right_Side_MIN = 0;
 
 		for( int Counter = 0; Counter < 361 ; Counter++ )
 		{
@@ -148,7 +159,7 @@ public class Player_Controller : MonoBehaviour
 		//------------------------------------------------------------------
 
 
-		Rotation_Variable = rigidbody.rotation.eulerAngles.y;
+		Rotation_Variable = HellCat_Object.rigidbody.rotation.eulerAngles.y;
 
 
 
@@ -157,15 +168,15 @@ public class Player_Controller : MonoBehaviour
 		//-----------------------------------------------------------------
 		if ((MoveVertical < 0) && (MoveHorizontal == 0)  )
 		{
-			//rigidbody.rotation = Quaternion.Euler (0.0f, 90.0f, 0.0f);
+			//HellCat_Object.rigidbody.rotation = Quaternion.Euler (0.0f, 90.0f, 0.0f);
 
 
 
 		
 			if ((current_angle < 270.0f) && (current_angle > 90.0f))
 			{
-				Rotation_Variable = rigidbody.rotation.eulerAngles.y - Angle_Rotation_Speed;
-				//rigidbody.rotation = Quaternion.Euler (0.0f, Rotation_Variable, 0.0f);
+				Rotation_Variable = HellCat_Object.rigidbody.rotation.eulerAngles.y - Angle_Rotation_Speed;
+				//HellCat_Object.rigidbody.rotation = Quaternion.Euler (0.0f, Rotation_Variable, 0.0f);
 				
 			}
 			
@@ -175,8 +186,8 @@ public class Player_Controller : MonoBehaviour
 			 
 			if ((current_angle >= 270.0f) && (current_angle < 360.0f))
 			{
-				Rotation_Variable = rigidbody.rotation.eulerAngles.y + Angle_Rotation_Speed;
-				//rigidbody.rotation = Quaternion.Euler (0.0f, Rotation_Variable, 0.0f);
+				Rotation_Variable = HellCat_Object.rigidbody.rotation.eulerAngles.y + Angle_Rotation_Speed;
+				//HellCat_Object.rigidbody.rotation = Quaternion.Euler (0.0f, Rotation_Variable, 0.0f);
 			
 		 
 			}
@@ -186,7 +197,7 @@ public class Player_Controller : MonoBehaviour
 			if (current_angle == 360.0f)
 			{
 				Rotation_Variable = 0.0f;
-				//rigidbody.rotation = Quaternion.Euler (0.0f, Rotation_Variable, 0.0f);
+				//HellCat_Object.rigidbody.rotation = Quaternion.Euler (0.0f, Rotation_Variable, 0.0f);
 			
 				
 			}
@@ -196,8 +207,8 @@ public class Player_Controller : MonoBehaviour
 		
 			if ((current_angle >= 0.0f) && (current_angle < 90.0f))
 			{
-				Rotation_Variable = rigidbody.rotation.eulerAngles.y + Angle_Rotation_Speed;
-				//rigidbody.rotation = Quaternion.Euler (0.0f, Rotation_Variable, 0.0f);
+				Rotation_Variable = HellCat_Object.rigidbody.rotation.eulerAngles.y + Angle_Rotation_Speed;
+				//HellCat_Object.rigidbody.rotation = Quaternion.Euler (0.0f, Rotation_Variable, 0.0f);
 				
 			}
 			
@@ -208,12 +219,12 @@ public class Player_Controller : MonoBehaviour
 			if ((current_angle >= 90.0f -Angle_Rotation_Speed ) && (current_angle <= 90.0f +Angle_Rotation_Speed ))
 			{
 				Rotation_Variable = 90.0f;
-				//rigidbody.rotation = Quaternion.Euler (0.0f, Rotation_Variable, 0.0f);
+				//HellCat_Object.rigidbody.rotation = Quaternion.Euler (0.0f, Rotation_Variable, 0.0f);
 
 			
 			}
 		
-			//rigidbody.rotation = Quaternion.Euler (0.0f, Rotation_Variable, 0.0f);
+			//HellCat_Object.rigidbody.rotation = Quaternion.Euler (0.0f, Rotation_Variable, 0.0f);
 		}
 		//-----------------------------------------------------------------
 		// ------------------------- Go DOWN  -----------------------------
@@ -232,11 +243,11 @@ public class Player_Controller : MonoBehaviour
 		//-----------------------------------------------------------------
 		if ((MoveVertical > 0) && (MoveHorizontal == 0)) 
 		{
-			//	rigidbody.rotation = Quaternion.Euler (0.0f, 270.0f, 0.0f);
+			//	HellCat_Object.rigidbody.rotation = Quaternion.Euler (0.0f, 270.0f, 0.0f);
 			if ((current_angle >= 90.0f) && (current_angle < 270.0f))
 			{
-				Rotation_Variable = rigidbody.rotation.eulerAngles.y + Angle_Rotation_Speed;
-				//rigidbody.rotation = Quaternion.Euler (0.0f, Rotation_Variable, 0.0f);
+				Rotation_Variable = HellCat_Object.rigidbody.rotation.eulerAngles.y + Angle_Rotation_Speed;
+				//HellCat_Object.rigidbody.rotation = Quaternion.Euler (0.0f, Rotation_Variable, 0.0f);
 			}
 			
 			
@@ -245,32 +256,32 @@ public class Player_Controller : MonoBehaviour
 			
 			if ((current_angle < 90.0f) && (current_angle > 0.0f))
 			{
-				Rotation_Variable = rigidbody.rotation.eulerAngles.y - Angle_Rotation_Speed;
-				//rigidbody.rotation = Quaternion.Euler (0.0f, Rotation_Variable, 0.0f);
+				Rotation_Variable = HellCat_Object.rigidbody.rotation.eulerAngles.y - Angle_Rotation_Speed;
+				//HellCat_Object.rigidbody.rotation = Quaternion.Euler (0.0f, Rotation_Variable, 0.0f);
 			}
 			
 			if (current_angle <= 00.0f)
 			{
 				Rotation_Variable = 360;
-				//rigidbody.rotation = Quaternion.Euler (0.0f, Rotation_Variable, 0.0f);
+				//HellCat_Object.rigidbody.rotation = Quaternion.Euler (0.0f, Rotation_Variable, 0.0f);
 				
 			}
 			
 			
 			if ((current_angle <= 360.0f) && (current_angle > 270.0f))
 			{
-				Rotation_Variable = rigidbody.rotation.eulerAngles.y - Angle_Rotation_Speed;
-				//rigidbody.rotation = Quaternion.Euler (0.0f, Rotation_Variable, 0.0f);
+				Rotation_Variable = HellCat_Object.rigidbody.rotation.eulerAngles.y - Angle_Rotation_Speed;
+				//HellCat_Object.rigidbody.rotation = Quaternion.Euler (0.0f, Rotation_Variable, 0.0f);
 			}
 
 
 			if ((current_angle <= 270.0f + Angle_Rotation_Speed ) && (current_angle >= 270.0f - Angle_Rotation_Speed))
 			{
 				Rotation_Variable =  270.0f;
-				//rigidbody.rotation = Quaternion.Euler (0.0f, Rotation_Variable, 0.0f);
+				//HellCat_Object.rigidbody.rotation = Quaternion.Euler (0.0f, Rotation_Variable, 0.0f);
 			}
 
-			//rigidbody.rotation = Quaternion.Euler (0.0f, Rotation_Variable, 0.0f);
+			//HellCat_Object.rigidbody.rotation = Quaternion.Euler (0.0f, Rotation_Variable, 0.0f);
 		}
 		//-----------------------------------------------------------------
 		// ------------------------- Go UP  -----------------------------
@@ -284,29 +295,29 @@ public class Player_Controller : MonoBehaviour
 		//-----------------------------------------------------------------
 		if ((MoveVertical == 0) && (MoveHorizontal < 0)) 
 		{
-			//rigidbody.rotation = Quaternion.Euler (0.0f, 180.0f, 0.0f);
+			//HellCat_Object.rigidbody.rotation = Quaternion.Euler (0.0f, 180.0f, 0.0f);
 			
 			if ((current_angle <= 360.0f) && (current_angle > 180.0f))
 			{
-				Rotation_Variable = rigidbody.rotation.eulerAngles.y - Angle_Rotation_Speed;
-				//rigidbody.rotation = Quaternion.Euler (0.0f, Rotation_Variable, 0.0f);
+				Rotation_Variable = HellCat_Object.rigidbody.rotation.eulerAngles.y - Angle_Rotation_Speed;
+				//HellCat_Object.rigidbody.rotation = Quaternion.Euler (0.0f, Rotation_Variable, 0.0f);
 			}
 
 
 			
 			if ((current_angle >=0.0f) && (current_angle < 180.0f))
 			{
-				Rotation_Variable = rigidbody.rotation.eulerAngles.y + Angle_Rotation_Speed;
-				//rigidbody.rotation = Quaternion.Euler (0.0f, Rotation_Variable, 0.0f);
+				Rotation_Variable = HellCat_Object.rigidbody.rotation.eulerAngles.y + Angle_Rotation_Speed;
+				//HellCat_Object.rigidbody.rotation = Quaternion.Euler (0.0f, Rotation_Variable, 0.0f);
 			}
 
 			
 			if ((current_angle >=180.0f - Angle_Rotation_Speed) && (current_angle <= 180.0f + Angle_Rotation_Speed))
 			{
 				Rotation_Variable = 180.0f;
-				//rigidbody.rotation = Quaternion.Euler (0.0f, Rotation_Variable, 0.0f);
+				//HellCat_Object.rigidbody.rotation = Quaternion.Euler (0.0f, Rotation_Variable, 0.0f);
 			}
-			//rigidbody.rotation = Quaternion.Euler (0.0f, Rotation_Variable, 0.0f);
+			//HellCat_Object.rigidbody.rotation = Quaternion.Euler (0.0f, Rotation_Variable, 0.0f);
 			
 			
 		}
@@ -325,33 +336,33 @@ public class Player_Controller : MonoBehaviour
 		//-----------------------------------------------------------------
 		if ((MoveVertical == 0) && (MoveHorizontal > 0)) 
 		{
-			//rigidbody.rotation = Quaternion.Euler (0.0f, 360.0f, 0.0f);
+			//HellCat_Object.rigidbody.rotation = Quaternion.Euler (0.0f, 360.0f, 0.0f);
 			if ((current_angle >= 180.0f) && (current_angle < 360.0f))
 			{
-				Rotation_Variable = rigidbody.rotation.eulerAngles.y + Angle_Rotation_Speed;
-				//rigidbody.rotation = Quaternion.Euler (0.0f, Rotation_Variable, 0.0f);
+				Rotation_Variable = HellCat_Object.rigidbody.rotation.eulerAngles.y + Angle_Rotation_Speed;
+				//HellCat_Object.rigidbody.rotation = Quaternion.Euler (0.0f, Rotation_Variable, 0.0f);
 			}
 			
 			
 			if ((current_angle < 180.0f) && (current_angle > 0.0f))
 			{
-				Rotation_Variable = rigidbody.rotation.eulerAngles.y - Angle_Rotation_Speed;
-				//rigidbody.rotation = Quaternion.Euler (0.0f, Rotation_Variable, 0.0f);
+				Rotation_Variable = HellCat_Object.rigidbody.rotation.eulerAngles.y - Angle_Rotation_Speed;
+				//HellCat_Object.rigidbody.rotation = Quaternion.Euler (0.0f, Rotation_Variable, 0.0f);
 			}
 
 			if ((current_angle >= 360.0f - Angle_Rotation_Speed) && (current_angle <= 360.0f + Angle_Rotation_Speed))
 			{
 				Rotation_Variable = 0.0f;
-				//rigidbody.rotation = Quaternion.Euler (0.0f, Rotation_Variable, 0.0f);
+				//HellCat_Object.rigidbody.rotation = Quaternion.Euler (0.0f, Rotation_Variable, 0.0f);
 			}
 	
 			if ((current_angle >= 0.0f - Angle_Rotation_Speed) && (current_angle <= 0.0f + Angle_Rotation_Speed))
 			{
 				Rotation_Variable = 0.0f;
-				//rigidbody.rotation = Quaternion.Euler (0.0f, Rotation_Variable, 0.0f);
+				//HellCat_Object.rigidbody.rotation = Quaternion.Euler (0.0f, Rotation_Variable, 0.0f);
 			}
 
-			//rigidbody.rotation = Quaternion.Euler (0.0f, Rotation_Variable, 0.0f);
+			//HellCat_Object.rigidbody.rotation = Quaternion.Euler (0.0f, Rotation_Variable, 0.0f);
 		}
 		//-----------------------------------------------------------------
 		// ------------------------- Go RIGHT  -----------------------------
@@ -368,18 +379,18 @@ public class Player_Controller : MonoBehaviour
 		//-----------------------------------------------------------------
 		if ((MoveVertical < 0) && (MoveHorizontal < 0)) 
 		{
-			//rigidbody.rotation = Quaternion.Euler (0.0f, 135.0f, 0.0f);
+			//HellCat_Object.rigidbody.rotation = Quaternion.Euler (0.0f, 135.0f, 0.0f);
 			
 			if ((current_angle <= 315.0f) && (current_angle > 135.0f))
 			{
-				Rotation_Variable = rigidbody.rotation.eulerAngles.y - Angle_Rotation_Speed;
-				//rigidbody.rotation = Quaternion.Euler (0.0f, Rotation_Variable, 0.0f);
+				Rotation_Variable = HellCat_Object.rigidbody.rotation.eulerAngles.y - Angle_Rotation_Speed;
+				//HellCat_Object.rigidbody.rotation = Quaternion.Euler (0.0f, Rotation_Variable, 0.0f);
 			}
 			
 			if ((current_angle > 315.0f) && (current_angle <= 360.0f))
 			{
-				Rotation_Variable = rigidbody.rotation.eulerAngles.y + Angle_Rotation_Speed;
-				//rigidbody.rotation = Quaternion.Euler (0.0f, Rotation_Variable, 0.0f);
+				Rotation_Variable = HellCat_Object.rigidbody.rotation.eulerAngles.y + Angle_Rotation_Speed;
+				//HellCat_Object.rigidbody.rotation = Quaternion.Euler (0.0f, Rotation_Variable, 0.0f);
 			}
 			
 			if (current_angle >= 360.0f)
@@ -390,8 +401,8 @@ public class Player_Controller : MonoBehaviour
 			
 			if ((current_angle >= 0.0f) && (current_angle < 135.0f))
 			{
-				Rotation_Variable = rigidbody.rotation.eulerAngles.y + Angle_Rotation_Speed;
-			//	rigidbody.rotation = Quaternion.Euler (0.0f, Rotation_Variable, 0.0f);
+				Rotation_Variable = HellCat_Object.rigidbody.rotation.eulerAngles.y + Angle_Rotation_Speed;
+				//	HellCat_Object.rigidbody.rotation = Quaternion.Euler (0.0f, Rotation_Variable, 0.0f);
 			}
 
 
@@ -399,10 +410,10 @@ public class Player_Controller : MonoBehaviour
 			if ((current_angle >= 135.0f - Angle_Rotation_Speed) && (current_angle <= 135.0f + Angle_Rotation_Speed ))
 			{
 				Rotation_Variable = 135.0f;
-				//	rigidbody.rotation = Quaternion.Euler (0.0f, Rotation_Variable, 0.0f);
+				//	HellCat_Object.rigidbody.rotation = Quaternion.Euler (0.0f, Rotation_Variable, 0.0f);
 			}
 
-		//	rigidbody.rotation = Quaternion.Euler (0.0f, Rotation_Variable, 0.0f)
+			//	HellCat_Object.rigidbody.rotation = Quaternion.Euler (0.0f, Rotation_Variable, 0.0f)
 		}
 		//-----------------------------------------------------------------
 		// ------------------------- Go LEFT-DOWM  -----------------------------
@@ -414,18 +425,18 @@ public class Player_Controller : MonoBehaviour
 		//-----------------------------------------------------------------
 		if ((MoveVertical > 0) && (MoveHorizontal > 0)) 
 		{
-			//rigidbody.rotation = Quaternion.Euler (0.0f, 315.0f, 0.0f);
+			//HellCat_Object.rigidbody.rotation = Quaternion.Euler (0.0f, 315.0f, 0.0f);
 			if ((current_angle >= 135.0f) && (current_angle < 315.0f))
 			{
-				Rotation_Variable = rigidbody.rotation.eulerAngles.y + Angle_Rotation_Speed;
-				//rigidbody.rotation = Quaternion.Euler (0.0f, Rotation_Variable, 0.0f);
+				Rotation_Variable = HellCat_Object.rigidbody.rotation.eulerAngles.y + Angle_Rotation_Speed;
+				//HellCat_Object.rigidbody.rotation = Quaternion.Euler (0.0f, Rotation_Variable, 0.0f);
 			}
 			
 			
 			if ((current_angle < 135.0f) && (current_angle > 0.0f))
 			{
-				Rotation_Variable = rigidbody.rotation.eulerAngles.y - Angle_Rotation_Speed;
-				//rigidbody.rotation = Quaternion.Euler (0.0f, Rotation_Variable, 0.0f);
+				Rotation_Variable = HellCat_Object.rigidbody.rotation.eulerAngles.y - Angle_Rotation_Speed;
+				//HellCat_Object.rigidbody.rotation = Quaternion.Euler (0.0f, Rotation_Variable, 0.0f);
 			}
 			
 			
@@ -437,16 +448,16 @@ public class Player_Controller : MonoBehaviour
 			
 			if ((current_angle <= 360.0f) && (current_angle > 315.0f))
 			{
-				Rotation_Variable = rigidbody.rotation.eulerAngles.y - Angle_Rotation_Speed;
-				//rigidbody.rotation = Quaternion.Euler (0.0f, Rotation_Variable, 0.0f);
+				Rotation_Variable = HellCat_Object.rigidbody.rotation.eulerAngles.y - Angle_Rotation_Speed;
+				//HellCat_Object.rigidbody.rotation = Quaternion.Euler (0.0f, Rotation_Variable, 0.0f);
 			}
 
 			if ((current_angle >= 315.0f - Angle_Rotation_Speed ) && (current_angle <= 315.0f + Angle_Rotation_Speed ))
 			{
 				Rotation_Variable = 315.0f;
-				//rigidbody.rotation = Quaternion.Euler (0.0f, Rotation_Variable, 0.0f);
+				//HellCat_Object.rigidbody.rotation = Quaternion.Euler (0.0f, Rotation_Variable, 0.0f);
 			}
-			//rigidbody.rotation = Quaternion.Euler (0.0f, Rotation_Variable, 0.0f);
+			//HellCat_Object.rigidbody.rotation = Quaternion.Euler (0.0f, Rotation_Variable, 0.0f);
 			
 		}
 		//-----------------------------------------------------------------
@@ -463,17 +474,17 @@ public class Player_Controller : MonoBehaviour
 
 		if ((MoveVertical > 0) && (MoveHorizontal < 0)) 
 		{
-			//rigidbody.rotation = Quaternion.Euler (0.0f, 225.0f, 0.0f);
+			//HellCat_Object.rigidbody.rotation = Quaternion.Euler (0.0f, 225.0f, 0.0f);
 			if ((current_angle <= 360.0f) && (current_angle > 225.0f))
 			{
-				Rotation_Variable = rigidbody.rotation.eulerAngles.y - Angle_Rotation_Speed;
-				//rigidbody.rotation = Quaternion.Euler (0.0f, Rotation_Variable, 0.0f);
+				Rotation_Variable = HellCat_Object.rigidbody.rotation.eulerAngles.y - Angle_Rotation_Speed;
+				//HellCat_Object.rigidbody.rotation = Quaternion.Euler (0.0f, Rotation_Variable, 0.0f);
 			}
 			
 			if ((current_angle <= 45.0f) && (current_angle > 0.0f))
 			{
-				Rotation_Variable = rigidbody.rotation.eulerAngles.y - Angle_Rotation_Speed;
-				//rigidbody.rotation = Quaternion.Euler (0.0f, Rotation_Variable, 0.0f);
+				Rotation_Variable = HellCat_Object.rigidbody.rotation.eulerAngles.y - Angle_Rotation_Speed;
+				//HellCat_Object.rigidbody.rotation = Quaternion.Euler (0.0f, Rotation_Variable, 0.0f);
 			}
 			
 			if (current_angle == 0.0f)
@@ -485,17 +496,17 @@ public class Player_Controller : MonoBehaviour
 			
 			if ((current_angle <  225.0f) && (current_angle > 45.0f))
 			{
-				Rotation_Variable = rigidbody.rotation.eulerAngles.y + Angle_Rotation_Speed;
-				//rigidbody.rotation = Quaternion.Euler (0.0f, Rotation_Variable, 0.0f);
+				Rotation_Variable = HellCat_Object.rigidbody.rotation.eulerAngles.y + Angle_Rotation_Speed;
+				//HellCat_Object.rigidbody.rotation = Quaternion.Euler (0.0f, Rotation_Variable, 0.0f);
 			}
 
 			if ((current_angle >=  225.0f - Angle_Rotation_Speed) && (current_angle <= 225.0f + Angle_Rotation_Speed ))
 			{
 				Rotation_Variable = 225.0f;
-				//rigidbody.rotation = Quaternion.Euler (0.0f, Rotation_Variable, 0.0f);
+				//HellCat_Object.rigidbody.rotation = Quaternion.Euler (0.0f, Rotation_Variable, 0.0f);
 			}
 
-		//	rigidbody.rotation = Quaternion.Euler (0.0f, Rotation_Variable, 0.0f);
+			//	HellCat_Object.rigidbody.rotation = Quaternion.Euler (0.0f, Rotation_Variable, 0.0f);
 		}
 		//-----------------------------------------------------------------
 		// ------------------------- Go LEFT-UP  -----------------------------
@@ -512,11 +523,11 @@ public class Player_Controller : MonoBehaviour
 		//-----------------------------------------------------------------
 		if ((MoveVertical < 0) && (MoveHorizontal > 0)) 
 		{
-			//rigidbody.rotation = Quaternion.Euler (0.0f, 45.0f, 0.0f);
+			//HellCat_Object.rigidbody.rotation = Quaternion.Euler (0.0f, 45.0f, 0.0f);
 			if ((current_angle >=  225.0f) && (current_angle < 360.0f))
 			{
-				Rotation_Variable = rigidbody.rotation.eulerAngles.y + Angle_Rotation_Speed;
-				//rigidbody.rotation = Quaternion.Euler (0.0f, Rotation_Variable, 0.0f);
+				Rotation_Variable = HellCat_Object.rigidbody.rotation.eulerAngles.y + Angle_Rotation_Speed;
+				//HellCat_Object.rigidbody.rotation = Quaternion.Euler (0.0f, Rotation_Variable, 0.0f);
 			}
 			
 			
@@ -528,43 +539,43 @@ public class Player_Controller : MonoBehaviour
 			
 			if ((current_angle >=  0.0f) && (current_angle < 45.0f))
 			{
-				Rotation_Variable = rigidbody.rotation.eulerAngles.y + Angle_Rotation_Speed;
-				//rigidbody.rotation = Quaternion.Euler (0.0f, Rotation_Variable, 0.0f);
+				Rotation_Variable = HellCat_Object.rigidbody.rotation.eulerAngles.y + Angle_Rotation_Speed;
+				//HellCat_Object.rigidbody.rotation = Quaternion.Euler (0.0f, Rotation_Variable, 0.0f);
 			}
 			
 			if ((current_angle <  225.0f) && (current_angle > 45.0f))
 			{
-				Rotation_Variable = rigidbody.rotation.eulerAngles.y - Angle_Rotation_Speed;
-				//rigidbody.rotation = Quaternion.Euler (0.0f, Rotation_Variable, 0.0f);
+				Rotation_Variable = HellCat_Object.rigidbody.rotation.eulerAngles.y - Angle_Rotation_Speed;
+				//HellCat_Object.rigidbody.rotation = Quaternion.Euler (0.0f, Rotation_Variable, 0.0f);
 			}
 
 			if ((current_angle >= 45.0f - Angle_Rotation_Speed) && (current_angle <= 45.0f + Angle_Rotation_Speed))
 			{
 				Rotation_Variable = 45.0f;
-				//rigidbody.rotation = Quaternion.Euler (0.0f, Rotation_Variable, 0.0f);
+				//HellCat_Object.rigidbody.rotation = Quaternion.Euler (0.0f, Rotation_Variable, 0.0f);
 			}
 
-		//	rigidbody.rotation = Quaternion.Euler (0.0f, Rotation_Variable, 0.0f);
+			//	HellCat_Object.rigidbody.rotation = Quaternion.Euler (0.0f, Rotation_Variable, 0.0f);
 		}	
 		//-----------------------------------------------------------------
 		// ------------------------- Go RIGHT-DOWN  -----------------------------
 		//-----------------------------------------------------------------
 
 
-		rigidbody.rotation = Quaternion.Euler (0.0f, Rotation_Variable , 0.0f);
+		HellCat_Object.rigidbody.rotation = Quaternion.Euler (0.0f, Rotation_Variable , 0.0f);
 
 		// Формирование движения кошки
-		if (Level_Borders_Check(rigidbody.position + Move / Speed) == true) 
+		if (Level_Borders_Check(HellCat_Object.rigidbody.position + Move / Speed) == true) 
 			{
 			if (Hellcat_Mode == false) 
 				{			
 					//кошка над землей
-					rigidbody.position = rigidbody.position + Move / Speed;			
+					HellCat_Object.rigidbody.position = HellCat_Object.rigidbody.position + Move / Speed;			
 				} 
 				else 
 				{		
 					//кошка под землей (быстрее двигается чем над землей)
-					rigidbody.position = rigidbody.position + Move / (Speed / 2);
+					HellCat_Object.rigidbody.position = HellCat_Object.rigidbody.position + Move / (Speed / 2);
 				}
 			}
 		}

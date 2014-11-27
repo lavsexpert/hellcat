@@ -2,7 +2,8 @@ fileFormatVersion: 2
 guid: b78baa78f5dadae4c85751a9f14f69a5
 MonoImporter:
   serializedVersion: 2
-  defaultReferences: []
+  defaultReferences:
+  - HellCat: {fileID: 100020, guid: 6370a6819181a10469ab39faf664f993, type: 2}
   executionOrder: 0
   icon: {instanceID: 0}
   userData: 

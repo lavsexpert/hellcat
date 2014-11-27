@@ -10,15 +10,6 @@ public class Player_LifeBar : MonoBehaviour {
 	private float WaitTimeStarted = 0;
 	public int WaitTimeKilled = 1;
 
-	void Start ()
-	{
-
-		Lifes = 3;
-		}
-
-
-
-
 	// При обновлении сцены
 	void Update () 
 	{  

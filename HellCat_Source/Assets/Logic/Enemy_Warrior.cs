@@ -6,13 +6,13 @@ public class Enemy_Warrior : MonoBehaviour
 	public GameObject Warrior_Game_Object;		// Объект воина
 	public Transform Trap; 						// Ловушка
 	public Transform Swamp;						// Болото
-	public Transform Treasure;					// Сундук	
-	public Transform Hellcat;					// Игровой персонаж (кошка)
+	private Transform Treasure;					// Сундук	
+	private Transform Hellcat;					// Игровой персонаж (кошка)
 	public Transform Warrior;					// Неигровой персонаж (воин)
 	public float Warrior_Scope = 3f;			// Область видимости воина
 
 	private NavMeshAgent Agent;					// Агент навигации по сетке
-	public Transform Random_Direction;			// Случайное направление
+	private Transform Random_Direction;			// Случайное направление
 	private bool Random_Point_Generated = false;// Генерация случайных навигационных точек выключена
 	private int Random_Point_Life_Time = 0;		// Время жизни случайных навигационных точек
 	private float Null_Distance = 10f;			// Если объекта нет на карте, то расстояние до него всегда равно этому числу
@@ -26,6 +26,16 @@ public class Enemy_Warrior : MonoBehaviour
 	{
 		// Создание агента навигации по сетке
 		Agent = GetComponent<NavMeshAgent>();
+
+	
+		GameObject Search;
+		Search	= GameObject.FindGameObjectWithTag ("Treasure");
+
+		Treasure.position = new Vector3 (Search.transform.position.x,Search.transform.position.y , Search.transform.position.z );
+		Trap.position = new Vector3 (0.0f , 0.0f, 0.0f);
+
+		Search = GameObject.FindGameObjectWithTag ("Random_Direction");
+		Random_Direction.position = new Vector3 (Search.transform.position.x,Search.transform.position.y , Search.transform.position.z );
 	}
 
 	// При обновлении сцены
@@ -70,7 +80,8 @@ public class Enemy_Warrior : MonoBehaviour
 					dz = Warrior_Scope * dz / d;
 					
 					// Установка случайного вектора от воина к сгенерированным случайным координатам
-					Random_Direction.position = new Vector3 (Warrior.position.x + dx, 0, Warrior.position.z + dz);
+					Random_Direction.position = new Vector3 (this.transform.position.x + dx, 0, this.transform.position.z + dz);
+					//Random_Direction.position = new Vector3 (Warrior.position.x + dx, 0, Warrior.position.z + dz);
 					Random_Point_Generated = true;
 					Random_Point_Life_Time = 30;
 				}
