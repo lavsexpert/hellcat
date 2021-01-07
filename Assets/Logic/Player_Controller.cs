@@ -17,6 +17,17 @@ public class Player_Controller : MonoBehaviour
 
 	private float MoveVertical;				// Перемещение по вертикали
 	private float MoveHorizontal;			// Перемещение по горизонтали
+	public struct MoveStruct
+	{
+		public Vector3 Move;
+		public float Angle;
+
+		public MoveStruct(Vector3 p1, float p2)
+		{
+			Move = p1;
+			Angle = p2;
+		}
+	}
 //	public Rigidbody rigitbody;
 
 	//Карта и её координаты
@@ -53,8 +64,10 @@ public class Player_Controller : MonoBehaviour
 		//формируем вектор перемещения и отрабатываем пермещение
 		if ((MoveHorizontal != 0.0f) || (MoveVertical != 0.0f))
 		{
-			Vector3 Move = new Vector3(MoveHorizontal, 0.0f, MoveVertical);
-			Go(Move);
+			MoveStruct MoveAngle;
+			MoveAngle.Move = new Vector3(MoveHorizontal, 0.0f, MoveVertical);
+			MoveAngle.Angle = HellCat_Object.rigidbody.rotation.eulerAngles.y;
+			Go(MoveAngle);
 		}
 		
 		//клавишей ПРОБЕЛ меняем режим кошки
@@ -107,9 +120,10 @@ public class Player_Controller : MonoBehaviour
 	}
 	
 	// Перемещение кошки
-	public void Go(Vector3 Move)
+	public void Go(MoveStruct MoveAngle)
 	{
-		float current_angle = HellCat_Object.rigidbody.rotation.eulerAngles.y;
+		Vector3 Move = MoveAngle.Move;
+		float current_angle = MoveAngle.Angle;
 		float Angle_Rotation_Speed = 5.0f;
 		float Rotation_Variable;
 

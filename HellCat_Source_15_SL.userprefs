@@ -1,0 +1,16 @@
+﻿<Properties>
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Logic\Player_Controller.cs">
+    <Files>
+      <File FileName="Assets\Logic\Game_Control.cs" Line="294" Column="41" />
+      <File FileName="Assets\Logic\Player_Controller.cs" Line="1" Column="1" />
+      <File FileName="Assets\Logic\Camera_Controller.cs" Line="1" Column="1" />
+      <File FileName="c:\Users\Dima Rose Monroe\Documents\Hell_Cat_Official_Versions\Last Version\HellCat_Source_15_SL\Assets\Logic\Enemy_Warrior.cs" Line="1" Column="1" />
+      <File FileName="Assets\Logic\Player_LifeBar.cs" Line="1" Column="1" />
+    </Files>
+  </MonoDevelop.Ide.Workbench>
+  <MonoDevelop.Ide.DebuggingService.Breakpoints>
+    <BreakpointStore />
+  </MonoDevelop.Ide.DebuggingService.Breakpoints>
+  <MonoDevelop.Ide.DebuggingService.PinnedWatches />
+</Properties>

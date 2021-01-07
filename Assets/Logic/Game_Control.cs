@@ -4,10 +4,6 @@ using System.Collections;
 
 public class Game_Control : MonoBehaviour 
 {	
-
-
-
-	
 	static  string Menu_Trap_Grib_GUI_Texture_Path_String  = "Graphics/GUI/Trap_Menu/Grib";
 	static  string Menu_Trap_Lovushka_GUI_Texture_Path_String  = "Graphics/GUI/Trap_Menu/lovushka";
 
@@ -30,10 +26,8 @@ public class Game_Control : MonoBehaviour
 	GameObject Trap_GameObject;
 	static  string Trap_Path_String = "Trap";
 
-
 	private string currentLevel;	// Имя текущего уровня
 	private int Start_Number = 0;
-
 
 	// Объекты для управления движением кошкой
 	private Player_Controller HellCat_Controller;
@@ -51,12 +45,23 @@ public class Game_Control : MonoBehaviour
 	private float Y_Move;
 	private Vector3 Мove;
 
+	public struct MoveStruct
+	{
+		public Vector3 Move;
+		public float Angle;
+		
+		public MoveStruct(Vector3 p1, float p2)
+		{
+			Move = p1;
+			Angle = p2;
+		}
+	}
+
 	// Джойстик
 	public Texture GamePad_Texture;
 	private Rect GamePad_Rect;
 	public Texture GamePad_Point_Texture;
 	private Rect GamePad_Point_Rect;
-
 
 	//private bool Game_Mode = false; 
 	static public bool Game_Mode = false;
@@ -66,11 +71,8 @@ public class Game_Control : MonoBehaviour
 		PlayerPrefs.SetString ("Level", "");
 		HellCat_Object = GameObject.Find ("HellCat(Clone)");
 
-	
-
 		Menu_Trap_Grib_GUI_Texture = Resources.Load(Menu_Trap_Grib_GUI_Texture_Path_String, typeof (Texture)) as Texture;
 		Menu_Trap_Lovushka_GUI_Texture = Resources.Load(Menu_Trap_Lovushka_GUI_Texture_Path_String, typeof (Texture)) as Texture;
-
 
 		Trap_GameObject = Resources.Load(Trap_Path_String,typeof(GameObject)) as GameObject;	
 	}
@@ -78,9 +80,6 @@ public class Game_Control : MonoBehaviour
 	// При показе интерфейса
 	void OnGUI() 
 	{		
-	 
-
-
 		X_Cell = Screen.width / 15;
 		Y_Cell = Screen.height / 10;
 
@@ -174,54 +173,42 @@ public class Game_Control : MonoBehaviour
 		// В окне любого уровня:
 		else
 		{
-
-		if (Game_Mode == false)
+			if (Game_Mode == false)
 			{
+				Menu_Trap_Grib_Button_Status = GUI.Button (new Rect (1*X_Cell,1*Y_Cell,2*X_Cell,2*Y_Cell),"");
+				GUI.Box( new Rect (1*X_Cell,1*Y_Cell,2*X_Cell,2*Y_Cell),Menu_Trap_Grib_GUI_Texture );
 
-			Menu_Trap_Grib_Button_Status = GUI.Button (new Rect (1*X_Cell,1*Y_Cell,2*X_Cell,2*Y_Cell),"");
-			GUI.Box( new Rect (1*X_Cell,1*Y_Cell,2*X_Cell,2*Y_Cell),Menu_Trap_Grib_GUI_Texture );
-
-			if ( true == Menu_Trap_Grib_Button_Status)
-			{
-
-
-				if ( Menu_Trap_Grib_Counter > 0 )
+				if ( true == Menu_Trap_Grib_Button_Status)
 				{
-					Menu_Trap_Grib_Function_Flag = true;
+					if ( Menu_Trap_Grib_Counter > 0 )
+					{
+						Menu_Trap_Grib_Function_Flag = true;
+					}
+					else
+					{
+						Menu_Trap_Grib_Function_Flag = false;
+					}
 				}
-				else
+				
+				Menu_Trap_Lovushka_Button_Status = GUI.Button (new Rect (3*X_Cell,1*Y_Cell,2*X_Cell,2*Y_Cell),"");
+				GUI.Box( new Rect (3*X_Cell,1*Y_Cell,2*X_Cell,2*Y_Cell),Menu_Trap_Lovushka_GUI_Texture );
+				if ( true == Menu_Trap_Lovushka_Button_Status)
 				{
-					Menu_Trap_Grib_Function_Flag = false;
+					if ( Menu_Trap_Lovushka_Counter > 0 )
+					{
+						Menu_Trap_Lovushka_Function_Flag = true;
+					}
+					else
+					{
+						Menu_Trap_Lovushka_Function_Flag = false;
+					}
 				}
 
-			}
-
-			
-			Menu_Trap_Lovushka_Button_Status = GUI.Button (new Rect (3*X_Cell,1*Y_Cell,2*X_Cell,2*Y_Cell),"");
-			GUI.Box( new Rect (3*X_Cell,1*Y_Cell,2*X_Cell,2*Y_Cell),Menu_Trap_Lovushka_GUI_Texture );
-			if ( true == Menu_Trap_Lovushka_Button_Status)
-			{
-				if ( Menu_Trap_Lovushka_Counter > 0 )
+				if ((Menu_Trap_Lovushka_Counter <=0 ) && (Menu_Trap_Grib_Counter <=0))
 				{
-					Menu_Trap_Lovushka_Function_Flag = true;
+					Game_Mode = true;
 				}
-				else
-				{
-					Menu_Trap_Lovushka_Function_Flag = false;
-				}
-				 
 			}
-
-
-			if ((Menu_Trap_Lovushka_Counter <=0 ) && (Menu_Trap_Grib_Counter <=0))
-			{
-				Game_Mode = true;
-			}
-			}
-
-
-
-
 
 			// Рисуется кнопка: "Пауза"(открывает меню)
 			if (GUI.Button (new Rect (5 * X_Cell, 0 * Y_Cell, 3 * X_Cell, 1 * Y_Cell), "Пауза"))
@@ -235,13 +222,13 @@ public class Game_Control : MonoBehaviour
 
 			if ((Application.loadedLevelName != "Game_Over") 
 			 && (Application.loadedLevelName != "Game_Over_Killed") 
-			 && (Application.loadedLevelName != "Game_Winner"))
+			 && (Application.loadedLevelName != "Game_Winner")
+			 && Game_Mode)
 			{
 				// Рисование джойстика с наложением на него текстуры
 				GamePad_Rect = new Rect (1 * Y_Cell, 6 * Y_Cell, 3 * Y_Cell, 3 * Y_Cell);
-				// GamePad_Style.border.Remove(GamePad_Rect);
 				GUI.backgroundColor = new Color();
-				GUI.Box(GamePad_Rect, GamePad_Texture); //, GamePad_Style);
+				GUI.Box(GamePad_Rect, GamePad_Texture);
 
 				 //Кнопка "Режим"
 
@@ -257,7 +244,7 @@ public class Game_Control : MonoBehaviour
 					float x = Input.mousePosition.x;
 					float y = Input.mousePosition.y;
 
-
+					// Если курсор перемещается внутри джойстика
 					if (x >= 1 * Y_Cell && x <= 4 * Y_Cell && y >= 1 * Y_Cell && y <= 4 * Y_Cell)
 					{
 						// Рисование джойстика с наложением на него текстуры
@@ -265,6 +252,8 @@ public class Game_Control : MonoBehaviour
 						GUI.backgroundColor = new Color();
 						GUI.Box(GamePad_Point_Rect, GamePad_Point_Texture); //, GamePad_Style);
 
+						X_Move = 0;
+						Y_Move = 0;
 						X_Direction = x - 2.5f * Y_Cell;
 						Y_Direction = y - 2.5f * Y_Cell;
 						Moving();
@@ -274,7 +263,7 @@ public class Game_Control : MonoBehaviour
 						// Рисование джойстика с наложением на него текстуры
 						GamePad_Point_Rect = new Rect (2 * Y_Cell, 7f * Y_Cell, 1 * Y_Cell, 1 * Y_Cell);
 						GUI.backgroundColor = new Color();
-						GUI.Box(GamePad_Point_Rect, GamePad_Point_Texture); //, GamePad_Style);
+						GUI.Box(GamePad_Point_Rect, GamePad_Point_Texture);
 
 						X_Move = 0;
 						Y_Move = 0;
@@ -287,38 +276,19 @@ public class Game_Control : MonoBehaviour
 					// Рисование джойстика с наложением на него текстуры
 					GamePad_Point_Rect = new Rect (2 * Y_Cell, 7f * Y_Cell, 1 * Y_Cell, 1 * Y_Cell);
 					GUI.backgroundColor = new Color();
-					GUI.Box(GamePad_Point_Rect, GamePad_Point_Texture); //, GamePad_Style);
+					GUI.Box(GamePad_Point_Rect, GamePad_Point_Texture);
 				}
 			}
-		
-
-
-	
-		
 		}
 	}
-
-
-	void Update ()
-	{
-
-
-		
-	}
-	
-	
 
 	// При подготовке к обновлению 
 	void FixedUpdate ()
 	{
-
-		
-		if (Menu_Trap_Grib_Function_Flag == true) {
-
-			//
-			
-			
-			if(Input.GetMouseButtonDown(0)){
+		if (Menu_Trap_Grib_Function_Flag == true) 
+		{
+			if(Input.GetMouseButtonDown(0))
+			{
 				Menu_Trap_Grib_Counter--;
 				//Vector3 mousePos = Camera.main.ScreenToWorldPoint (new Vector3 (Input.mousePosition.x, Input.mousePosition.y, 0.0f));
 				Vector3 mousePos = Camera.main.ScreenToWorldPoint(new Vector3 (Input.mousePosition.x, Input.mousePosition.y, 40.0f));
@@ -327,24 +297,14 @@ public class Game_Control : MonoBehaviour
 				var Tree_BoxCollider = Current_Object.AddComponent<BoxCollider> ();
 				Tree_BoxCollider.size = new Vector3 (0.5f, 0.5f, 0.5f);	
 				Tree_BoxCollider.center = new Vector3 (0.0f, 0.2f, 0.0f);	
-
-
 				Menu_Trap_Grib_Function_Flag = false;
 			}
-
-			
 		}
 
-
-
-
-
-		if (Menu_Trap_Lovushka_Function_Flag == true) {
-
-			//
-			
-			
-			if(Input.GetMouseButtonDown(0)){
+		if (Menu_Trap_Lovushka_Function_Flag == true) 
+		{
+			if(Input.GetMouseButtonDown(0))
+			{
 				Menu_Trap_Lovushka_Counter--;
 				//Vector3 mousePos = Camera.main.ScreenToWorldPoint (new Vector3 (Input.mousePosition.x, Input.mousePosition.y, 0.0f));
 				Vector3 mousePos = Camera.main.ScreenToWorldPoint(new Vector3 (Input.mousePosition.x, Input.mousePosition.y, 40.0f));
@@ -353,15 +313,9 @@ public class Game_Control : MonoBehaviour
 				var Tree_BoxCollider = Current_Object.AddComponent<BoxCollider> ();
 				Tree_BoxCollider.size = new Vector3 (0.5f, 0.5f, 0.5f);	
 				Tree_BoxCollider.center = new Vector3 (0.0f, 0.2f, 0.0f);	
-
-
 				Menu_Trap_Lovushka_Function_Flag = false;
 			}
-			
-			
 		}
-
-
 	}
 
 	// Перемещение кошки
@@ -376,16 +330,20 @@ public class Game_Control : MonoBehaviour
 		Y_Move = Y_Move + Y_Direction * Time.deltaTime;
 		if (Y_Move > 1.0f) Y_Move = 1.0f;
 		if (Y_Move < -1.0f) Y_Move = -1.0f;
-
 		Vector3 Move = new Vector3(X_Move, 0.0f, Y_Move);
-		
+
 		// Передача информации кошке о том, куда она должна двигаться
 		HellCat_Object = GameObject.Find ("HellCat(Clone)");
 	
 		//HellCat_Object = GameObject.FindGameObjectWithTag("Player");
 		HellCat_Controller = HellCat_Object.GetComponent<Player_Controller>();
 		HellCat_Controller.HellCat_Object = HellCat_Object;
-		HellCat_Controller.BroadcastMessage("Go", Move);	
+
+		MoveStruct MoveAngle;
+		MoveAngle.Move = Move;
+		MoveAngle.Angle = HellCat_Object.rigidbody.rotation.eulerAngles.y;
+		
+		HellCat_Controller.BroadcastMessage("Go", MoveAngle);	
 	
 	}	
 }
