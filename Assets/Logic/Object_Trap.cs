@@ -19,7 +19,7 @@ public class Object_Trap : MonoBehaviour
 	void OnTriggerEnter(Collider Trigger)
 	{
 		// Если в ловушку попал воин - загрузить победный экран
-		if (Trigger.collider.tag == "Enemy_Warrior") 
+		if (Trigger.GetComponent<Collider>().tag == "Enemy_Warrior") 
 		{
 			Caught_number++;
 			Caught_In_Trap = true;
@@ -28,7 +28,7 @@ public class Object_Trap : MonoBehaviour
 			//Application.LoadLevel("Game_Winner");
 		}
 
-		if (Trigger.collider.tag == "Enemy_Wolf") 
+		if (Trigger.GetComponent<Collider>().tag == "Enemy_Wolf") 
 		{
 			Caught_number++;
 			Caught_In_Trap = true;

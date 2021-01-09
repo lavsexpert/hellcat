@@ -32,7 +32,7 @@ public class Object_Swamp : MonoBehaviour
 	void OnTriggerEnter (Collider Trigger)		
 	{
 		// Если в ловушку попал воин - загрузить победный экран
-		if (Trigger.collider.tag == "Enemy_Warrior") 
+		if (Trigger.GetComponent<Collider>().tag == "Enemy_Warrior") 
 		{
 			//StartCoroutine (WAINTING2());
 			Caught_In_Trap = true;
@@ -42,7 +42,7 @@ public class Object_Swamp : MonoBehaviour
 	void OnTriggerExit (Collider Trigger)		
 	{
 		// Если в ловушку попал воин - загрузить победный экран
-		if (Trigger.collider.tag == "Enemy_Warrior") 
+		if (Trigger.GetComponent<Collider>().tag == "Enemy_Warrior") 
 		{
 			//StartCoroutine (WAINTING2());
 			Caught_In_Trap = false;

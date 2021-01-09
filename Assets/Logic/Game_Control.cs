@@ -341,7 +341,7 @@ public class Game_Control : MonoBehaviour
 
 		MoveStruct MoveAngle;
 		MoveAngle.Move = Move;
-		MoveAngle.Angle = HellCat_Object.rigidbody.rotation.eulerAngles.y;
+		MoveAngle.Angle = HellCat_Object.GetComponent<Rigidbody>().rotation.eulerAngles.y;
 		
 		HellCat_Controller.BroadcastMessage("Go", MoveAngle);	
 	

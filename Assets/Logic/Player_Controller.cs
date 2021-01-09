@@ -45,10 +45,10 @@ public class Player_Controller : MonoBehaviour
 	{
 		// Сохранение краёв карты в переменные
 		Land = GameObject.Find("Land");
-		LeftX = Land.renderer.bounds.min.x;
-		RightX = Land.renderer.bounds.max.x;
-		UpperZ = Land.renderer.bounds.min.z;
-		LowerZ = Land.renderer.bounds.max.z;
+		LeftX = Land.GetComponent<Renderer>().bounds.min.x;
+		RightX = Land.GetComponent<Renderer>().bounds.max.x;
+		UpperZ = Land.GetComponent<Renderer>().bounds.min.z;
+		LowerZ = Land.GetComponent<Renderer>().bounds.max.z;
 
 
 
@@ -66,7 +66,7 @@ public class Player_Controller : MonoBehaviour
 		{
 			MoveStruct MoveAngle;
 			MoveAngle.Move = new Vector3(MoveHorizontal, 0.0f, MoveVertical);
-			MoveAngle.Angle = HellCat_Object.rigidbody.rotation.eulerAngles.y;
+			MoveAngle.Angle = HellCat_Object.GetComponent<Rigidbody>().rotation.eulerAngles.y;
 			Go(MoveAngle);
 		}
 		
@@ -107,14 +107,14 @@ public class Player_Controller : MonoBehaviour
 		if (Hellcat_Mode == false) 
 		{
 			Hellcat_Mode = true;
-			HellCat_Object.rigidbody.isKinematic = true;
+			HellCat_Object.GetComponent<Rigidbody>().isKinematic = true;
 			HellCat_Mesh_Filter.mesh = HellCat_Mesh_Mode_Two;
 		} 
 		else 
 		{
 			//Кошка над землей
 			Hellcat_Mode = false;
-			HellCat_Object.rigidbody.isKinematic = false;
+			HellCat_Object.GetComponent<Rigidbody>().isKinematic = false;
 			HellCat_Mesh_Filter.mesh = HellCat_Mesh_Mode_One;
 		}
 	}
@@ -176,7 +176,7 @@ public class Player_Controller : MonoBehaviour
 		//------------------------------------------------------------------
 
 
-		Rotation_Variable = HellCat_Object.rigidbody.rotation.eulerAngles.y;
+		Rotation_Variable = HellCat_Object.GetComponent<Rigidbody>().rotation.eulerAngles.y;
 
 
 
@@ -185,15 +185,15 @@ public class Player_Controller : MonoBehaviour
 		//-----------------------------------------------------------------
 		if ((MoveVertical < 0) && (MoveHorizontal == 0)  )
 		{
-			//HellCat_Object.rigidbody.rotation = Quaternion.Euler (0.0f, 90.0f, 0.0f);
+			//HellCat_Object.GetComponent<Rigidbody>().rotation = Quaternion.Euler (0.0f, 90.0f, 0.0f);
 
 
 
 		
 			if ((current_angle < 270.0f) && (current_angle > 90.0f))
 			{
-				Rotation_Variable = HellCat_Object.rigidbody.rotation.eulerAngles.y - Angle_Rotation_Speed;
-				//HellCat_Object.rigidbody.rotation = Quaternion.Euler (0.0f, Rotation_Variable, 0.0f);
+				Rotation_Variable = HellCat_Object.GetComponent<Rigidbody>().rotation.eulerAngles.y - Angle_Rotation_Speed;
+				//HellCat_Object.GetComponent<Rigidbody>().rotation = Quaternion.Euler (0.0f, Rotation_Variable, 0.0f);
 				
 			}
 			
@@ -203,8 +203,8 @@ public class Player_Controller : MonoBehaviour
 			 
 			if ((current_angle >= 270.0f) && (current_angle < 360.0f))
 			{
-				Rotation_Variable = HellCat_Object.rigidbody.rotation.eulerAngles.y + Angle_Rotation_Speed;
-				//HellCat_Object.rigidbody.rotation = Quaternion.Euler (0.0f, Rotation_Variable, 0.0f);
+				Rotation_Variable = HellCat_Object.GetComponent<Rigidbody>().rotation.eulerAngles.y + Angle_Rotation_Speed;
+				//HellCat_Object.GetComponent<Rigidbody>().rotation = Quaternion.Euler (0.0f, Rotation_Variable, 0.0f);
 			
 		 
 			}
@@ -214,7 +214,7 @@ public class Player_Controller : MonoBehaviour
 			if (current_angle == 360.0f)
 			{
 				Rotation_Variable = 0.0f;
-				//HellCat_Object.rigidbody.rotation = Quaternion.Euler (0.0f, Rotation_Variable, 0.0f);
+				//HellCat_Object.GetComponent<Rigidbody>().rotation = Quaternion.Euler (0.0f, Rotation_Variable, 0.0f);
 			
 				
 			}
@@ -224,8 +224,8 @@ public class Player_Controller : MonoBehaviour
 		
 			if ((current_angle >= 0.0f) && (current_angle < 90.0f))
 			{
-				Rotation_Variable = HellCat_Object.rigidbody.rotation.eulerAngles.y + Angle_Rotation_Speed;
-				//HellCat_Object.rigidbody.rotation = Quaternion.Euler (0.0f, Rotation_Variable, 0.0f);
+				Rotation_Variable = HellCat_Object.GetComponent<Rigidbody>().rotation.eulerAngles.y + Angle_Rotation_Speed;
+				//HellCat_Object.GetComponent<Rigidbody>().rotation = Quaternion.Euler (0.0f, Rotation_Variable, 0.0f);
 				
 			}
 			
@@ -236,12 +236,12 @@ public class Player_Controller : MonoBehaviour
 			if ((current_angle >= 90.0f -Angle_Rotation_Speed ) && (current_angle <= 90.0f +Angle_Rotation_Speed ))
 			{
 				Rotation_Variable = 90.0f;
-				//HellCat_Object.rigidbody.rotation = Quaternion.Euler (0.0f, Rotation_Variable, 0.0f);
+				//HellCat_Object.GetComponent<Rigidbody>().rotation = Quaternion.Euler (0.0f, Rotation_Variable, 0.0f);
 
 			
 			}
 		
-			//HellCat_Object.rigidbody.rotation = Quaternion.Euler (0.0f, Rotation_Variable, 0.0f);
+			//HellCat_Object.GetComponent<Rigidbody>().rotation = Quaternion.Euler (0.0f, Rotation_Variable, 0.0f);
 		}
 		//-----------------------------------------------------------------
 		// ------------------------- Go DOWN  -----------------------------
@@ -260,11 +260,11 @@ public class Player_Controller : MonoBehaviour
 		//-----------------------------------------------------------------
 		if ((MoveVertical > 0) && (MoveHorizontal == 0)) 
 		{
-			//	HellCat_Object.rigidbody.rotation = Quaternion.Euler (0.0f, 270.0f, 0.0f);
+			//	HellCat_Object.GetComponent<Rigidbody>().rotation = Quaternion.Euler (0.0f, 270.0f, 0.0f);
 			if ((current_angle >= 90.0f) && (current_angle < 270.0f))
 			{
-				Rotation_Variable = HellCat_Object.rigidbody.rotation.eulerAngles.y + Angle_Rotation_Speed;
-				//HellCat_Object.rigidbody.rotation = Quaternion.Euler (0.0f, Rotation_Variable, 0.0f);
+				Rotation_Variable = HellCat_Object.GetComponent<Rigidbody>().rotation.eulerAngles.y + Angle_Rotation_Speed;
+				//HellCat_Object.GetComponent<Rigidbody>().rotation = Quaternion.Euler (0.0f, Rotation_Variable, 0.0f);
 			}
 			
 			
@@ -273,32 +273,32 @@ public class Player_Controller : MonoBehaviour
 			
 			if ((current_angle < 90.0f) && (current_angle > 0.0f))
 			{
-				Rotation_Variable = HellCat_Object.rigidbody.rotation.eulerAngles.y - Angle_Rotation_Speed;
-				//HellCat_Object.rigidbody.rotation = Quaternion.Euler (0.0f, Rotation_Variable, 0.0f);
+				Rotation_Variable = HellCat_Object.GetComponent<Rigidbody>().rotation.eulerAngles.y - Angle_Rotation_Speed;
+				//HellCat_Object.GetComponent<Rigidbody>().rotation = Quaternion.Euler (0.0f, Rotation_Variable, 0.0f);
 			}
 			
 			if (current_angle <= 00.0f)
 			{
 				Rotation_Variable = 360;
-				//HellCat_Object.rigidbody.rotation = Quaternion.Euler (0.0f, Rotation_Variable, 0.0f);
+				//HellCat_Object.GetComponent<Rigidbody>().rotation = Quaternion.Euler (0.0f, Rotation_Variable, 0.0f);
 				
 			}
 			
 			
 			if ((current_angle <= 360.0f) && (current_angle > 270.0f))
 			{
-				Rotation_Variable = HellCat_Object.rigidbody.rotation.eulerAngles.y - Angle_Rotation_Speed;
-				//HellCat_Object.rigidbody.rotation = Quaternion.Euler (0.0f, Rotation_Variable, 0.0f);
+				Rotation_Variable = HellCat_Object.GetComponent<Rigidbody>().rotation.eulerAngles.y - Angle_Rotation_Speed;
+				//HellCat_Object.GetComponent<Rigidbody>().rotation = Quaternion.Euler (0.0f, Rotation_Variable, 0.0f);
 			}
 
 
 			if ((current_angle <= 270.0f + Angle_Rotation_Speed ) && (current_angle >= 270.0f - Angle_Rotation_Speed))
 			{
 				Rotation_Variable =  270.0f;
-				//HellCat_Object.rigidbody.rotation = Quaternion.Euler (0.0f, Rotation_Variable, 0.0f);
+				//HellCat_Object.GetComponent<Rigidbody>().rotation = Quaternion.Euler (0.0f, Rotation_Variable, 0.0f);
 			}
 
-			//HellCat_Object.rigidbody.rotation = Quaternion.Euler (0.0f, Rotation_Variable, 0.0f);
+			//HellCat_Object.GetComponent<Rigidbody>().rotation = Quaternion.Euler (0.0f, Rotation_Variable, 0.0f);
 		}
 		//-----------------------------------------------------------------
 		// ------------------------- Go UP  -----------------------------
@@ -312,29 +312,29 @@ public class Player_Controller : MonoBehaviour
 		//-----------------------------------------------------------------
 		if ((MoveVertical == 0) && (MoveHorizontal < 0)) 
 		{
-			//HellCat_Object.rigidbody.rotation = Quaternion.Euler (0.0f, 180.0f, 0.0f);
+			//HellCat_Object.GetComponent<Rigidbody>().rotation = Quaternion.Euler (0.0f, 180.0f, 0.0f);
 			
 			if ((current_angle <= 360.0f) && (current_angle > 180.0f))
 			{
-				Rotation_Variable = HellCat_Object.rigidbody.rotation.eulerAngles.y - Angle_Rotation_Speed;
-				//HellCat_Object.rigidbody.rotation = Quaternion.Euler (0.0f, Rotation_Variable, 0.0f);
+				Rotation_Variable = HellCat_Object.GetComponent<Rigidbody>().rotation.eulerAngles.y - Angle_Rotation_Speed;
+				//HellCat_Object.GetComponent<Rigidbody>().rotation = Quaternion.Euler (0.0f, Rotation_Variable, 0.0f);
 			}
 
 
 			
 			if ((current_angle >=0.0f) && (current_angle < 180.0f))
 			{
-				Rotation_Variable = HellCat_Object.rigidbody.rotation.eulerAngles.y + Angle_Rotation_Speed;
-				//HellCat_Object.rigidbody.rotation = Quaternion.Euler (0.0f, Rotation_Variable, 0.0f);
+				Rotation_Variable = HellCat_Object.GetComponent<Rigidbody>().rotation.eulerAngles.y + Angle_Rotation_Speed;
+				//HellCat_Object.GetComponent<Rigidbody>().rotation = Quaternion.Euler (0.0f, Rotation_Variable, 0.0f);
 			}
 
 			
 			if ((current_angle >=180.0f - Angle_Rotation_Speed) && (current_angle <= 180.0f + Angle_Rotation_Speed))
 			{
 				Rotation_Variable = 180.0f;
-				//HellCat_Object.rigidbody.rotation = Quaternion.Euler (0.0f, Rotation_Variable, 0.0f);
+				//HellCat_Object.GetComponent<Rigidbody>().rotation = Quaternion.Euler (0.0f, Rotation_Variable, 0.0f);
 			}
-			//HellCat_Object.rigidbody.rotation = Quaternion.Euler (0.0f, Rotation_Variable, 0.0f);
+			//HellCat_Object.GetComponent<Rigidbody>().rotation = Quaternion.Euler (0.0f, Rotation_Variable, 0.0f);
 			
 			
 		}
@@ -353,33 +353,33 @@ public class Player_Controller : MonoBehaviour
 		//-----------------------------------------------------------------
 		if ((MoveVertical == 0) && (MoveHorizontal > 0)) 
 		{
-			//HellCat_Object.rigidbody.rotation = Quaternion.Euler (0.0f, 360.0f, 0.0f);
+			//HellCat_Object.GetComponent<Rigidbody>().rotation = Quaternion.Euler (0.0f, 360.0f, 0.0f);
 			if ((current_angle >= 180.0f) && (current_angle < 360.0f))
 			{
-				Rotation_Variable = HellCat_Object.rigidbody.rotation.eulerAngles.y + Angle_Rotation_Speed;
-				//HellCat_Object.rigidbody.rotation = Quaternion.Euler (0.0f, Rotation_Variable, 0.0f);
+				Rotation_Variable = HellCat_Object.GetComponent<Rigidbody>().rotation.eulerAngles.y + Angle_Rotation_Speed;
+				//HellCat_Object.GetComponent<Rigidbody>().rotation = Quaternion.Euler (0.0f, Rotation_Variable, 0.0f);
 			}
 			
 			
 			if ((current_angle < 180.0f) && (current_angle > 0.0f))
 			{
-				Rotation_Variable = HellCat_Object.rigidbody.rotation.eulerAngles.y - Angle_Rotation_Speed;
-				//HellCat_Object.rigidbody.rotation = Quaternion.Euler (0.0f, Rotation_Variable, 0.0f);
+				Rotation_Variable = HellCat_Object.GetComponent<Rigidbody>().rotation.eulerAngles.y - Angle_Rotation_Speed;
+				//HellCat_Object.GetComponent<Rigidbody>().rotation = Quaternion.Euler (0.0f, Rotation_Variable, 0.0f);
 			}
 
 			if ((current_angle >= 360.0f - Angle_Rotation_Speed) && (current_angle <= 360.0f + Angle_Rotation_Speed))
 			{
 				Rotation_Variable = 0.0f;
-				//HellCat_Object.rigidbody.rotation = Quaternion.Euler (0.0f, Rotation_Variable, 0.0f);
+				//HellCat_Object.GetComponent<Rigidbody>().rotation = Quaternion.Euler (0.0f, Rotation_Variable, 0.0f);
 			}
 	
 			if ((current_angle >= 0.0f - Angle_Rotation_Speed) && (current_angle <= 0.0f + Angle_Rotation_Speed))
 			{
 				Rotation_Variable = 0.0f;
-				//HellCat_Object.rigidbody.rotation = Quaternion.Euler (0.0f, Rotation_Variable, 0.0f);
+				//HellCat_Object.GetComponent<Rigidbody>().rotation = Quaternion.Euler (0.0f, Rotation_Variable, 0.0f);
 			}
 
-			//HellCat_Object.rigidbody.rotation = Quaternion.Euler (0.0f, Rotation_Variable, 0.0f);
+			//HellCat_Object.GetComponent<Rigidbody>().rotation = Quaternion.Euler (0.0f, Rotation_Variable, 0.0f);
 		}
 		//-----------------------------------------------------------------
 		// ------------------------- Go RIGHT  -----------------------------
@@ -396,18 +396,18 @@ public class Player_Controller : MonoBehaviour
 		//-----------------------------------------------------------------
 		if ((MoveVertical < 0) && (MoveHorizontal < 0)) 
 		{
-			//HellCat_Object.rigidbody.rotation = Quaternion.Euler (0.0f, 135.0f, 0.0f);
+			//HellCat_Object.GetComponent<Rigidbody>().rotation = Quaternion.Euler (0.0f, 135.0f, 0.0f);
 			
 			if ((current_angle <= 315.0f) && (current_angle > 135.0f))
 			{
-				Rotation_Variable = HellCat_Object.rigidbody.rotation.eulerAngles.y - Angle_Rotation_Speed;
-				//HellCat_Object.rigidbody.rotation = Quaternion.Euler (0.0f, Rotation_Variable, 0.0f);
+				Rotation_Variable = HellCat_Object.GetComponent<Rigidbody>().rotation.eulerAngles.y - Angle_Rotation_Speed;
+				//HellCat_Object.GetComponent<Rigidbody>().rotation = Quaternion.Euler (0.0f, Rotation_Variable, 0.0f);
 			}
 			
 			if ((current_angle > 315.0f) && (current_angle <= 360.0f))
 			{
-				Rotation_Variable = HellCat_Object.rigidbody.rotation.eulerAngles.y + Angle_Rotation_Speed;
-				//HellCat_Object.rigidbody.rotation = Quaternion.Euler (0.0f, Rotation_Variable, 0.0f);
+				Rotation_Variable = HellCat_Object.GetComponent<Rigidbody>().rotation.eulerAngles.y + Angle_Rotation_Speed;
+				//HellCat_Object.GetComponent<Rigidbody>().rotation = Quaternion.Euler (0.0f, Rotation_Variable, 0.0f);
 			}
 			
 			if (current_angle >= 360.0f)
@@ -418,8 +418,8 @@ public class Player_Controller : MonoBehaviour
 			
 			if ((current_angle >= 0.0f) && (current_angle < 135.0f))
 			{
-				Rotation_Variable = HellCat_Object.rigidbody.rotation.eulerAngles.y + Angle_Rotation_Speed;
-				//	HellCat_Object.rigidbody.rotation = Quaternion.Euler (0.0f, Rotation_Variable, 0.0f);
+				Rotation_Variable = HellCat_Object.GetComponent<Rigidbody>().rotation.eulerAngles.y + Angle_Rotation_Speed;
+				//	HellCat_Object.GetComponent<Rigidbody>().rotation = Quaternion.Euler (0.0f, Rotation_Variable, 0.0f);
 			}
 
 
@@ -427,10 +427,10 @@ public class Player_Controller : MonoBehaviour
 			if ((current_angle >= 135.0f - Angle_Rotation_Speed) && (current_angle <= 135.0f + Angle_Rotation_Speed ))
 			{
 				Rotation_Variable = 135.0f;
-				//	HellCat_Object.rigidbody.rotation = Quaternion.Euler (0.0f, Rotation_Variable, 0.0f);
+				//	HellCat_Object.GetComponent<Rigidbody>().rotation = Quaternion.Euler (0.0f, Rotation_Variable, 0.0f);
 			}
 
-			//	HellCat_Object.rigidbody.rotation = Quaternion.Euler (0.0f, Rotation_Variable, 0.0f)
+			//	HellCat_Object.GetComponent<Rigidbody>().rotation = Quaternion.Euler (0.0f, Rotation_Variable, 0.0f)
 		}
 		//-----------------------------------------------------------------
 		// ------------------------- Go LEFT-DOWM  -----------------------------
@@ -442,18 +442,18 @@ public class Player_Controller : MonoBehaviour
 		//-----------------------------------------------------------------
 		if ((MoveVertical > 0) && (MoveHorizontal > 0)) 
 		{
-			//HellCat_Object.rigidbody.rotation = Quaternion.Euler (0.0f, 315.0f, 0.0f);
+			//HellCat_Object.GetComponent<Rigidbody>().rotation = Quaternion.Euler (0.0f, 315.0f, 0.0f);
 			if ((current_angle >= 135.0f) && (current_angle < 315.0f))
 			{
-				Rotation_Variable = HellCat_Object.rigidbody.rotation.eulerAngles.y + Angle_Rotation_Speed;
-				//HellCat_Object.rigidbody.rotation = Quaternion.Euler (0.0f, Rotation_Variable, 0.0f);
+				Rotation_Variable = HellCat_Object.GetComponent<Rigidbody>().rotation.eulerAngles.y + Angle_Rotation_Speed;
+				//HellCat_Object.GetComponent<Rigidbody>().rotation = Quaternion.Euler (0.0f, Rotation_Variable, 0.0f);
 			}
 			
 			
 			if ((current_angle < 135.0f) && (current_angle > 0.0f))
 			{
-				Rotation_Variable = HellCat_Object.rigidbody.rotation.eulerAngles.y - Angle_Rotation_Speed;
-				//HellCat_Object.rigidbody.rotation = Quaternion.Euler (0.0f, Rotation_Variable, 0.0f);
+				Rotation_Variable = HellCat_Object.GetComponent<Rigidbody>().rotation.eulerAngles.y - Angle_Rotation_Speed;
+				//HellCat_Object.GetComponent<Rigidbody>().rotation = Quaternion.Euler (0.0f, Rotation_Variable, 0.0f);
 			}
 			
 			
@@ -465,16 +465,16 @@ public class Player_Controller : MonoBehaviour
 			
 			if ((current_angle <= 360.0f) && (current_angle > 315.0f))
 			{
-				Rotation_Variable = HellCat_Object.rigidbody.rotation.eulerAngles.y - Angle_Rotation_Speed;
-				//HellCat_Object.rigidbody.rotation = Quaternion.Euler (0.0f, Rotation_Variable, 0.0f);
+				Rotation_Variable = HellCat_Object.GetComponent<Rigidbody>().rotation.eulerAngles.y - Angle_Rotation_Speed;
+				//HellCat_Object.GetComponent<Rigidbody>().rotation = Quaternion.Euler (0.0f, Rotation_Variable, 0.0f);
 			}
 
 			if ((current_angle >= 315.0f - Angle_Rotation_Speed ) && (current_angle <= 315.0f + Angle_Rotation_Speed ))
 			{
 				Rotation_Variable = 315.0f;
-				//HellCat_Object.rigidbody.rotation = Quaternion.Euler (0.0f, Rotation_Variable, 0.0f);
+				//HellCat_Object.GetComponent<Rigidbody>().rotation = Quaternion.Euler (0.0f, Rotation_Variable, 0.0f);
 			}
-			//HellCat_Object.rigidbody.rotation = Quaternion.Euler (0.0f, Rotation_Variable, 0.0f);
+			//HellCat_Object.GetComponent<Rigidbody>().rotation = Quaternion.Euler (0.0f, Rotation_Variable, 0.0f);
 			
 		}
 		//-----------------------------------------------------------------
@@ -491,17 +491,17 @@ public class Player_Controller : MonoBehaviour
 
 		if ((MoveVertical > 0) && (MoveHorizontal < 0)) 
 		{
-			//HellCat_Object.rigidbody.rotation = Quaternion.Euler (0.0f, 225.0f, 0.0f);
+			//HellCat_Object.GetComponent<Rigidbody>().rotation = Quaternion.Euler (0.0f, 225.0f, 0.0f);
 			if ((current_angle <= 360.0f) && (current_angle > 225.0f))
 			{
-				Rotation_Variable = HellCat_Object.rigidbody.rotation.eulerAngles.y - Angle_Rotation_Speed;
-				//HellCat_Object.rigidbody.rotation = Quaternion.Euler (0.0f, Rotation_Variable, 0.0f);
+				Rotation_Variable = HellCat_Object.GetComponent<Rigidbody>().rotation.eulerAngles.y - Angle_Rotation_Speed;
+				//HellCat_Object.GetComponent<Rigidbody>().rotation = Quaternion.Euler (0.0f, Rotation_Variable, 0.0f);
 			}
 			
 			if ((current_angle <= 45.0f) && (current_angle > 0.0f))
 			{
-				Rotation_Variable = HellCat_Object.rigidbody.rotation.eulerAngles.y - Angle_Rotation_Speed;
-				//HellCat_Object.rigidbody.rotation = Quaternion.Euler (0.0f, Rotation_Variable, 0.0f);
+				Rotation_Variable = HellCat_Object.GetComponent<Rigidbody>().rotation.eulerAngles.y - Angle_Rotation_Speed;
+				//HellCat_Object.GetComponent<Rigidbody>().rotation = Quaternion.Euler (0.0f, Rotation_Variable, 0.0f);
 			}
 			
 			if (current_angle == 0.0f)
@@ -513,17 +513,17 @@ public class Player_Controller : MonoBehaviour
 			
 			if ((current_angle <  225.0f) && (current_angle > 45.0f))
 			{
-				Rotation_Variable = HellCat_Object.rigidbody.rotation.eulerAngles.y + Angle_Rotation_Speed;
-				//HellCat_Object.rigidbody.rotation = Quaternion.Euler (0.0f, Rotation_Variable, 0.0f);
+				Rotation_Variable = HellCat_Object.GetComponent<Rigidbody>().rotation.eulerAngles.y + Angle_Rotation_Speed;
+				//HellCat_Object.GetComponent<Rigidbody>().rotation = Quaternion.Euler (0.0f, Rotation_Variable, 0.0f);
 			}
 
 			if ((current_angle >=  225.0f - Angle_Rotation_Speed) && (current_angle <= 225.0f + Angle_Rotation_Speed ))
 			{
 				Rotation_Variable = 225.0f;
-				//HellCat_Object.rigidbody.rotation = Quaternion.Euler (0.0f, Rotation_Variable, 0.0f);
+				//HellCat_Object.GetComponent<Rigidbody>().rotation = Quaternion.Euler (0.0f, Rotation_Variable, 0.0f);
 			}
 
-			//	HellCat_Object.rigidbody.rotation = Quaternion.Euler (0.0f, Rotation_Variable, 0.0f);
+			//	HellCat_Object.GetComponent<Rigidbody>().rotation = Quaternion.Euler (0.0f, Rotation_Variable, 0.0f);
 		}
 		//-----------------------------------------------------------------
 		// ------------------------- Go LEFT-UP  -----------------------------
@@ -540,11 +540,11 @@ public class Player_Controller : MonoBehaviour
 		//-----------------------------------------------------------------
 		if ((MoveVertical < 0) && (MoveHorizontal > 0)) 
 		{
-			//HellCat_Object.rigidbody.rotation = Quaternion.Euler (0.0f, 45.0f, 0.0f);
+			//HellCat_Object.GetComponent<Rigidbody>().rotation = Quaternion.Euler (0.0f, 45.0f, 0.0f);
 			if ((current_angle >=  225.0f) && (current_angle < 360.0f))
 			{
-				Rotation_Variable = HellCat_Object.rigidbody.rotation.eulerAngles.y + Angle_Rotation_Speed;
-				//HellCat_Object.rigidbody.rotation = Quaternion.Euler (0.0f, Rotation_Variable, 0.0f);
+				Rotation_Variable = HellCat_Object.GetComponent<Rigidbody>().rotation.eulerAngles.y + Angle_Rotation_Speed;
+				//HellCat_Object.GetComponent<Rigidbody>().rotation = Quaternion.Euler (0.0f, Rotation_Variable, 0.0f);
 			}
 			
 			
@@ -556,43 +556,43 @@ public class Player_Controller : MonoBehaviour
 			
 			if ((current_angle >=  0.0f) && (current_angle < 45.0f))
 			{
-				Rotation_Variable = HellCat_Object.rigidbody.rotation.eulerAngles.y + Angle_Rotation_Speed;
-				//HellCat_Object.rigidbody.rotation = Quaternion.Euler (0.0f, Rotation_Variable, 0.0f);
+				Rotation_Variable = HellCat_Object.GetComponent<Rigidbody>().rotation.eulerAngles.y + Angle_Rotation_Speed;
+				//HellCat_Object.GetComponent<Rigidbody>().rotation = Quaternion.Euler (0.0f, Rotation_Variable, 0.0f);
 			}
 			
 			if ((current_angle <  225.0f) && (current_angle > 45.0f))
 			{
-				Rotation_Variable = HellCat_Object.rigidbody.rotation.eulerAngles.y - Angle_Rotation_Speed;
-				//HellCat_Object.rigidbody.rotation = Quaternion.Euler (0.0f, Rotation_Variable, 0.0f);
+				Rotation_Variable = HellCat_Object.GetComponent<Rigidbody>().rotation.eulerAngles.y - Angle_Rotation_Speed;
+				//HellCat_Object.GetComponent<Rigidbody>().rotation = Quaternion.Euler (0.0f, Rotation_Variable, 0.0f);
 			}
 
 			if ((current_angle >= 45.0f - Angle_Rotation_Speed) && (current_angle <= 45.0f + Angle_Rotation_Speed))
 			{
 				Rotation_Variable = 45.0f;
-				//HellCat_Object.rigidbody.rotation = Quaternion.Euler (0.0f, Rotation_Variable, 0.0f);
+				//HellCat_Object.GetComponent<Rigidbody>().rotation = Quaternion.Euler (0.0f, Rotation_Variable, 0.0f);
 			}
 
-			//	HellCat_Object.rigidbody.rotation = Quaternion.Euler (0.0f, Rotation_Variable, 0.0f);
+			//	HellCat_Object.GetComponent<Rigidbody>().rotation = Quaternion.Euler (0.0f, Rotation_Variable, 0.0f);
 		}	
 		//-----------------------------------------------------------------
 		// ------------------------- Go RIGHT-DOWN  -----------------------------
 		//-----------------------------------------------------------------
 
 
-		HellCat_Object.rigidbody.rotation = Quaternion.Euler (0.0f, Rotation_Variable , 0.0f);
+		HellCat_Object.GetComponent<Rigidbody>().rotation = Quaternion.Euler (0.0f, Rotation_Variable , 0.0f);
 
 		// Формирование движения кошки
-		if (Level_Borders_Check(HellCat_Object.rigidbody.position + Move / Speed) == true) 
+		if (Level_Borders_Check(HellCat_Object.GetComponent<Rigidbody>().position + Move / Speed) == true) 
 			{
 			if (Hellcat_Mode == false) 
 				{			
 					//кошка над землей
-					HellCat_Object.rigidbody.position = HellCat_Object.rigidbody.position + Move / Speed;			
+					HellCat_Object.GetComponent<Rigidbody>().position = HellCat_Object.GetComponent<Rigidbody>().position + Move / Speed;			
 				} 
 				else 
 				{		
 					//кошка под землей (быстрее двигается чем над землей)
-					HellCat_Object.rigidbody.position = HellCat_Object.rigidbody.position + Move / (Speed / 2);
+					HellCat_Object.GetComponent<Rigidbody>().position = HellCat_Object.GetComponent<Rigidbody>().position + Move / (Speed / 2);
 				}
 			}
 		}

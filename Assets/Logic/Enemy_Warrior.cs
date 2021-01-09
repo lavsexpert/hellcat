@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using UnityEngine.AI;
 using System.Collections;
 
 public class Enemy_Warrior : MonoBehaviour 
@@ -100,7 +101,7 @@ public class Enemy_Warrior : MonoBehaviour
 		Previous = "Warrior_04_Go";
 
 		// Если анимация не проигрывается - то проигрываем анимацию движения или анимацию стояния на месте
-		if (animation.isPlaying == false) 
+		if (GetComponent<Animation>().isPlaying == false) 
 		{
 			Previous = Current;
 			
@@ -114,7 +115,7 @@ public class Enemy_Warrior : MonoBehaviour
 			if ((Previous == "Warrior_04_Go") && ((Distance < (0.05f)) && (Distance > (0.0f)))) 
 			{
 				PlayAnimation("Warrior_08_Stop");
-				animation.PlayQueued ("Warrior_02_Stand");
+				GetComponent<Animation>().PlayQueued ("Warrior_02_Stand");
 			}
 		}
 		
@@ -136,15 +137,15 @@ public class Enemy_Warrior : MonoBehaviour
 		//			PlayAnimation("Warrior_03_Attack");
 		//		}
 		
-		if (animation.isPlaying == false) 
+		if (GetComponent<Animation>().isPlaying == false) 
 		{
 			// Если подошёл в плотную - начинает атаковать
 			if (Distance == 0.0f) 
 			{
-				animation["Warrior_03_Attack"].speed = 0.2f;
-				animation["Warrior_02_Stand"].speed = 0.001f;
+				GetComponent<Animation>()["Warrior_03_Attack"].speed = 0.2f;
+				GetComponent<Animation>()["Warrior_02_Stand"].speed = 0.001f;
 				PlayAnimation("Warrior_03_Attack");
-				animation.CrossFadeQueued ("Warrior_02_Stand");
+				GetComponent<Animation>().CrossFadeQueued ("Warrior_02_Stand");
 			} 
 			
 			// Если идёт атака, то вычисляется расстояние от воина до кошки, и если 0 - кошка теряет жизнь
@@ -199,7 +200,7 @@ public class Enemy_Warrior : MonoBehaviour
 	{
 		if (SetPrevious) Previous = Current;
 		Current = AnimationName;
-		animation.CrossFade (Current);
+		GetComponent<Animation>().CrossFade (Current);
 	}
 
 }

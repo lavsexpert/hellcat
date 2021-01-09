@@ -144,7 +144,7 @@ public class Object_Tree : MonoBehaviour {
 						Set_A_Tree_Function (TreeX.transform.position.x, TreeX.transform.position.y, TreeX.transform.position.z);
 			var Tree_BoxCollider = CurrentTree.AddComponent<BoxCollider> ();
 					Tree_BoxCollider.size = new Vector3 (0.25f, 0.25f, 1.5f);	
-			DestroyObject (TreeX);
+			Object.Destroy(TreeX);
 		}
 
 					Search = GameObject.FindGameObjectsWithTag ("Trap");
@@ -154,7 +154,7 @@ public class Object_Tree : MonoBehaviour {
 						Tree_BoxCollider.size = new Vector3 (0.5f, 0.5f, 0.5f);	
 			Tree_BoxCollider.center = new Vector3 (0.0f, 0.2f, 0.0f);	
 
-			DestroyObject (TreeX);
+			Object.Destroy(TreeX);
 
 
 
@@ -166,7 +166,7 @@ public class Object_Tree : MonoBehaviour {
 			var Tree_BoxCollider = CurrentTree.AddComponent<BoxCollider> ();
 				Tree_BoxCollider.size = new Vector3 (0.3f, 0.25f, 0.3f);	
 			Tree_BoxCollider.center = new Vector3 (0.0f, 0.0f, 0.1f);		
-						DestroyObject (TreeX);
+						Object.Destroy(TreeX);
 				}
 
 	Search = GameObject.FindGameObjectsWithTag ("Enemy_Warrior");
@@ -174,7 +174,7 @@ public class Object_Tree : MonoBehaviour {
 			CurrentTree = Instantiate (Enemy_Warrior_GameObject, new Vector3 (TreeX.transform.position.x, TreeX.transform.position.y - 0.6f, TreeX.transform.position.z), Quaternion.AngleAxis (0, Vector3.left))as GameObject;
 			//var Tree_BoxCollider = CurrentTree.AddComponent<BoxCollider> ();
 			//Tree_BoxCollider.size = new Vector3 (0.25f, 0.25f, 1.5f);	
-			DestroyObject (TreeX);
+			Object.Destroy(TreeX);
 			
 		}
 	
@@ -184,7 +184,7 @@ public class Object_Tree : MonoBehaviour {
 			CurrentTree = Instantiate (Enemy_Seeker_GameObject, new Vector3 (TreeX.transform.position.x, TreeX.transform.position.y, TreeX.transform.position.z), Quaternion.AngleAxis (0, Vector3.left))as GameObject;
 			//var Tree_BoxCollider = CurrentTree.AddComponent<BoxCollider> ();
 			//Tree_BoxCollider.size = new Vector3 (0.25f, 0.25f, 1.5f);	
-			DestroyObject (TreeX);
+			Object.Destroy(TreeX);
 			
 		}
 
@@ -196,7 +196,7 @@ public class Object_Tree : MonoBehaviour {
 
 			//	var Tree_BoxCollider = CurrentTree.AddComponent<BoxCollider> ();
 		//	Tree_BoxCollider.size = new Vector3 (0.25f, 0.25f, 1.5f);	
-			DestroyObject (TreeX);
+			Object.Destroy(TreeX);
 			
 		}
 

@@ -91,7 +91,7 @@ public class Camera_Controller : MonoBehaviour
 	// Установка камеры для показа плоского вида сверху
 	void SetCamera2D()
 	{
-		camera.fieldOfView = 35;
+		GetComponent<Camera>().fieldOfView = 35;
 		transform.rotation = Quaternion.Euler(90.0f, 0.0f, 0.0f); 
 		if (Distance2D == 0) Distance2D = 20;
 		Offset =  new Vector3(3.0f , Distance2D, 3.0f);
@@ -100,7 +100,7 @@ public class Camera_Controller : MonoBehaviour
 	// Установка камеры для показа изометрического вида сзади
 	void SetCamera3D()
 	{
-		camera.fieldOfView = 60;
+		GetComponent<Camera>().fieldOfView = 60;
 		transform.rotation = Quaternion.Euler(37.5f, 45.0f, 0.0f); //Устанавливаем стандартные углы наклона камеры для изометрической проекции
 		if (Distance3D == 0) Distance3D = 5;
 		Vector3 CameraDirection = transform.rotation.eulerAngles;

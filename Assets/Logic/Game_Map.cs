@@ -43,10 +43,10 @@ public class Game_Map : MonoBehaviour
 
 		// Подготовка карты и её краёв
 		Land = GameObject.Find("Land");
-		LeftX = Land.renderer.bounds.min.x;
-		RightX = Land.renderer.bounds.max.x;
-		UpperZ = Land.renderer.bounds.min.z;
-		LowerZ = Land.renderer.bounds.max.z;
+		LeftX = Land.GetComponent<Renderer>().bounds.min.x;
+		RightX = Land.GetComponent<Renderer>().bounds.max.x;
+		UpperZ = Land.GetComponent<Renderer>().bounds.min.z;
+		LowerZ = Land.GetComponent<Renderer>().bounds.max.z;
 
 		// Вычисление логических размеров карты (чтобы не зависеть от размера экрана)
 		int DesiredWidth  = (int)Screen.width  / 4;
